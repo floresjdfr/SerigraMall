@@ -1,4 +1,5 @@
 import { useMediaQuery } from "react-responsive";
+import "../../styles/loginButtonStyles.css";
 
 import {
   Container,
@@ -38,48 +39,28 @@ function CustomNav() {
 
   return (
     <>
-      {isMobile && <CustomNavResponsive expand={"sm"} />}
-      {isTablet && <CustomNavResponsive expand={"md"} />}
-      {isLaptop && <CustomNavResponsive expand={"lg"} />}
-      {isDesktop && <CustomNavResponsive expand={"xl"} />}
-      {isBigScreen && <CustomNavResponsive expand={"xxl"} />}
-    </>
-  );
-}
-
-function CustomNavResponsive(props) {
-  return (
-    <>
-      <Navbar
-        key={props.expand}
-        bg="light"
-        expand={props.expand}
-        className="mb-3"
-      >
+      <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
         <Container fluid>
-          <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls={`offcanvasNavbar-expand-${props.expand}`}
-          />
+          <Navbar.Brand href="/">SerigraMall</Navbar.Brand>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas
-            id={`offcanvasNavbar-expand-${props.expand}`}
-            aria-labelledby={`offcanvasNavbarLabel-expand-${props.expand}`}
+            id={`offcanvasNavbar-expand-lg`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
             placement="end"
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title
-                id={`offcanvasNavbarLabel-expand-${props.expand}`}
-              >
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
                 Offcanvas
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#action1">Home</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="#action2">Link</Nav.Link>
                 <NavDropdown
+                  className="dropdown-custom"
                   title="Dropdown"
-                  id={`offcanvasNavbarDropdown-expand-${props.expand}`}
+                  id={`offcanvasNavbarDropdown-expand-lg`}
                 >
                   <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">
