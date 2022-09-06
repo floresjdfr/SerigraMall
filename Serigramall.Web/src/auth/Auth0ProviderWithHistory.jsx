@@ -1,14 +1,14 @@
 // src/auth/auth0-provider-with-history.js
 
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Auth0Provider } from '@auth0/auth0-react';
+import { Auth0Provider } from "@auth0/auth0-react";
 
 const Auth0ProviderWithHistory = ({ children }) => {
   const domain = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
-  
+
   const navigate = useNavigate();
 
   const onRedirectCallback = (appState) => {
@@ -22,6 +22,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
       audience={audience}
+      
     >
       {children}
     </Auth0Provider>

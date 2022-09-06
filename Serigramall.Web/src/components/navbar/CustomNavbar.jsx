@@ -1,6 +1,3 @@
-import { useMediaQuery } from "react-responsive";
-import "../../styles/loginButtonStyles.css";
-
 import {
   Container,
   Navbar,
@@ -10,32 +7,47 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import AuthenticationButton from "../authentication/AuthenticationButton";
+import Loading from "../utils/Loading";
+import "../../styles/loginButtonStyles.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../authentication/LoginButton";
+import LogoutButton from "../authentication/LogoutButton";
 
 function CustomNav() {
-  const isMobile = useMediaQuery({
-    minWidth: 0,
-    maxWidth: 576,
-  });
+  const { isAuthenticated, isLoading } = useAuth0();
 
-  const isTablet = useMediaQuery({
-    minWidth: 577,
-    maxWidth: 768,
-  });
+  function ProfileDropDown() {
+    return (
+      <>
+        <NavDropdown
+          className="dropdown-custom"
+          title="Profile"
+          id={`offcanvasNavbarDropdown-expand-lg`}
+        >
+          <NavDropdown.Item href="/manage-profile">
+            Manage Profile
+          </NavDropdown.Item>
+          <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <LogoutButton />
+        </NavDropdown>
+      </>
+    );
+  }
 
-  const isLaptop = useMediaQuery({
-    minWidth: 769,
-    maxWidth: 992,
-  });
-
-  const isDesktop = useMediaQuery({
-    minWidth: 993,
-    maxWidth: 1200,
-  });
-
-  const isBigScreen = useMediaQuery({
-    minWidth: 1201,
-  });
+  function InitProfileOptions() {
+    return (
+      <>
+        {isLoading ? (
+          <Loading width={"40px"} />
+        ) : isAuthenticated ? (
+          <ProfileDropDown />
+        ) : (
+          <LoginButton />
+        )}
+      </>
+    );
+  }
 
   return (
     <>
@@ -57,21 +69,7 @@ function CustomNav() {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="#action2">Link</Nav.Link>
-                <NavDropdown
-                  className="dropdown-custom"
-                  title="Dropdown"
-                  id={`offcanvasNavbarDropdown-expand-lg`}
-                >
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <AuthenticationButton />
+                <InitProfileOptions />
               </Nav>
               <Form className="d-flex">
                 <Form.Control
