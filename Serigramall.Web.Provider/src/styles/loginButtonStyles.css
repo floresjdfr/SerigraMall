@@ -1,0 +1,9 @@
+@media all and (max-width: 991.99px) {
+  .login-button {
+    margin-bottom: 8px;
+  }
+
+  .dropdown-custom {
+    margin-bottom: 8px;
+  }
+}
