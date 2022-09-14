@@ -7,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Serigramall.API.Repositories;
+using Serigramall.API.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +44,9 @@ namespace Serigramall.API
                 };
             });
 
+            services.Configure<SeriMallDBSettings>(Configuration.GetSection(nameof(SeriMallDBSettings)));
+            services.AddSingleton<IDatabaseSettings>(item => item.GetRequiredService<IOptions<SeriMallDBSettings>>().Value);
+            services.AddSingleton<ProductRepository>();
             services.AddAuthorization();
 
             services.AddSwaggerGen();
