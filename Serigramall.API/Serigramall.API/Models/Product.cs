@@ -10,7 +10,7 @@ namespace Serigramall.API.Models
 {
     public enum InventaryState
     {
-        ACTIVE, SOLDOUT, DESCONTINUED
+        ACTIVE, SOLDOUT, DESCONTINUED, DEFAULT
     }
     public class Product
     {

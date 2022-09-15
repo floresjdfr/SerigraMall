@@ -11,6 +11,6 @@ namespace Serigramall.API.DTOs
         public string Id { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public InventaryState State { get; set; }
+        public string State { get; set; }
     }
 }
