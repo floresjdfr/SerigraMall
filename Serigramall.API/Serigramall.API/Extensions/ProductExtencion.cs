@@ -1,5 +1,6 @@
 ﻿using Serigramall.API.DTOs;
 using Serigramall.API.Models;
+using System.IO;
 
 namespace Serigramall.API.Extensions
 {
@@ -7,24 +8,39 @@ namespace Serigramall.API.Extensions
     {
         public static ProductDto toDTO(this Product item)
         {
+            
             return new ProductDto
             {
                 Id = item.Id,
                 Description = item.Description,
-                Date = item.Date,
-                State = item.State.ToString()
+                RegistryDate = item.RegistryDate,
+                ProductState = castInvetaryEnum(item.ProductState),
+                Image = item.Image,
+                BasePrice = item.BasePrice,
+                BaseTax = item.BaseTax,
+                ProductName = item.ProductName,
+                ProductType = item.ProductType,
+                ProviderID = item.Provider,
+                Costumizations = null
             };
         }
         public static Product toProduct(this ProductDto item)
         {
-            var newItem = new Product
+            byte[] binaryContent = File.ReadAllBytes("C:/Users/boyro/OneDrive/Documentos/Euro Truck Simulator 2/screenshot/ets2_00053.png");
+            return new Product
             {
-                Date = item.Date,
+                Id = item.Id,
                 Description = item.Description,
-                State = castInvetaryEnum(item.State),
-                Id = item.Id
+                RegistryDate = item.RegistryDate,
+                ProductState = item.ProductState.ToString(),                
+                Image = binaryContent,
+                BasePrice =item.BasePrice,
+                BaseTax = item.BaseTax,
+                ProductName = item.ProductName,
+                ProductType = item.ProductType,
+                Provider = item.ProviderID, 
+                Costumizations =null
             };
-            return newItem;
         }
 
         internal static InventaryState castInvetaryEnum(string itemState)
@@ -47,34 +63,5 @@ namespace Serigramall.API.Extensions
             }
             return InventaryState.DEFAULT;
         }
-
-        //public static Task toTask(this TaskDTO taskDTO)
-        //{
-        //    var task = new Task
-        //    {
-        //        Id = taskDTO.TaskId,
-        //        Description = taskDTO.TaskDescription,
-        //        Date = taskDTO.TaskDate
-        //    };
-        //    switch (taskDTO.TaskState.ToUpper())
-        //    {
-        //        case "ACTIVE":
-        //            {
-        //                task.State = State.ACTIVE;
-        //                break;
-        //            }
-        //        case "COMPLETED":
-        //            {
-        //                task.State = State.COMPLETED;
-        //                break;
-        //            }
-        //        case "DELETED":
-        //            {
-        //                task.State = State.DELETED;
-        //                break;
-        //            }
-        //    }
-        //    return task;
-        //}
     }
 }
