@@ -10,13 +10,15 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.10.2",
+    "auth0": "^2.42.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^9.0.0-beta.10",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "superagent-proxy": "^3.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
