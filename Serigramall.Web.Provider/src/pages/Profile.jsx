@@ -11,21 +11,48 @@ function Profile() {
       <>
         <Form>
           <Form.Group>
-            <Form.Label>Full Name</Form.Label>
+            <Form.Label>Company Name</Form.Label>
             <Form.Control
               type="text"
               placeholder="Not specified"
               disabled={true}
-              value={user.family_name}
+              value={user.user_metadata.company}
             />
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="mt-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               placeholder="Not specified"
               disabled={true}
               value={user.email}
+            />
+          </Form.Group>
+          <Form.Group className="mt-3">
+            <Form.Label>Street Address</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Not specified"
+              disabled={true}
+              value={user.user_metadata.address}
+            />
+          </Form.Group>
+          <Form.Group className="mt-3">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Not specified"
+              disabled={true}
+              value={user.user_metadata.phone}
+            />
+          </Form.Group>
+          <Form.Group className="mt-3">
+            <Form.Label>Provider Type</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Not specified"
+              disabled={true}
+              value={user.user_metadata.provider == "1" ? "Serigraphy" : "Products"}
             />
           </Form.Group>
         </Form>
