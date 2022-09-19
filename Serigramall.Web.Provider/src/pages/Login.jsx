@@ -1,17 +1,17 @@
 import { Container, Form, FormControl } from "react-bootstrap";
 import { auth0Provider } from "../services/api/auth/auth0Provider";
+import useAuthentication from "../hooks/useAuthentication";
 
 function Login() {
-  const handleLogin = (e) => {
+  const { login, isAuthenticated, token } = useAuthentication();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    auth0Provider
-      .login(email, password)
-      .then((_) => alert("Logged in successfuly"))
-      .catch((_) => alert("Wrong username or password"));
+    login(email, password);
   };
 
   return (

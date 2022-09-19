@@ -1,5 +1,6 @@
 import { Container, Form } from "react-bootstrap";
 import { auth0Provider } from "../services/api/auth/auth0Provider";
+import "../styles/loginForm.css";
 
 function Signup() {
   const handleSubmit = (e) => {
@@ -11,7 +12,10 @@ function Signup() {
     const username = e.target.username.value;
     const password = e.target.password.value;
     const phoneNumber = e.target.phoneNumber.value;
-    const streetAddress = e.target.streetAddress.value;
+    const address = e.target.streetAddress.value;
+    const providerType = e.target.providerType.value;
+
+    console.log(providerType)
 
     auth0Provider
       .signup({
@@ -20,80 +24,98 @@ function Signup() {
         password,
         firstName,
         lastName,
-        streetAddress,
+        address,
         phoneNumber,
+        providerType,
       })
       .then((_) => alert("New user created successfully"))
       .catch((_) => alert("Something went wrong while creating the new user"));
   };
 
   return (
-    <Container>
+    <Container className="loginForm">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <h3 className="text-center">Sign Up</h3>
-        <div className="mb-3">
-          <label>First name</label>
-          <input
+
+        <Form.Group className="mb-3">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control
             id="firstName"
             type="text"
             className="form-control"
-            placeholder="First name"
+            placeholder="First Name"
           />
-        </div>
-        <div className="mb-3">
-          <label>Last name</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
             id="lastName"
             type="text"
             className="form-control"
-            placeholder="Last name"
+            placeholder="Last Name"
           />
-        </div>
-        <div className="mb-3">
-          <label>Email address</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
             id="email"
             type="email"
             className="form-control"
-            placeholder="Enter email"
+            placeholder="Email Address"
           />
-        </div>
-        <div className="mb-3">
-          <label>Username</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
             id="username"
             type="text"
             className="form-control"
             placeholder="Username"
           />
-        </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             id="password"
             type="password"
             className="form-control"
-            placeholder="Enter password"
+            placeholder="Password"
           />
-        </div>
-        <div className="mb-3">
-          <label>Phone Number</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
             id="phoneNumber"
             type="number"
             className="form-control"
             placeholder="Phone Number"
           />
-        </div>
-        <div className="mb-3">
-          <label>Street Address</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Street Address</Form.Label>
+          <Form.Control
             id="streetAddress"
             type="text"
             className="form-control"
             placeholder="Street Address"
           />
+        </Form.Group>
+
+        <div className="mb-3">
+          <label>Provider Type</label>
+          <Form.Select id="providerType">
+            <option>Select a Type</option>
+            <option value="1">Serigraph Provider</option>
+            <option value="2">Products Provider</option>
+          </Form.Select>
         </div>
+
         <div className="text-center">
           <button type="submit" className="btn btn-primary">
             Sign Up

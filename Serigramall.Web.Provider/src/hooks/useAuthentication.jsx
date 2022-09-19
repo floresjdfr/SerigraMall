@@ -1,21 +1,24 @@
 import { useState } from "react";
-import axios from "axios";
+import { auth0Provider } from "../services/api/auth/auth0Provider";
 
-export default function useAuthentication(token, username, passworwd) {
+export default function useAuthentication() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
-  const domain = import.meta.env.VITE_AUTH0_DOMAIN;
-  const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-  const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
-
-  const baseUrl = `https://${domain}/`
-
-  
-
-  function customLogin(){
-    axios.get(`${baseUrl}authorize?response_type=token&client_id=${clientId}&connection=facebook&`);  
+  function login(email, password) {
+    auth0Provider
+      .login(email, password)
+      .then((response) => {
+        const accessToken = response.data.access_token;
+        setIsAuthenticated(true);
+        setToken(accessToken);
+        console.log("Logged in successfully");
+        console.log("Token: " + token);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
-
-  return { isAuthenticated, token, login };
+  return { login, isAuthenticated, token };
 }
