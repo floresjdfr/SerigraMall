@@ -32,8 +32,6 @@ namespace Serigramall.API.Repositories
         //    var products = new List<Product>();
         //    products.Add(new Product { Id = "00", Date = DateTime.Now, Description = "JNFOJNFOJANOJI", State = InventaryState.ACTIVE });
         //    products.Add(new Product { Id = "01", Date = DateTime.Now, Description = "LKDJLKJFLKJFK", State = InventaryState.ACTIVE });
-
-
         //    return products;
         //}
         public IEnumerable<Product> Get() => _items.Find(item => true).ToList();
