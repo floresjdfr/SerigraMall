@@ -16,7 +16,7 @@ function Profile() {
               type="text"
               placeholder="Not specified"
               disabled={true}
-              value={user.user_metadata.company}
+              value={user.name}
             />
           </Form.Group>
           <Form.Group className="mt-3">
