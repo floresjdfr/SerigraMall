@@ -13,6 +13,7 @@ namespace Serigramall.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+
         private readonly IRepository<Product> _productRepository;
 
         public ProductController(ProductRepository productService)
