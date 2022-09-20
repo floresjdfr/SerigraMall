@@ -5,7 +5,8 @@ import { handleResponse, handleError } from './response';
 
 // Define your api url from any source.
 // Pulling from your .env file when on the server or from localhost when locally
-const BASE_URL = import.meta.env.VITE_SERVER_API_URL;
+//const BASE_URL = import.meta.env.VITE_SERVER_API_URL;
+const BASE_URL = "https://localhost:44355/api/";
 
 /** @param {string} resource */ 
 const getAll = (resource) => { 
