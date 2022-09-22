@@ -18,7 +18,14 @@ namespace Serigramall.API.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string Description { get; set; }
-        public DateTime Date { get; set; }
-        public InventaryState State { get; set; }
+        public string Provider { get; set; }
+        public string ProductName { get; set; }
+        public string BasePrice { get; set; }
+        public string BaseTax { get; set; }
+        public string ProductType { get; set; }
+        public byte[] Image { get; set; }
+        public List<string> Costumizations { get; set; }
+        public DateTime RegistryDate { get; set; }
+        public string ProductState { get; set; }
     }
 }
