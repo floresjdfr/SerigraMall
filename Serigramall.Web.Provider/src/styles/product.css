@@ -1,208 +1,87 @@
-.content {
-
-    max-width: 720px;
-    
-    margin: 0 auto;
-    
-    }
-    
-    /* Include the padding and border in an element’s total width and height */
-    
-    * {
-    
-    box-sizing: border-box;
-    
-    }
-    
-    /* Remove margins and padding from the list */
-    
-    ul {
-    
+.body b1{
+    background: hsla(210, 20%, 90%, 1);
+    padding: 2em 0;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h5 {
     margin: 0;
-    
-    padding: 0;
-    
-    }
-    
-    /* Style the list items */
-    
-    ul li {
-    
-    cursor: pointer;
-    
-    position: relative;
-    
-    padding: 12px 8px 12px 40px;
-    
-    background: #eee;
-    
-    font-size: 18px;
-    
-    list-style-type: none;
-    
-    transition: 0.2s;
-    
-    /* make the list items unselectable */
-    
-    -webkit-user-select: none;
-    
-    -moz-user-select: none;
-    
-    -ms-user-select: none;
-    
-    user-select: none;
-    
-    }
-    
-    /* Set all odd list items to a different color (zebra-stripes) */
-    
-    ul li:nth-child(odd) {
-    
-    background: #f9f9f9;
-    
-    }
-    
-    /* Darker background-color on hover */
-    
-    ul li:hover {
-    
-    background: #ddd;
-    
-    }
-    
-    /* When clicked on, add a background color and strike out text */
-    
-    ul li.checked {
-    
-    background: #888;
-    
-    color: #fff;
-    
-    text-decoration: line-through;
-    
-    }
-    
-    /* Add a “checked” mark when clicked on */
-    
-    ul li.checked::before {
-    
-    content: ‘’;
-    
-    position: absolute;
-    
-    border-color: #fff;
-    
-    border-style: solid;
-    
-    border-width: 0 2px 2px 0;
-    
-    top: 10px;
-    
-    left: 16px;
-    
-    transform: rotate(45deg);
-    
-    height: 15px;
-    
-    width: 7px;
-    
-    }
-    
-    /* Style the close button */
-    
-    .close {
-    
-    position: absolute;
-    
-    right: 0;
-    
-    top: 0;
-    
-    padding: 12px 16px 12px 16px;
-    
-    }
-    
-    .close:hover {
-    
-    background-color: #e74c3c;
-    
-    color: white;
-    
-    }
-    
-    /* Style the header */
-    
-    .header {
-    
-    background-color: #34495e;
-    
-    padding: 30px 40px;
-    
-    color: white;
-    
+  }
+  
+  .header {
     text-align: center;
-    
-    }
-    
-    /* Clear floats after the header */
-    
-    .header:after {
-    
-    content: “”;
-    
-    display: table;
-    
-    clear: both;
-    
-    }
-    
-    /* Style the input */
-    
-    input {
-    
-    margin: 0;
-    
-    border: none;
-    
-    border-radius: 0;
-    
-    width: 75%;
-    
-    padding: 10px;
-    
-    float: left;
-    
-    font-size: 16px;
-    
-    }
-    
-    /* Style the “Add” button */
-    
-    .add-button {
-    
-    padding: 10px;
-    
-    width: 25%;
-    
-    background: #d9d9d9;
-    
+    margin-bottom: 60px;
+  }
+  
+  .header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    margin-bottom: 0.2em;
+    line-height: 1.2;
+    color: #222
+  }
+  
+  .header h3 {
+    font-weight: 400;
     color: #555;
-    
-    float: left;
-    
-    text-align: center;
-    
-    font-size: 16px;
-    
+    width: 30em;
+  }
+  
+  .cards {
+    display: flex;
+    align-items: flex-start;
+      justify-content: center;
+  }
+  
+  .card {
+    background: rgb(231, 225, 225);
+    width: 24em;
+    border-radius: 0.6em;
+    margin: 1em;
+    overflow: hidden;
     cursor: pointer;
-    
-    transition: 0.3s;
-    
-    border-radius: 0;
-    
-    }
-    
-    .add-button:hover {
-    
-        background-color: #bbb;
-    }
+    box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25), 0 8px 16px -8px hsla(0, 0%, 0%, 0.3), 0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
+    transition: all ease 200ms;
+  }
+  
+  .card:hover {
+    transform: scale(1.30);
+    box-shadow: 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02);
+  }
+  
+  .card img {
+    width: 150%;
+    object-fit: cover;
+  }
+  
+  .card h2 {
+    color: #222;
+    margin-top: -0.2em;
+    line-height: 1.4;
+    font-size: 1.3em;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    transition: all ease-in 100ms;
+  }
+  
+  .card p {
+    color: #777;
+  }
+  
+  .card h5 {
+    color: #bbb;
+    font-weight: 700;
+    font-size: 0.7em;
+    letter-spacing: 0.04em;
+    margin: 1.4em 0 0 0;
+    text-transform: uppercase;
+  }
+  
+  .card-body {
+    padding: 1.2em;
+  }

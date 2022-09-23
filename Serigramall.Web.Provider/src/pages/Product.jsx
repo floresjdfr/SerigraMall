@@ -5,8 +5,8 @@ import '../styles/product.css'
 function Product () {
     return (
         <>
-            <div className="Product">
-                <div className="content">
+            <div>
+                <div >
                     <Header/>
                     <ProductList/>
                 </div>
