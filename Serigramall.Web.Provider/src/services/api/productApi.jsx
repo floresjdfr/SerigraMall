@@ -1,3 +1,4 @@
+import  ApiCore  from './utilities/core';
 const url = 'Product';
 const plural = 'Products';
 const single = 'Product';
@@ -10,15 +11,15 @@ const apiTasks = new ApiCore({
   post: true,
   put: false,
   patch: true,
-  delete: false,
+  delete: true,
   url: url,
   plural: plural,
   single: single
 });
-
+/*
 apiTasks.massUpdate = () => {
   // Add custom api call logic here
     return null
-}
+}*/
 
 export default apiTasks;
