@@ -1,10 +1,6 @@
 import { Container, Form, FormControl } from "react-bootstrap";
-import { auth0Provider } from "../services/api/auth/auth0Provider";
-import useAuthentication from "../hooks/useAuthentication";
 
 function Login() {
-  const { login, isAuthenticated, token } = useAuthentication();
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
