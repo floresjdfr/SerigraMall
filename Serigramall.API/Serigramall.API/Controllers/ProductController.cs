@@ -28,8 +28,6 @@ namespace Serigramall.API.Controllers
             return CreatedAtAction(nameof(Get), new { id = newValue.Id.ToString() }, newValue.toDTO());
         }
 
-
-
         // GET: api/ProductController
         [HttpGet]
         public IEnumerable<ProductDto> Get() => _productRepository.Get().Select(item => (item as Product).toDTO());
