@@ -5,7 +5,8 @@ import CustomNav from "./components/navbar/CustomNavbar";
 import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import Product from "./pages/Product";
-import ProtectedRoute from "./components/authentication/ProctedRoute";
+import ProtectedRoute from "./components/authentication/ProtectedRoute";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -13,20 +14,13 @@ function App() {
       <CustomNav />
       <Routes>
         <Route path="/" element={<Index />} />
-        
+
         {/* Protected routes */}
-        <Route
-          path="/product"
-          element={<ProtectedRoute component={Product} />}
-        />
-        <Route
-          path="/manage-profile"
-          element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />}
-        />
-        
+        <Route path="/product" element={<ProtectedRoute component={Product} />} />
+        <Route path="/manage-profile" element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />} />
 
         {/*Error Routes */}
-        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
