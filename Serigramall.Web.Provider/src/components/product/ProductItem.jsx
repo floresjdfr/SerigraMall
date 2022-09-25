@@ -1,13 +1,14 @@
 import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import DeleteProduct from './DeleteProduct';
 
 const Product = ({ product }) => {
     const [isHovering, setIsHovering] = useState(false);
 
     const handleMouseOver = () => {
         setIsHovering(true);
-      };
+    };
     
     const handleMouseOut = () => {
     setIsHovering(false);
@@ -23,10 +24,9 @@ const Product = ({ product }) => {
                     <Card.Text>
                         {product.description}
                     </Card.Text>
-                    <Card.Footer variant ="btn-group bg-light clearfix col-sm-2">
-                        <Button variant="primary float-left btn-sm">Editar</Button>
-                        <Button variant="danger float-right btn-sm">Eliminar</Button>
-                    </Card.Footer>
+                    <Button variant="primary">Editar</Button>
+                    <DeleteProduct/>
+                    
                 </Card.Body>
             }
         </Card>
@@ -34,7 +34,15 @@ const Product = ({ product }) => {
 }
 
 export default Product;
-/*className='bg-image hover-zoom'
+/*
+<Card.Footer variant ="btn-group bg-light clearfix col-sm-2">
+                        <Button variant="primary float-left btn-sm">Editar</Button>
+                        <Button variant="danger float-right btn-sm">Eliminar</Button>
+                    </Card.Footer>
+
+
+
+className='bg-image hover-zoom'
 <Card.Img variant="top" src="holder.js/100px180" />
 
 <li className={'${product.done ? "checked" : ""}' }>

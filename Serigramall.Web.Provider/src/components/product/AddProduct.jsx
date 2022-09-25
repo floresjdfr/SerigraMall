@@ -20,7 +20,7 @@ const AddProduct= () => {
       setInputs(inputs);
     };
 
-    function handleChange(event) {
+    function handleImageChange(event) {
       console.log(event.target.files);
       setFile(URL.createObjectURL(event.target.files[0]));
     }
@@ -32,9 +32,13 @@ const AddProduct= () => {
         event.preventDefault();
         
         const newProduct = {
-          taskDescription: inputs.Description,
-          taskDate: inputs.Date,
-          taskState: "ACTIVE",
+          Description: inputs.Description,
+          ProductName: inputs.Name,
+          RegistryDate: inputs.Date,
+          BasePrice: inputs.Price,
+          BaseTax: inputs.Tax,
+          Image: file,
+          State: "NEW",
         };
 
 
@@ -88,7 +92,7 @@ const AddProduct= () => {
                   <Form.Label>Base Price</Form.Label>
                   <Form.Control
                     type="text"
-                    name="Base Price"
+                    name="Price"
                     placeholder="Base Price"
                   />
                 </Form.Group>
@@ -96,7 +100,7 @@ const AddProduct= () => {
                   <Form.Label>Base Tax</Form.Label>
                   <Form.Control
                     type="text"
-                    name="Base Tax"
+                    name="Tax"
                     placeholder="Base Tax"
                   />
                 </Form.Group>
@@ -105,9 +109,9 @@ const AddProduct= () => {
                   <Form.Control
                     type="file"
                     name="Image"
-                    placeholder="IMage"
-                    onChange={handleChange}
-                    img src={file}
+                    placeholder="Image"
+                    onChange={handleImageChange}
+                    img src={`data:image/jpeg;base64,${file}`}
                   />
                 </Form.Group>
               </Modal.Body>
