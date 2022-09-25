@@ -3,10 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import CustomNav from "./components/navbar/CustomNavbar";
 import Index from "./pages/Index";
-import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import Signup from "./pages/Signup";
 import Product from "./pages/Product";
+import ProtectedRoute from "./components/authentication/ProctedRoute";
 
 function App() {
   return (
@@ -14,10 +13,20 @@ function App() {
       <CustomNav />
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/manage-profile" element={<Profile />} />
+        
+        {/* Protected routes */}
+        <Route
+          path="/product"
+          element={<ProtectedRoute component={Product} />}
+        />
+        <Route
+          path="/manage-profile"
+          element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />}
+        />
+        
+
+        {/*Error Routes */}
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
   );

@@ -6,7 +6,6 @@ function Profile() {
   const { isAuthenticated, isLoading, user } = useAuth0();
 
   function InformationForm() {
-    console.log(user);
     return (
       <>
         <Form>
