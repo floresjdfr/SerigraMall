@@ -13,7 +13,6 @@ const axiosInstance = axios.create({
 const login = (username, password) => {
   return axiosInstance.post("/oauth/token", {
     client_id: CLIENT_ID,
-
     audience: AUDIENCE,
     grant_type: "password",
     username: username,
