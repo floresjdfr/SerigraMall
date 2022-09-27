@@ -3,11 +3,13 @@ import Loading from "../utils/Loading";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import Unauthorized from "../../pages/Unauthorized";
+import { useNavigate } from "react-router-dom";
 
-const ProtectedRoute = ({ component, scopes, ...args }) => {
+const ProtectedRoute = ({ component, scopes, forceCompleteProfile, ...args }) => {
 
   const [token, setToken] = useState(null);
-  const { isLoading, getAccessTokenSilently } = useAuth0();
+  const { isLoading, getAccessTokenSilently, user } = useAuth0();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getToken = async () => {
@@ -20,10 +22,15 @@ const ProtectedRoute = ({ component, scopes, ...args }) => {
 
   //Check if token containes specified scopes
   if (!isLoading && token) {
+    
+    //Validate that profile is complete   
+    if (forceCompleteProfile && !user.user_metadata.isInformationComplete)
+      navigate("/manage-profile");
+
 
     const permissions = jwt_decode(token).permissions;
     var hasPermission = true;
-    
+
     if (scopes)
       hasPermission = scopes.every((scope) => permissions.includes(scope));
 

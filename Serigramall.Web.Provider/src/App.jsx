@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Index />} />
 
         {/* Protected routes */}
-        <Route path="/product" element={<ProtectedRoute component={Product} />} />
+        <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
         <Route path="/manage-profile" element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />} />
 
         {/*Error Routes */}
