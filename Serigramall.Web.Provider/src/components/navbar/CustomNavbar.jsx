@@ -13,6 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../authentication/LoginButton";
 import LogoutButton from "../authentication/LogoutButton";
 
+
 function CustomNav() {
   const { isAuthenticated, isLoading } = useAuth0();
 
@@ -70,6 +71,7 @@ function CustomNav() {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/product">Products</Nav.Link>
                 <Nav.Link href="/login">Custom Login</Nav.Link>
+                <Nav.Link href="/language">Language</Nav.Link>
                 <InitProfileOptions />
               </Nav>
               <Form className="d-flex">

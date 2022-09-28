@@ -2,13 +2,21 @@ import ProductList from "../components/product/ProductList";
 import Header from "../components/product/Header";
 import '../styles/product.css'
 
-function Product () {
+import { createContext, useContext, useEffect, useState } from "react";
+
+import { GlobalContext } from "../contexts/GlobalContext";
+
+
+function Product() {
+    //const { setShowToast, setToastHeader, setToastBody } =
+     //   useContext(GlobalContext);
+
     return (
         <>
             <div>
                 <div >
-                    <Header/>
-                    <ProductList/>
+                    <Header />
+                    <ProductList />
                 </div>
             </div>
         </>

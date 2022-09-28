@@ -1,6 +1,10 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import DeleteProduct from './DeleteProduct';
 
 const Product = ({ product }) => {
@@ -9,27 +13,32 @@ const Product = ({ product }) => {
     const handleMouseOver = () => {
         setIsHovering(true);
     };
-    
+
     const handleMouseOut = () => {
-    setIsHovering(false);
+        setIsHovering(false);
     };
 
     return (
         <Card style={{ width: 'auto' }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <Card.Header>{product.productName}</Card.Header>
-            <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`}/>
-            {isHovering && 
+            <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`} />
+            {isHovering &&
                 <Card.Body>
                     <Card.Title>Precio: {product.basePrice}</Card.Title>
                     <Card.Text>
                         {product.description}
                     </Card.Text>
-                    <Button variant="primary">Editar</Button>
-                    <DeleteProduct/>
                     
+                    
+                    <Container>
+                        <Row>
+                            <Col ><Button variant="primary" size="sm">Editar</Button></Col>
+                            <Col ><DeleteProduct product={product}/></Col>                           
+                        </Row>
+                    </Container>
                 </Card.Body>
             }
-        </Card>
+        </Card >
     );
 }
 

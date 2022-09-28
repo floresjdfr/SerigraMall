@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import productApi from '../../services/api/productApi';
 
-const DeleteProduct= (productId) => {
+const DeleteProduct= ({ product }) => {
     const [productState,setProductState] = useState("");
 
     const [show, setShow] = useState(false);
@@ -16,24 +16,28 @@ const DeleteProduct= (productId) => {
 
         event.preventDefault();
         
+        const productId = {
+            Id: product.id
+        };
+
         const newProduct = {
-          Description: productId,
-          Image: file
+          Description: product.description
         };
 
 
-        productApi.delete(newProduct)
+        productApi.remove(product.id);
+        /*
         .then((_)=>productApi.getAll())
         .then((response) => setProductState(response.data))
         .catch((_) => {
 
-        });
+        });*/
       handleClose();
     };
     return (
       <div className="row">
         <div className="col">
-          <Button className="float-end " variant="secondary" onClick={handleShow}>
+          <Button className="float-end " size="sm" variant="danger" onClick={handleShow}>
             Delete
           </Button>
   
@@ -45,10 +49,12 @@ const DeleteProduct= (productId) => {
               <Modal.Body>
               <Form.Group className="mb-4">
                   <Form.Label>Name</Form.Label>
-                  <Form.Control
+                  <Form.Control 
                     type="text"
+                    disabled = {true}
                     name="Name"
-                    placeholder="Name"
+                    text={product.productName}
+                    placeholder={product.productName}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -56,25 +62,22 @@ const DeleteProduct= (productId) => {
                   <Form.Control
                     type="text"
                     name="Description"
-                    placeholder="Description"
+                    disabled = {true}
+                    text={product.description}
+                    placeholder={product.description}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Registry date</Form.Label>
                   <Form.Control
-                    type="datetime-local"
+                    type="Date"
                     name="Date"
-                    placeholder="Date"
+                    disabled = {true}
+                    text={product.registryDate}
+                    placeholder={product.registryDate}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Image</Form.Label>
-                  <Form.Control
-                    type="file"
-                    name="Image"
-                    placeholder="Image"
-                  />
-                </Form.Group>
+                
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
@@ -91,3 +94,14 @@ const DeleteProduct= (productId) => {
     );
 }
 export default DeleteProduct;
+
+
+/**
+ * 
+ * <Form.Group className="mb-3">
+                  <Form.Label>Image</Form.Label>
+                  <div className='img' 
+                    src={`data:image/jpeg;base64,${product.image}`}
+                  />
+                </Form.Group>
+ */

@@ -11,7 +11,7 @@ const apiTasks = new ApiCore({
   post: true,
   put: false,
   patch: true,
-  delete: true,
+  remove: true,
   url: url,
   plural: plural,
   single: single

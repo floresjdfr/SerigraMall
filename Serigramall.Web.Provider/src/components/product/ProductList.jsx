@@ -7,15 +7,29 @@ import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from "react";
 import ProductItem from './ProductItem';
 import productApi from '../../services/api/productApi';
+import { GlobalContext } from "../../contexts/GlobalContext";
+
 
 const ProductList = () => {
     const [products, setProducts] = useState([])
+    const { setShowToast, setToastHeader, setToastBody } =
+        useContext(GlobalContext);
 
     useEffect(() => {
         _getProducts();
     }, []);
 
     function _getProducts() {
+        productApi.getAll()
+            .then((response) => setProducts(response))
+            .catch((_) => {
+                setToastHeader("Error");
+                setToastBody("An error ocurred while trying to retrive the requested Items");
+                setShowToast(true);
+            });
+    }
+
+    function _getProducts2() {
         productApi.getAll().then((res) => {
             //let arr = _parseProducts(res.results.data);
             //let arr = _parseProducts(res);
@@ -47,16 +61,16 @@ const ProductList = () => {
         });
     }
 
-    return (        
+    return (
         <Container>
             <Row xs='2' md='4' xl='5' className="g-4">
                 {products.map((product) => (
                     <Col md='4' className='ml-auto'>
-                        <ProductItem product={product} key={product.id}/>
+                        <ProductItem product={product} key={product.id} />
                     </Col>
                 ))}
             </Row>
-        </Container>       
+        </Container>
     );
 }
 export default ProductList;
