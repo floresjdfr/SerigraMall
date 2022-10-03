@@ -12,7 +12,7 @@ import "../../styles/loginButtonStyles.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../authentication/LoginButton";
 import LogoutButton from "../authentication/LogoutButton";
-import {checkSession, logout, loginWith, getClientInfo} from "../../services/api/authentication.js";
+import {checkSession, logout, loginWith } from "../../services/api/authentication.js";
 
 function CustomNav() {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -36,7 +36,7 @@ function CustomNav() {
     });
   }
   const handleUserInfo = () => {
-    getClientInfo();
+    
   }
 
   

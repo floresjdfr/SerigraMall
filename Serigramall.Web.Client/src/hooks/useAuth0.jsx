@@ -43,6 +43,10 @@ function useAuth0() {
         });
     }
 
+    const logout = () => {
+        
+    }
+
     return {
         user, isAuthenticated, isLoading, isError, token, login
     }
