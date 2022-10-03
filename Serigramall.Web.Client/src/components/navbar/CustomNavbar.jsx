@@ -12,9 +12,34 @@ import "../../styles/loginButtonStyles.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../authentication/LoginButton";
 import LogoutButton from "../authentication/LogoutButton";
+import {checkSession, logout, loginWith, getClientInfo} from "../../services/api/authentication.js";
 
 function CustomNav() {
   const { isAuthenticated, isLoading } = useAuth0();
+  const handleCheckSession = () => {
+    checkSession(function(error, sessionInfo){
+      if (error) {
+        console.log(error);
+      }
+      console.log(sessionInfo);
+    });
+  }
+  const handleLogout = () => {
+    logout();
+  }
+  const handleLoginWithGoogle = () => {
+    loginWith("google-oauth2", function(error, sessionInfo){
+      if (error) {
+        console.log(error);
+      }
+      console.log(sessionInfo);
+    });
+  }
+  const handleUserInfo = () => {
+    getClientInfo();
+  }
+
+  
 
   function ProfileDropDown() {
     return (
@@ -69,6 +94,10 @@ function CustomNav() {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/login">Custom Login</Nav.Link>
+                <Button onClick={handleLoginWithGoogle}>Login with Google</Button>
+                <Button onClick={handleCheckSession}>Check session</Button>
+                <Button onClick={handleUserInfo}>User Info</Button>
+                <Button onClick={handleLogout}>Logout</Button>
                 <InitProfileOptions />
               </Nav>
               <Form className="d-flex">

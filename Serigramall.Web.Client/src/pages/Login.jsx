@@ -1,14 +1,28 @@
 import { Container, Form, FormControl } from "react-bootstrap";
+import login from "../services/api/authentication.js";
 
 function Login() {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    login(email, password, function(error){
+      if (error) {
+        console.log(error);
+      }
+    });
+  }
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h3 className="text-center my-3">Login</h3>
         <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
+            name="email"
             className="form-control"
             placeholder="Enter email"
           />
@@ -17,6 +31,7 @@ function Login() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            name="password"
             className="form-control"
             placeholder="Enter password"
           />
