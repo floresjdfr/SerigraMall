@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import { default as loginAuth0 } from "../../services/api/authentication";
-import { parseHash, userInfo } from "../../services/api/authentication";
+import { login as loginAuth0, parseHash, userInfo, loginWith, logout as logoutAuth0 } from "../services/api/authentication";
 
 function useAuth0() {
 
@@ -11,12 +9,12 @@ function useAuth0() {
     const [isError, setIsError] = useState(false);
     const [token, setToken] = useState(null);
 
-    useEffect(function(){
-        
+    useEffect(function () {
+
         setIsError(false);
         setIsLoading(true);
-        setIsAuthenticated(false);        
-        
+        setIsAuthenticated(false);
+
         //get token from hash stored in local storage
         parseHash(function (error, authResult) {
             if (error) {
@@ -50,7 +48,6 @@ function useAuth0() {
                 setIsLoading(false);
                 return;
             }
-            
             //get token from hash stored in local storage
             parseHash(function (error, authResult) {
                 if (error) {
@@ -77,10 +74,18 @@ function useAuth0() {
     }
 
     const logout = () => {
-        
+        setIsLoading(true);
+
+        logoutAuth0();
+
+        setUser(null);
+        setIsAuthenticated(false);
+        setIsLoading(false);
+        setIsError(false);
+        setToken(null);
     }
 
     return {
-        user, isAuthenticated, isLoading, isError, token, login
+        user, isAuthenticated, isLoading, isError, token, login, logout
     }
 }
