@@ -17,7 +17,7 @@ const login = (username, password, callback) => {
         realm: database,
         username: username,
         password: password,
-
+        
     }, callback);
 }
 
@@ -36,6 +36,7 @@ const logout = () => {
         returnTo: RETURN_URL,
         clientID: CLIENT_ID,
     });
+    webAuth.clearSession();
 }
 
 const parseHash = (callback) => {

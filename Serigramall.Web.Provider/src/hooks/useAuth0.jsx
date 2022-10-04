@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { login as loginAuth0, parseHash, userInfo, loginWith, logout as logoutAuth0 } from "../services/api/authentication";
+import { useEffect, useState } from "react";
+import { login as loginAuth0, parseHash, userInfo, loginWith, logout as logoutAuth0, checkSession } from "../services/api/authentication";
 
-function useAuth0() {
+
+export default function useAuth0() {
 
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,29 +16,31 @@ function useAuth0() {
         setIsLoading(true);
         setIsAuthenticated(false);
 
-        //get token from hash stored in local storage
-        parseHash(function (error, authResult) {
-            if (error) {
-                setIsError(true);
-                setIsLoading(false);
-                return;
-            }
-            //get user info from token
-            userInfo(authResult.accessToken, function (error, userInfo) {
-                if (error) {
+        checkSession(
+            function (error, authResult) {
+                if (error || (!error && !authResult)) {
                     setIsError(true);
                     setIsLoading(false);
                     return;
                 }
-                setUser(userInfo);
-                setToken(authResult.accessToken);
-                setIsAuthenticated(true);
-                setIsLoading(false);
-                setIsError(false);
-            });
+                //get user info from token
+                userInfo(authResult.accessToken, function (error, userInfo) {
+                    if (error) {
+                        setIsError(true);
+                        setIsLoading(false);
+                        return;
+                    }
+                    setUser(userInfo);
+                    setToken(authResult.accessToken);
+                    setIsAuthenticated(true);
+                    setIsLoading(false);
+                    setIsError(false);
+                });
 
-        });
+            }
+        )
     }, []);
+
 
     const login = (email, password) => {
         setIsLoading(true);
@@ -68,7 +71,6 @@ function useAuth0() {
                     setIsLoading(false);
                     setIsError(false);
                 });
-
             });
         });
     }

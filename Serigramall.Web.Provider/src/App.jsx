@@ -7,13 +7,14 @@ import Profile from "./pages/Profile";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/authentication/ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import CustomLogin from "./pages/CustomLogin";
 
 function App() {
   return (
     <>
       <CustomNav />
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={<CustomLogin />} />
 
         {/* Protected routes */}
         <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
