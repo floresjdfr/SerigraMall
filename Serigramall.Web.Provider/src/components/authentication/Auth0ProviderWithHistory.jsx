@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const Auth0ProviderWithHistory = ({ children }) => {
@@ -6,10 +6,11 @@ const Auth0ProviderWithHistory = ({ children }) => {
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onRedirectCallback = (appState) => {
-    navigate(appState?.returnTo || window.location.pathname);
+    // navigate(appState?.returnTo || window.location.pathname);
+    window.location = appState?.returnTo || window.location.pathname;
   };
 
   return (

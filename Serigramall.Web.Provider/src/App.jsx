@@ -7,21 +7,24 @@ import Profile from "./pages/Profile";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/authentication/ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import "./styles/main.css";
 
 function App() {
   return (
     <>
       <CustomNav />
-      <Routes>
-        <Route path="/" element={<Index />} />
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<Index />} />
 
-        {/* Protected routes */}
-        <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
-        <Route path="/manage-profile" element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />} />
+          {/* Protected routes */}
+          <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
+          <Route path="/manage-profile" element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />} />
 
-        {/*Error Routes */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          {/*Error Routes */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
     </>
   );
 }

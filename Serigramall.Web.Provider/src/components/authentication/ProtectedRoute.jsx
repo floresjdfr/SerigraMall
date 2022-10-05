@@ -13,20 +13,19 @@ const ProtectedRoute = ({ component, scopes, forceCompleteProfile, ...args }) =>
 
   useEffect(() => {
     const getToken = async () => {
-      const token = await getAccessTokenSilently().then((token) => {
-        setToken(token);
-      });
+      await getAccessTokenSilently()
+        .then(token => setToken(token));
     };
     getToken();
   }, []);
 
   //Check if token containes specified scopes
-  if (!isLoading && token) {
-    
-    //Validate that profile is complete   
+  if (isLoading) return <Loading />;
+  if (!token) return <Unauthorized />;
+
+    //Validate that profile is complete, if not force user to complete profile   
     if (forceCompleteProfile && !user.user_metadata.isInformationComplete)
       navigate("/manage-profile");
-
 
     const permissions = jwt_decode(token).permissions;
     var hasPermission = true;
@@ -36,14 +35,11 @@ const ProtectedRoute = ({ component, scopes, forceCompleteProfile, ...args }) =>
 
     if (hasPermission) {
       const ProtectedComponent = withAuthenticationRequired(component, {
-        onredirecting: () => <Loading />, //Not working
+        onredirecting: () => <Loading />
       });
-
       return <ProtectedComponent {...args} />;
     }
-
     return <Unauthorized />;
-  }
 };
 
 export default ProtectedRoute;
