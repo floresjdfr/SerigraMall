@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Auth0.ManagementApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Serigramall.API.Helpers.Auth0;
+using System;
 using System.Threading.Tasks;
+using User = Serigramall.API.Models.User;
 
 namespace Serigramall.API.Controllers
 {
@@ -27,15 +30,7 @@ namespace Serigramall.API.Controllers
                 return Ok(token);
             return BadRequest();
         }
-        [HttpGet("ListUsers")]
-        public async Task<IActionResult> ListUsers()
-        {
-            var authentication = new ManagementAPI(_configuration);
-            var users = await authentication.ListUsers();
+        
 
-            if (users != null)
-                return Ok(users);
-            return BadRequest();
-        }
     }
 }
