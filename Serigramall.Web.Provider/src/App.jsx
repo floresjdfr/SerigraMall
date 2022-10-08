@@ -3,10 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import CustomNav from "./components/navbar/CustomNavbar";
 import Index from "./pages/Index";
-import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import Signup from "./pages/Signup";
 import Product from "./pages/Product";
+import ProtectedRoute from "./components/authentication/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import "./styles/main.css";
 
 import { createContext, useContext, useEffect, useState } from "react";
 import CustomToast from "./components/utils/CustomToast";
@@ -17,14 +18,19 @@ function App() {
     <GlobalProvider>
       <CustomNav />
       <CustomToast />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/manage-profile" element={<Profile />} />
-      </Routes>
-    </GlobalProvider>
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<Index />} />
+
+          {/* Protected routes */}
+          <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
+          <Route path="/manage-profile" element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />} />
+
+          {/*Error Routes */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 
