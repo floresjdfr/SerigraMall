@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  serigramall.api:
+    image: ${DOCKER_REGISTRY-}serigramallapi
+    build:
+      context: .
+      dockerfile: Serigramall.API/Dockerfile
+    ports:
+    - "44355:80"
