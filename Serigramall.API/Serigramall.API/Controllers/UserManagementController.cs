@@ -30,13 +30,13 @@ namespace Serigramall.API.Controllers
             return BadRequest();
         }
 
-        [HttpPatch("{userId}")]
-        public async Task<IActionResult> UpdateUser(string userId, User updatedUser)
+        [HttpPatch()]
+        public async Task<IActionResult> UpdateUser(User updatedUser)
         {
             try
             {
                 var authentication = new ManagementAPI(_configuration);
-                var response = await authentication.UpdateUser(userId, updatedUser);
+                var response = await authentication.UpdateUser(updatedUser.user_id, updatedUser);
 
                 if (response != null)
                     return Ok(response);

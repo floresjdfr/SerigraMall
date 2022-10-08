@@ -3,12 +3,10 @@ import { Container } from "react-bootstrap";
 import InformationForm from "../components/profile/InformationForm";
 
 function Profile() {
-  const { user } = useAuth0();
-
   return (
     <Container>
       <h2 className="mb-3">Profile Information</h2>
-      <InformationForm user={user} />
+      <InformationForm />
     </Container>
   );
 }

@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
+import { useAuth0 } from "@auth0/auth0-react";
+import userManagementApi from "../../services/api/userManagementApi";
 
-function InformationForm({ user }) {
+function InformationForm() {
 
-    const { isInformationComplete } = user.user_metadata;
-    const [isProfileComplete, setProfileComplete] = useState(isInformationComplete);
+    const { user } = useAuth0();
+
+    const [isProfileComplete, setProfileComplete] = useState(user.user_metadata);
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
     const [phone, setPhone] = useState(user.user_metadata.phone);
@@ -24,16 +27,26 @@ function InformationForm({ user }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!isProfileComplete) {
-            const user = { name, email, address, phone, provider };
-            setProfileComplete(true);
-        }
-    }
+        const userUpdated = {
+            user_id: user.sub,
+            name,
+            email,
+            user_metadata:
+            {
+                address, phone, provider
+            }
+        };
 
+        userManagementApi.patch(userUpdated).then((response) => {
+            alert("User updated successfully");
+        }).catch((error) => {
+            alert("Error updating user");
+        });
+    }
     return (
         <>
-            {!isInformationComplete && <Alert variant="danger">Please complete your profile information to continue using your account.</Alert>}
-            <Form >
+            {!isProfileComplete && <Alert variant="danger">Please complete your profile information to continue using your account.</Alert>}
+            <Form onSubmit={handleSubmit} >
                 <Form.Group>
                     <Form.Label>Company Name</Form.Label>
                     <Form.Control
@@ -86,7 +99,7 @@ function InformationForm({ user }) {
                         <option value="2" >Products</option>
                     </Form.Select>
                 </Form.Group>
-                {isProfileComplete ? <Button className="mt-3" type="button" variant="warning" onClick={handleOnEditClick} >Edit</Button> : <Button className="mt-3" type="button" variant="primary" onClick={handleSubmit}>Guardar</Button>}
+                {isProfileComplete ? <Button className="mt-3" type="button" variant="warning" onClick={handleOnEditClick} >Edit</Button> : <Button className="mt-3" type="submit" variant="primary">Guardar</Button>}
             </Form>
         </>
     );
