@@ -33,7 +33,7 @@ namespace Serigramall.API.Extensions
                 Description = item.Description,
                 RegistryDate = item.RegistryDate,
                 ProductState = item.ProductState.ToString(),                
-                Image = binaryContent,
+                Image = item.Image,
                 BasePrice =item.BasePrice,
                 BaseTax = item.BaseTax,
                 ProductName = item.ProductName,

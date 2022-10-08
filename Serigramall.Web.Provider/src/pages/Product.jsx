@@ -8,18 +8,18 @@ import { GlobalContext } from "../contexts/GlobalContext";
 
 
 function Product() {
-    //const { setShowToast, setToastHeader, setToastBody } =
-     //   useContext(GlobalContext);
+    const [productsState, setProductsState] = useState([]);
+    const { setShowToast, setToastHeader, setToastBody } =
+        useContext(GlobalContext);
 
     return (
-        <>
-            <div>
-                <div >
-                    <Header />
-                    <ProductList />
-                </div>
+        <ProductContext.Provider value={[productsState, setProductsState]}>
+            <div >
+                <Header />
+                <ProductList />
             </div>
-        </>
+        </ProductContext.Provider>
     );
 }
+export const ProductContext = createContext();
 export default Product;

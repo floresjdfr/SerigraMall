@@ -36,6 +36,9 @@ namespace Serigramall.API.Controllers
         [HttpPut("{id}")]
         public void Put(string id, [FromBody] ProductDto value) => _productRepository.Update(id, value.toProduct());
 
+        [HttpPut]
+        public void Put([FromBody] ProductDto value) => _productRepository.Update(value.toProduct());
+
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
         public void Delete(string id) => _productRepository.Remove(id);

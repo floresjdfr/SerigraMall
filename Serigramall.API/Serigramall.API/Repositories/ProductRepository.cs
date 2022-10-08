@@ -41,6 +41,11 @@ namespace Serigramall.API.Repositories
             var task = (Product)updatedValue;
             _items.ReplaceOne(task => task.Id == id, task);
         }
+        public void Update(Product updatedValue)
+        {
+            var updatedItem = (Product)updatedValue;
+            _items.ReplaceOne(dbItem => dbItem.Id == updatedItem.Id, updatedItem);
+        }
     }
 }
 

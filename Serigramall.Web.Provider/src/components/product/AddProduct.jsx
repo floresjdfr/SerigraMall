@@ -2,9 +2,13 @@
 import React, { useContext, useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import productApi from '../../services/api/productApi';
+import { ProductContext } from "../../Pages/Product";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 const AddProduct = () => {
-  const [productState, setProductState] = useState("");
+  const [producstState, setProductsState] = useState("");
+  const { setShowToast, setToastHeader, setToastBody } =
+    useContext(GlobalContext);
 
   const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState({});
@@ -50,19 +54,19 @@ const AddProduct = () => {
   };
 
   const handleOnSubmit = (event) => {
-    //const newProduct = {productState,done: false}
+    //const newProduct = {producstState,done: false}
 
     event.preventDefault();
-    
-    var promiseB = fileImage.then(function(response) {
+
+    var promiseB = fileImage.then(function (response) {
       console.log(response);
       return response;
     })
-    .then(function(data) {
-      //var image = JSON.parse(data);
-      console.log(data);
-      return data;
-    });
+      .then(function (data) {
+        //var image = JSON.parse(data);
+        console.log(data);
+        return data;
+      });
 
     //console.log('Base64 String without Tags- ', fileImage.result.substr(fileImage.result.indexOf(', ') + 1));
 
@@ -74,19 +78,23 @@ const AddProduct = () => {
       RegistryDate: inputs.Date,
       BasePrice: inputs.Price,
       BaseTax: inputs.Tax,
-      Image: string64,
+      Image: string64.split(',')[1],
       State: "NEW",
-      ProductType:"DEFAULT",
+      ProductType: "DEFAULT",
       Costumizations: [],
-      ProductState: "NEW"
+      ProductState: 1
     };
 
 
     productApi.post(newProduct)
       .then((_) => productApi.getAll())
-      .then((response) => setProductState(response.data))
+      .then((response) => setProductsState(response.data))
       .catch((_) => {
-
+        /*setToastHeader("Error");
+        setToastBody(
+          "An error ocurred while executing the request. Please try again"
+        );
+        setShowToast(true);*/
       });
     handleClose();
 
@@ -173,7 +181,7 @@ function NewssssProduct() {
   const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState({});
 
-  const [productState, setProductState] = useContext(ProductContext);
+  const [producstState, setProductsState] = useContext(ProductContext);
 
 
   const handleClose = () => setShow(false);
@@ -191,12 +199,12 @@ function NewssssProduct() {
     const newProduct = {
       productDescription: inputs.Description,
       productDate: inputs.Date,
-      productState: "ACTIVE",
+      producstState: "ACTIVE",
     };
 
     postProduct(newProduct)
       .then((_) => getProducts())
-      .then((res) => setProductState(res.data))
+      .then((res) => setProductsState(res.data))
       .catch((_) => {
         setToastHeader("Error");
         setToastBody(

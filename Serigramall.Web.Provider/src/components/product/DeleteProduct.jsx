@@ -2,7 +2,10 @@ import { useContext, useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import productApi from '../../services/api/productApi';
 
-const DeleteProduct= ({ product }) => {
+import { GlobalContext } from "../../contexts/GlobalContext";
+import Loading from "../utils/Loading";
+
+const DeleteProduct = ({ product }) => {
     const [productState,setProductState] = useState("");
 
     const [show, setShow] = useState(false);
@@ -53,7 +56,7 @@ const DeleteProduct= ({ product }) => {
                     type="text"
                     disabled = {true}
                     name="Name"
-                    text={product.productName}
+                    value={product.productName}
                     placeholder={product.productName}
                   />
                 </Form.Group>
@@ -63,7 +66,7 @@ const DeleteProduct= ({ product }) => {
                     type="text"
                     name="Description"
                     disabled = {true}
-                    text={product.description}
+                    value={product.description}
                     placeholder={product.description}
                   />
                 </Form.Group>
@@ -73,7 +76,7 @@ const DeleteProduct= ({ product }) => {
                     type="Date"
                     name="Date"
                     disabled = {true}
-                    text={product.registryDate}
+                    value={product.registryDate}
                     placeholder={product.registryDate}
                   />
                 </Form.Group>

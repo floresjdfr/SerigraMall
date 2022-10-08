@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import DeleteProduct from './DeleteProduct';
+import UpdateProduct from './UpdateProduct';
 
 const Product = ({ product }) => {
     const [isHovering, setIsHovering] = useState(false);
@@ -27,12 +28,10 @@ const Product = ({ product }) => {
                     <Card.Title>Precio: {product.basePrice}</Card.Title>
                     <Card.Text>
                         {product.description}
-                    </Card.Text>
-                    
-                    
+                    </Card.Text>                                        
                     <Container>
                         <Row>
-                            <Col ><Button variant="primary" size="sm">Editar</Button></Col>
+                            <Col ><UpdateProduct product={product}/></Col>
                             <Col ><DeleteProduct product={product}/></Col>                           
                         </Row>
                     </Container>

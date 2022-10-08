@@ -8,10 +8,15 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Product from "./pages/Product";
 
+import { createContext, useContext, useEffect, useState } from "react";
+import CustomToast from "./components/utils/CustomToast";
+import GlobalProvider from "./contexts/GlobalContext";
+
 function App() {
   return (
-    <>
+    <GlobalProvider>
       <CustomNav />
+      <CustomToast />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
@@ -19,7 +24,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/manage-profile" element={<Profile />} />
       </Routes>
-    </>
+    </GlobalProvider>
   );
 }
 
