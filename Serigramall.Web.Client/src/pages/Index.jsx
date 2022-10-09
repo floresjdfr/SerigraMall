@@ -1,9 +1,7 @@
-import Product from "./Product";
-
 function Index() {
   return (
     <div>
-      <Product></Product>
+      <Produc
     </div>
   );
 }
