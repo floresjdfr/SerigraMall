@@ -206,3 +206,32 @@
     
         background-color: #bbb;
     }
+    
+    .search-button {
+    
+        padding: 10px;
+        
+        width: 25%;
+        
+        background: #d9d9d9;
+        
+        color: rgb(114, 172, 223);
+        
+        float: left;
+        
+        text-align: center;
+        
+        font-size: 16px;
+        
+        cursor: pointer;
+        
+        transition: 0.3s;
+        
+        border-radius: 0;
+        
+    }
+        
+    .search-button:hover {
+        
+            background-color: #bbb;
+    }

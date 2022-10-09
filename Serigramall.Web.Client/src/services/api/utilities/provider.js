@@ -69,3 +69,4 @@ export const apiProvider = {
   patch, 
   remove, 
 };
+export default apiProvider;

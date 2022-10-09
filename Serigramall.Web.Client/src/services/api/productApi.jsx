@@ -1,6 +1,7 @@
 const url = 'Product';
 const plural = 'Products';
 const single = 'Product';
+import { ApiCore } from "./utilities/core";
 
 // plural and single may be used for message logic if needed in the ApiCore class.
 
