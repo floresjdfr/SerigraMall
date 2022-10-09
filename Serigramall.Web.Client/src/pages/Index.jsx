@@ -1,7 +1,7 @@
 function Index() {
   return (
     <div>
-      <Produc
+      <h1>Index is under development</h1>
     </div>
   );
 }

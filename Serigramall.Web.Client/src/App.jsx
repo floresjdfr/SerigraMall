@@ -7,8 +7,6 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Provider from "./pages/Provider";
-import Product from "./pages/Product";
-
 function App() {
   return (
     <>
@@ -19,7 +17,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/manage-profile" element={<Profile />} />
         <Route path="/provider" element={<Provider />} />
-        <Route path="/product" element={<Product />} />
       </Routes>
     </>
   );
