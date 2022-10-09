@@ -60,7 +60,7 @@ namespace Serigramall.API.Helpers.Auth0
             }
         }
 
-        public async Task<List<User>> ListUsers()
+        public async Task<List<User>> ListUsersAsync()
         {
             try
             {
@@ -96,8 +96,11 @@ namespace Serigramall.API.Helpers.Auth0
                     client.BaseAddress = new Uri(BASE_URL);
                     client.DefaultRequestHeaders.Add("Authorization", authenticationHeader);
 
-                    var stringContent = new StringContent(JsonConvert.SerializeObject(userToUpdate), Encoding.UTF8, "application/json");
-                    var response = await client.PatchAsync($"/api/v2/users/{userId}", stringContent);
+
+
+                    var json = JsonConvert.SerializeObject(userToUpdate, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PatchAsync($"api/v2/users/{userId}", stringContent);
 
                     response.EnsureSuccessStatusCode();
 
@@ -127,5 +130,6 @@ namespace Serigramall.API.Helpers.Auth0
 
             return "Bearer " + token.access_token;
         }
+
     }
 }
