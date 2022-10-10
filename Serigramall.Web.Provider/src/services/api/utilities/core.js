@@ -27,8 +27,8 @@ export class ApiCore {
     }
 
     if (options.patch) {
-      this.patch = (model) => {
-        return apiProvider.patch(options.url, model);
+      this.patch = (id, model, config) => {
+        return apiProvider.patch(options.url, id, model, config);
       };
     }
 

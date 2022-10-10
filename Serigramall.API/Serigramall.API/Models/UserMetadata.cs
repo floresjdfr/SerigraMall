@@ -5,6 +5,6 @@
         public string address { get; set; }
         public string phone { get; set; }
         public string provider { get; set; }
-        public string isInformationComplete { get; set; }
+        public bool isInformationComplete { get; set; }
     }
 }
