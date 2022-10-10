@@ -38,8 +38,10 @@ const patch = (resource, id, model, config) => {
     .patch(`${BASE_URL}/${resource}/${id}`, model, config);
 };
 
+
 /** @param {string} resource */
 /** @param {string} id */
+
 const remove = (resource, id) => {
   return axios
     .delete(`${BASE_URL}/${resource}`, id);

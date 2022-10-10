@@ -24,7 +24,7 @@ const ProductList = () => {
 
     async function _getProducts() {
         await productApi.getAll()
-            .then((response) => {(response === 500) ?  throwError(): setProductsState(response)})
+            .then((response) => {(response === 500) ?  throwError(): setProductsState(response.data)})
             .catch((_) => {
                 setToastHeader("Error");
                 setToastBody("An error ocurred while trying to retrive the requested Items");
