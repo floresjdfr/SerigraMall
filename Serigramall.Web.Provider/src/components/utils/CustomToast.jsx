@@ -9,7 +9,7 @@ function CustomToast() {
   const toggleShow = () => setShowToast(!showToast);
 
   return (
-    <ToastContainer className="m-3" position="bottom-end">
+    <ToastContainer className="m-6" position="bottom-center">
       <Toast show={showToast} onClose={toggleShow}>
         <Toast.Header>
           <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />

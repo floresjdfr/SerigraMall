@@ -15,23 +15,25 @@ import GlobalProvider from "./contexts/GlobalContext";
 
 function App() {
   return (
-    <GlobalProvider>
-      <CustomNav />
-      <CustomToast />
-      <main className="main">
-        <Routes>
-          <Route path="/" element={<Index />} />
+    <>
+      <GlobalProvider>
+        <CustomNav />
+        <CustomToast />
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<Index />} />
 
-          {/* Protected routes */}
-          {/*<Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />*/}
-          <Route path="/product" element={Product}/>
-          <Route path="/manage-profile" element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />} />
+            {/* Protected routes */}
+            {/*<Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />*/}
+            <Route path="/product" element={<Product />} />
+            <Route path="/manage-profile" element={<ProtectedRoute component={Profile} scopes={["manage:services"]} />} />
 
-          {/*Error Routes */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </GlobalProvider>
+            {/*Error Routes */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </GlobalProvider>
+    </>
   );
 }
 

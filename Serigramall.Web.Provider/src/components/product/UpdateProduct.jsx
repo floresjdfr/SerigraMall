@@ -75,13 +75,12 @@ const UpdateProduct = ({ product }) => {
 
     productApi.put(updatedProduct)
       .then((_) => productApi.getAll())
-      .then((response) => setProductState(response.data))
+      .then((response) => {(response === 500) ?  throwError(): setProductsState(response)})
       .catch((_) => {
-        /*setToastHeader("Error");
-        setToastBody(
-          "An error ocurred while executing the request. Please try again"
-        );
-        setShowToast(true);*/
+        setToastHeader("Error");
+        setToastBody("An error ocurred while trying to retrive the requested Items");
+        setShowToast(true);
+        setIsLoading(false);
       });
     handleClose();
 

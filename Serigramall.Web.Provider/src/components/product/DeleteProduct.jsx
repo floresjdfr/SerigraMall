@@ -6,7 +6,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import Loading from "../utils/Loading";
 
 const DeleteProduct = ({ product }) => {
-    const [productState,setProductState] = useState("");
+    const [productsState,setProductsState] = useState("");
 
     const [show, setShow] = useState(false);
 
@@ -31,9 +31,12 @@ const DeleteProduct = ({ product }) => {
         productApi.remove(product.id);
         /*
         .then((_)=>productApi.getAll())
-        .then((response) => setProductState(response.data))
+        .then((response) => {(response === 500) ?  throwError(): setProductsState(response)})
         .catch((_) => {
-
+                setToastHeader("Error");
+                setToastBody("An error ocurred while trying to retrive the requested Items");
+                setShowToast(true);
+                setIsLoading(false);
         });*/
       handleClose();
     };

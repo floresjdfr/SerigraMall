@@ -17,13 +17,14 @@ const ProductList = () => {
     const [isLoading, setIsLoading] = useState([])
 
     useEffect(() => {
+        setShowToast(false);
         setIsLoading(true);
         _getProducts();
     }, []);
 
     async function _getProducts() {
         await productApi.getAll()
-            .then((response) => setProductsState(response))
+            .then((response) => {(response === 500) ?  throwError(): setProductsState(response)})
             .catch((_) => {
                 setToastHeader("Error");
                 setToastBody("An error ocurred while trying to retrive the requested Items");
