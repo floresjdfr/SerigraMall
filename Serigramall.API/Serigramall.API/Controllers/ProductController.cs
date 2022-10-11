@@ -29,19 +29,11 @@ namespace Serigramall.API.Controllers
             return CreatedAtAction(nameof(Get), new { id = newValue.Id.ToString() }, newValue.toDTO());
         }
 
+
+
         // GET: api/ProductController
         [HttpGet]
         public IEnumerable<ProductDto> Get() => _productRepository.Get().Select(item => (item as Product).toDTO());
 
-        // PUT api/<ProductController>/5
-        [HttpPut("{id}")]
-        public void Put(string id, [FromBody] ProductDto value) => _productRepository.Update(id, value.toProduct());
-
-        [HttpPut]
-        public void Put([FromBody] ProductDto value) => _productRepository.Update(value.toProduct());
-
-        // DELETE api/<ProductController>/5
-        [HttpDelete("{id}")]
-        public void Delete(string id) => _productRepository.Remove(id);
     }
 }

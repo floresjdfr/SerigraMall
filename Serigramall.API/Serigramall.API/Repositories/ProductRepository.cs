@@ -25,11 +25,23 @@ namespace Serigramall.API.Repositories
             _items.InsertOne(newItem);
             return newItem;
         }
+
+
+        //public IEnumerable<Product> Get()
+        //{
+        //    var products = new List<Product>();
+        //    products.Add(new Product { Id = "00", Date = DateTime.Now, Description = "JNFOJNFOJANOJI", State = InventaryState.ACTIVE });
+        //    products.Add(new Product { Id = "01", Date = DateTime.Now, Description = "LKDJLKJFLKJFK", State = InventaryState.ACTIVE });
+        //    return products;
+        //}
         public IEnumerable<Product> Get() => _items.Find(item => true).ToList();
 
         public Product Get(string id) => _items.Find(item => item.Id == id).FirstOrDefault();
 
-        public void Remove(string id) => _items.DeleteOne(item => item.Id == id);
+        public void Remove(string id)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void Remove(Product itemToDelete)
         {
@@ -38,13 +50,7 @@ namespace Serigramall.API.Repositories
 
         public void Update(string id, Product updatedValue)
         {
-            var task = (Product)updatedValue;
-            _items.ReplaceOne(task => task.Id == id, task);
-        }
-        public void Update(Product updatedValue)
-        {
-            var updatedItem = (Product)updatedValue;
-            _items.ReplaceOne(dbItem => dbItem.Id == updatedItem.Id, updatedItem);
+            throw new System.NotImplementedException();
         }
     }
 }

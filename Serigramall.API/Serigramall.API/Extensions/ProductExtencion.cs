@@ -26,14 +26,14 @@ namespace Serigramall.API.Extensions
         }
         public static Product toProduct(this ProductDto item)
         {
-            byte[] binaryContent = File.ReadAllBytes("C:/Users/boyro/OneDrive/Documentos/Euro Truck Simulator 2/screenshot/ets2_00059.png");
+            byte[] binaryContent = File.ReadAllBytes("C:/Users/boyro/OneDrive/Documentos/Euro Truck Simulator 2/screenshot/ets2_00053.png");
             return new Product
             {
                 Id = item.Id,
                 Description = item.Description,
                 RegistryDate = item.RegistryDate,
                 ProductState = item.ProductState.ToString(),                
-                Image = item.Image,
+                Image = binaryContent,
                 BasePrice =item.BasePrice,
                 BaseTax = item.BaseTax,
                 ProductName = item.ProductName,
