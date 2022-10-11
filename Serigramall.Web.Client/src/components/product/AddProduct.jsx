@@ -55,7 +55,7 @@ const AddProduct= () => {
       <div className="row">
         <div className="col">
           <Button className="float-end " variant="secondary" onClick={handleShow}>
-            Add new
+            boton de prueba
           </Button>
   
           <Modal show={show} onHide={handleClose}>

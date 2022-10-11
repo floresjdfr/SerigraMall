@@ -24,8 +24,10 @@ const Product = ({ product }) => {
                     <Card.Text>
                         {product.description}
                     </Card.Text>
-                    <Button variant="primary">Editar</Button>
-                    <DeleteProduct/>
+                    <Button variant="primary">agregar</Button>
+                    {/*<
+                    <DeleteProduct/>*/}
+            
                     
                 </Card.Body>
             }
