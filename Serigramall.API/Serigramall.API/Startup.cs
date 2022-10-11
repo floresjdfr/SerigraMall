@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Serigramall.API.Controllers;
 using Serigramall.API.Repositories;
 using Serigramall.API.Settings;
 using System;
@@ -16,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace Serigramall.API
 {
@@ -27,6 +29,7 @@ namespace Serigramall.API
         }
 
         public IConfiguration Configuration { get; }
+        readonly string AllowSpecifications = "_AllowSpecifications";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -42,6 +45,14 @@ namespace Serigramall.API
                 {
                     NameClaimType = ClaimTypes.NameIdentifier
                 };
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowSpecifications, policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
             });
 
             services.Configure<SeriMallDBSettings>(Configuration.GetSection(nameof(SeriMallDBSettings)));
@@ -69,6 +80,8 @@ namespace Serigramall.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(AllowSpecifications);
 
             app.UseAuthentication();
             app.UseAuthorization();
