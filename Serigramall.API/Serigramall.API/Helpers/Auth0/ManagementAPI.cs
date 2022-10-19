@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Serigramall.API.Models;
+using Serigramall.API.Settings.Auth0;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,23 +13,33 @@ using User = Serigramall.API.Models.User;
 
 namespace Serigramall.API.Helpers.Auth0
 {
+
     public class ManagementAPI
     {
-        private readonly IConfiguration _configuration;
         private string domain;
         private string clientId;
         private string clientSecret;
         private string audience;
 
         public string BASE_URL { private set; get; }
-        public ManagementAPI(IConfiguration configuration)
+
+        public ManagementAPI(IConfiguration configuration, Auth0Provider auth0Provider = Auth0Provider.PROVIDERS)
         {
-            _configuration = configuration;
-            domain = _configuration["Auth0:Domain"];
-            clientId = _configuration["Auth0:ManagementClientId"];
-            clientSecret = _configuration["Auth0:ManagementClientSecret"];
-            audience = _configuration["Auth0:ManagementAudience"];
-            BASE_URL = $"https://{domain}";
+            IManagementApiConfig management = null;
+            switch (auth0Provider)
+            {
+                case Auth0Provider.PROVIDERS:
+                    management = new ManagementProviderApi(configuration);
+                    break;
+                case Auth0Provider.CLIENTS:
+                    management = new ManagementClientApi(configuration);
+                    break;
+            }
+            domain = management.domain;
+            clientId = management.clientId;
+            clientSecret = management.clientSecret;
+            audience = management.audience;
+            BASE_URL = management.BASE_URL;
         }
 
         public async Task<User> UpdateUser(string userId, User userToUpdate)
