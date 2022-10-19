@@ -14,25 +14,20 @@ function InformationForm({ setIsLoading }) {
 
     const [token, setToken] = useState(null);
     const [isInformationComplete] = useState(user.user_metadata.isInformationComplete);
-    const [firstName, setFirstName] = useState(user.name);
+    const [firstName, setFirstName] = useState(user.given_name);
     const [lastName, setLastName] = useState(user.family_name);
-    const [email, setEmail] = useState(user.given_name);
+    const [email, setEmail] = useState(user.email);
     const [phone, setPhone] = useState(user.user_metadata.phone);
     const [address, setAddress] = useState(user.user_metadata.address);
     const [formState, setFormState] = useState(FormState.VIEW);
-    const [allowEditProviderType, setAllowEditProviderType] = useState(false);
 
-    const handleOnFirstNameChange = (e) => setName(e.target.value);
-    const handleOnLastNameChange = (e) => setName(e.target.value);
+    const handleOnFirstNameChange = (e) => setFirstName(e.target.value);
+    const handleOnLastNameChange = (e) => setLastName(e.target.value);
     const handleOnEmailChange = (e) => setEmail(e.target.value);
     const handleOnPhoneChange = (e) => setPhone(e.target.value);
     const handleOnAddressChange = (e) => setAddress(e.target.value);
-    const handleOnEditClick = () => {
-        setFormState(FormState.EDIT);
-
-        !user.user_metadata.isInformationComplete && setAllowEditProviderType(true);
-    }
-
+    const handleOnEditClick = () => setFormState(FormState.EDIT);
+    
     useEffect(() => {
         getAccessTokenSilently().then((token) => {
             setToken(token);
@@ -83,8 +78,19 @@ function InformationForm({ setIsLoading }) {
                         type="text"
                         placeholder="First Name"
                         disabled={isViewMode()}
-                        value={name}
-                        onChange={handleOnNameChange}
+                        value={firstName}
+                        onChange={handleOnFirstNameChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                        id="lastName"
+                        type="text"
+                        placeholder="Last Name"
+                        disabled={isViewMode()}
+                        value={lastName}
+                        onChange={handleOnLastNameChange}
                     />
                 </Form.Group>
                 <Form.Group className="mt-3">
@@ -119,14 +125,6 @@ function InformationForm({ setIsLoading }) {
                         value={phone}
                         onChange={handleOnPhoneChange}
                     />
-                </Form.Group>
-                <Form.Group className="mt-3">
-                    <Form.Label>Provider Type</Form.Label>
-                    <Form.Select id="provider" disabled={!allowEditProviderType} defaultValue={provider} onChange={handleOnProviderChange} >
-                        <option>Not specified</option>
-                        <option value="1" >Serigraphy</option>
-                        <option value="2" >Products</option>
-                    </Form.Select>
                 </Form.Group>
                 {isViewMode() ? <Button key={"edit-btn"} className="mt-3" type="button" variant="warning" onClick={handleOnEditClick} >Edit</Button> : <Button key={"submit-btn"} className="mt-3" type="submit" variant="primary">Guardar</Button>}
             </Form>

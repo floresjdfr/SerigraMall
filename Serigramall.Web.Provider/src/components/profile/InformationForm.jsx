@@ -3,14 +3,15 @@ import { Alert, Button, Form } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import userManagementApi from "../../services/api/userManagementApi";
 import { useEffect } from "react";
+import ProfileButtons from "./ProfileButtons";
 
 function InformationForm({ setIsLoading }) {
-    const { user, getAccessTokenSilently } = useAuth0();
-
     const FormState = {
         EDIT: "edit",
         VIEW: "view"
     }
+
+    const { user, getAccessTokenSilently } = useAuth0();
 
     const [token, setToken] = useState(null);
     const [isInformationComplete] = useState(user.user_metadata.isInformationComplete);
@@ -22,26 +23,17 @@ function InformationForm({ setIsLoading }) {
     const [formState, setFormState] = useState(FormState.VIEW);
     const [allowEditProviderType, setAllowEditProviderType] = useState(false);
 
-    const handleOnNameChange = (e) => setName(e.target.value);
-    const handleOnEmailChange = (e) => setEmail(e.target.value);
-    const handleOnPhoneChange = (e) => setPhone(e.target.value);
-    const handleOnAddressChange = (e) => setAddress(e.target.value);
-    const handleOnProviderChange = (e) => setProvider(e.target.value);
-    const handleOnEditClick = () => {
-        setFormState(FormState.EDIT);
-
-        !user.user_metadata.isInformationComplete && setAllowEditProviderType(true);
-    }
-
     useEffect(() => {
         getAccessTokenSilently().then((token) => {
             setToken(token);
         });
     }, []);
 
-
-    const isViewMode = () => formState === FormState.VIEW;
-
+    const handleOnNameChange = (e) => setName(e.target.value);
+    const handleOnEmailChange = (e) => setEmail(e.target.value);
+    const handleOnPhoneChange = (e) => setPhone(e.target.value);
+    const handleOnAddressChange = (e) => setAddress(e.target.value);
+    const handleOnProviderChange = (e) => setProvider(e.target.value);
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -70,6 +62,8 @@ function InformationForm({ setIsLoading }) {
             setFormState(FormState.VIEW);
         });
     };
+
+    const isViewMode = () => formState === FormState.VIEW;
 
     return (
         <>
@@ -127,7 +121,12 @@ function InformationForm({ setIsLoading }) {
                         <option value="2" >Products</option>
                     </Form.Select>
                 </Form.Group>
-                {isViewMode() ? <Button key={"edit-btn"} className="mt-3" type="button" variant="warning" onClick={handleOnEditClick} >Edit</Button> : <Button key={"submit-btn"} className="mt-3" type="submit" variant="primary">Guardar</Button>}
+                <ProfileButtons
+                    user={user}
+                    formState={{ formState, setFormState }}
+                    formStateEnum={FormState}
+                    setAllowEditProviderType={setAllowEditProviderType}
+                    isViewMode={isViewMode} />
             </Form>
         </>
     );
