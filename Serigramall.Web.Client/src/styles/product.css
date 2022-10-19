@@ -85,3 +85,16 @@
   .card-body {
     padding: 1.2em;
   }
+
+  .button {
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: #cecece;
+  }
+
+  
