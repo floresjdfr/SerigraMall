@@ -11,9 +11,8 @@ function Product () {
                 <div >
                     <Header/>
                     <CartProvider>
-                        <Cart>
-                            
-                        </Cart> <ProductList/>                       
+                        <Cart/>
+                        <ProductList/>                       
                     </CartProvider>
                     
                 </div>

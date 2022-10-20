@@ -8,8 +8,7 @@ const Header = () => {
             <div>
                 <input className="float-center "type="text"/>
                 <Button className="float-center " variant="secondary">Seach</Button>
-            </div>            
-            <NewProduct/>
+            </div>         
         </div>
     );
 }
