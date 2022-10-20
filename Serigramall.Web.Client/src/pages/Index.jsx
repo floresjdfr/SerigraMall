@@ -11,7 +11,6 @@ function Index() {
     </div>
   */
     <div>
-      
       <Product></Product>
     </div>
     

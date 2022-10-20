@@ -1,12 +1,9 @@
-import { useContext } from 'react';
 import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import CartContext from './CartContext';
 import DeleteProduct from './DeleteProduct';
 
 const Product = ({ product }) => {
-    const {addItemToCart} = useContext(CartContext);
     const [isHovering, setIsHovering] = useState(false);
 
     const handleMouseOver = () => {
@@ -27,7 +24,10 @@ const Product = ({ product }) => {
                     <Card.Text>
                         {product.description}
                     </Card.Text>
-                    <button className='button' onClick={() => addItemToCart(product)}>Add to cart</button>                   
+                    <Button variant="primary">Editar</Button>
+                     <DeleteProduct/>
+            
+                    
                 </Card.Body>
             }
         </Card>
@@ -35,3 +35,28 @@ const Product = ({ product }) => {
 }
 
 export default Product;
+/*
+<Card.Footer variant ="btn-group bg-light clearfix col-sm-2">
+                        <Button variant="primary float-left btn-sm">Editar</Button>
+                        <Button variant="danger float-right btn-sm">Eliminar</Button>
+                    </Card.Footer>
+
+
+
+className='bg-image hover-zoom'
+<Card.Img variant="top" src="holder.js/100px180" />
+
+<li className={'${product.done ? "checked" : ""}' }>
+{product.productName},
+{product.description},
+{product.basePrice},
+{<img src={`data:image/jpeg;base64,${product.image}`} />}
+
+<span className = "close">X</span>
+</li>
+
+{<img src={product.image} alt="" />}
+return (
+    <li>Product BOTELLA <span class = "close"></span></li>
+);
+*/
