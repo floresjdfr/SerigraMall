@@ -20,6 +20,7 @@ function InformationForm({ setIsLoading }) {
     const [address, setAddress] = useState(user.user_metadata.address);
     const [provider, setProvider] = useState(user.user_metadata.provider);
     const [formState, setFormState] = useState(FormState.VIEW);
+    const [allowEditProviderType, setAllowEditProviderType] = useState(false);
 
     const handleOnNameChange = (e) => setName(e.target.value);
     const handleOnEmailChange = (e) => setEmail(e.target.value);
@@ -28,6 +29,8 @@ function InformationForm({ setIsLoading }) {
     const handleOnProviderChange = (e) => setProvider(e.target.value);
     const handleOnEditClick = () => {
         setFormState(FormState.EDIT);
+
+        !user.user_metadata.isInformationComplete && setAllowEditProviderType(true);
     }
 
     useEffect(() => {
@@ -66,9 +69,7 @@ function InformationForm({ setIsLoading }) {
             setIsLoading(false);
             setFormState(FormState.VIEW);
         });
-
-
-    }
+    };
 
     return (
         <>
@@ -120,7 +121,7 @@ function InformationForm({ setIsLoading }) {
                 </Form.Group>
                 <Form.Group className="mt-3">
                     <Form.Label>Provider Type</Form.Label>
-                    <Form.Select id="provider" disabled={isViewMode()} defaultValue={provider} onChange={handleOnProviderChange} >
+                    <Form.Select id="provider" disabled={!allowEditProviderType} defaultValue={provider} onChange={handleOnProviderChange} >
                         <option>Not specified</option>
                         <option value="1" >Serigraphy</option>
                         <option value="2" >Products</option>
@@ -131,5 +132,6 @@ function InformationForm({ setIsLoading }) {
         </>
     );
 }
+
 
 export default InformationForm;
