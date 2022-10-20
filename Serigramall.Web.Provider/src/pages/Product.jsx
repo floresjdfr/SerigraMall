@@ -14,7 +14,7 @@ function Product() {
 
     return (
         <ProductContext.Provider value={[productsState, setProductsState]}>
-            <div >
+            <div className="b1">
                 <Header />
                 <ProductList />
             </div>

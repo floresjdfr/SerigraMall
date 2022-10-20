@@ -12,6 +12,7 @@ const apiTasks = new ApiCore({
   put: true,
   patch: false,
   remove: true,
+  removeA: true,
   url: url,
   plural: plural,
   single: single

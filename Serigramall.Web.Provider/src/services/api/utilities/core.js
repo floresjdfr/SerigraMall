@@ -37,6 +37,11 @@ export class ApiCore {
         return apiProvider.remove(options.url, id);
       };
     }
+    if (options.removeA) {
+      this.removeA = (id) => {
+        return apiProvider.removeA(options.url, id);
+      };
+    }
   }
 }
 export default ApiCore;

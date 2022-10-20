@@ -20,9 +20,9 @@ const Product = ({ product }) => {
     };
 
     return (
-        <Card style={{ width: 'auto' }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <Card style={{ width: 'auto', height: "auto"}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <Card.Header>{product.productName}</Card.Header>
-            <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`} />
+            <Card.Img style={{ width: 'auto', height: "auto"}} variant="top" src={`data:image/jpeg;base64,${product.image}`} />
             {isHovering &&
                 <Card.Body>
                     <Card.Title>Precio: {product.basePrice}</Card.Title>

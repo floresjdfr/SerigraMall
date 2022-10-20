@@ -47,6 +47,14 @@ const remove = (resource, id) => {
     .delete(`${BASE_URL}/${resource}`, id);
 };
 
+/** @param {string} resource */
+/** @param {string} id */
+
+const removeA = (resource, id) => {
+  return axios
+    .delete(`${BASE_URL}/${resource}/${id}`);
+};
+
 export const apiProvider = {
   getAll,
   getSingle,
@@ -54,6 +62,7 @@ export const apiProvider = {
   put,
   patch,
   remove,
+  removeA,
 };
 export default apiProvider;
 

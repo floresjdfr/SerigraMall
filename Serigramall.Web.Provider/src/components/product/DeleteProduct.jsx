@@ -28,7 +28,7 @@ const DeleteProduct = ({ product }) => {
         };
 
 
-        productApi.remove(product.id);
+        productApi.removeA(product.id);
         /*
         .then((_)=>productApi.getAll())
         .then((response) => {(response === 500) ?  throwError(): setProductsState(response)})
