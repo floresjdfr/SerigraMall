@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import CartContext from "./CartContext";
 import '../../styles/cartStyle.css';
+import { Container } from "react-bootstrap";
 
 export const ItemCart = ({ item }) => {
 
@@ -8,6 +9,7 @@ export const ItemCart = ({ item }) => {
    const { id } = item;
 
   return (
+    <Container>
     <div className="cartItem">
       <img className="cartItemimg" src={`data:image/jpeg;base64,${item.image}`}/>
       <div className="dataContainer">
@@ -20,9 +22,10 @@ export const ItemCart = ({ item }) => {
         </div>
         <div className="right">
           <div className="rightdiv">{item.amount}</div>
-          <p className="rightp">Total: ${item.amount * item.basePrice}</p>
+          <p className="rightp">Total: ₡{item.amount * item.basePrice}</p>
         </div>
       </div> 
     </div>
+    </Container>
   );
 };

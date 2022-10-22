@@ -16,10 +16,10 @@ export const Cart = () => {
     );
   }, [cartItems]);
 
-  const total = cartItems.reduce((previous, current) => previous + current.amount, 0);
+  const total = cartItems.reduce((previous, current) => previous + current.amount * current.basePrice, 0);
 
   return (
-    <div className="cartContainer">
+    <div  className="cartContainer">
       <div className="buttonCartContainer"
         onClick={() => setCartOpen(!cartOpen)}      >
         <div className="buttonCart">
@@ -73,7 +73,7 @@ export const Cart = () => {
                 ))}
               </div>
           )} 
-          <h2 className="total">Total: ${total}</h2>
+          <h2 className="total">Total: ₡{total}</h2>
           </div> 
       )}
     </div>

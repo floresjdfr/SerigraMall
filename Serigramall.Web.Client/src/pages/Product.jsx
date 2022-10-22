@@ -5,13 +5,19 @@ import { CartProvider } from "../components/carrito/CartContext";
 import { Cart } from "../components/carrito/Cart";
 
 function Product () {
+    const container = {
+        position: 'relative',
+      };
+      const sub = {
+        position: 'absolute',
+      };
     return (
         <>
             <div>
-                <div >
+                <div >            
                     <Header/>
-                    <CartProvider>
-                        <Cart/>
+                    <CartProvider style={container}>
+                        <Cart style={container}/>
                         <ProductList/>                       
                     </CartProvider>
                     
