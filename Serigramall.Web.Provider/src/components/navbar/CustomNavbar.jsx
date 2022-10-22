@@ -2,6 +2,7 @@ import { Container, Navbar, Offcanvas, Nav, Form, Button, } from "react-bootstra
 import "../../styles/loginButtonStyles.css";
 import ProfileDropdown from "./ProfileDropdown";
 
+
 function CustomNav() {
   return (
     <>
