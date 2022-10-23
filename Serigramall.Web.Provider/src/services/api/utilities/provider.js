@@ -35,7 +35,7 @@ const put = (resource, model) => {
 /** @param {object} model */
 const patch = (resource, id, model, config) => {
   return axios
-    .patch(`${BASE_URL}/${resource}/${id}`, model, config);
+    .patch(`${BASE_URL}/${resource}/${id}/PROVIDER`, model, config);
 };
 
 

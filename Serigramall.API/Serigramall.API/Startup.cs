@@ -18,6 +18,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Serigramall.API.Settings.Auth0;
 
 namespace Serigramall.API
 {
@@ -36,16 +37,16 @@ namespace Serigramall.API
         {
             services.AddControllers();
 
-            var domain = $"https://{Configuration["Auth0:Domain"]}/";
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-            {
-                options.Authority = domain;
-                options.Audience = Configuration["Auth0:Audience"];
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = ClaimTypes.NameIdentifier
-                };
-            });
+            //var domain = $"https://{Configuration["Auth0:Provider:Domain"]}/";
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            //{
+            //    options.Authority = domain;
+            //    options.Audience = Configuration["Auth0:Provider:Audience"];
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        NameClaimType = ClaimTypes.NameIdentifier
+            //    };
+            //});
 
             services.AddCors(options =>
             {
@@ -58,6 +59,7 @@ namespace Serigramall.API
             services.Configure<SeriMallDBSettings>(Configuration.GetSection(nameof(SeriMallDBSettings)));
             services.AddSingleton<IDatabaseSettings>(item => item.GetRequiredService<IOptions<SeriMallDBSettings>>().Value);
             services.AddSingleton<ProductRepository>();
+            
             services.AddAuthorization();
 
             services.AddSwaggerGen();
@@ -83,7 +85,7 @@ namespace Serigramall.API
 
             app.UseCors(AllowSpecifications);
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -22,14 +22,15 @@ namespace Serigramall.API.Controllers
             _configuration = configuration;
         }
 
-        [Authorize]
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateUser(string id, User updatedUser)
+        //[Authorize]
+        [HttpPatch("{id}/{auth0Provider}")]
+        public async Task<IActionResult> UpdateUser(string id, string auth0Provider, User updatedUser)
         {
             User response = null;
             try
             {
-                var authentication = new ManagementAPI(_configuration);
+                var selectedAuth0Provider = auth0Provider == "PROVIDER" ? Auth0Provider.PROVIDERS : Auth0Provider.CLIENTS;
+                var authentication = new ManagementAPI(_configuration, selectedAuth0Provider);
                 var userInDb = (await authentication.GetUser(id)).ElementAt(0);
 
                 //Remove email from being updated if it's a social profile
@@ -42,11 +43,12 @@ namespace Serigramall.API.Controllers
                     updatedUser.user_metadata.provider = null;
 
                 response = await authentication.UpdateUser(id, updatedUser);
-                await AssignRoles(id);
+                await AssignRoles(id, selectedAuth0Provider);
 
                 if (response != null)
                     return Ok(response);
                 return BadRequest();
+
             }
             catch (Exception e)
             {
@@ -77,14 +79,14 @@ namespace Serigramall.API.Controllers
             }
         }
 
-        private async Task AssignRoles(string userId)
+        private async Task AssignRoles(string userId, Auth0Provider providerType)
         {
-            var authentication = new ManagementAPI(_configuration);
+            var authentication = new ManagementAPI(_configuration, providerType);
             var rolesAvailable = new Dictionary<string, string>
                 {
                     {"PROVIDER_PRODUCTS", "rol_SGk01p4OiuzjDkM7"},
                     {"PROVIDER_SERIGRAPHY", "rol_jC1anhAm48HQf25F"},
-                    {"CLIENT", "pending" }
+                    {"CLIENT", "rol_zC0U2Q66L2KftvQH" }
                 };
 
             var userFound = (await authentication.GetUser(userId)).ElementAt(0);
