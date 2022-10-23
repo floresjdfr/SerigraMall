@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import userManagementApi from "../../services/api/userManagementApi";
 import { useEffect } from "react";
+import ProfileButtons from "./ProfileButtons";
 
 function InformationForm({ setIsLoading }) {
-    const { user, getAccessTokenSilently } = useAuth0();
-
     const FormState = {
         EDIT: "edit",
         VIEW: "view"
     }
+    
+    const { user, getAccessTokenSilently } = useAuth0();
 
     const [token, setToken] = useState(null);
     const [isInformationComplete] = useState(user.user_metadata.isInformationComplete);
@@ -21,21 +22,18 @@ function InformationForm({ setIsLoading }) {
     const [address, setAddress] = useState(user.user_metadata.address);
     const [formState, setFormState] = useState(FormState.VIEW);
 
+    useEffect(() => {
+        getAccessTokenSilently().then((token) => {
+            setToken(token); 
+        });
+    }, []);
+
     const handleOnFirstNameChange = (e) => setFirstName(e.target.value);
     const handleOnLastNameChange = (e) => setLastName(e.target.value);
     const handleOnEmailChange = (e) => setEmail(e.target.value);
     const handleOnPhoneChange = (e) => setPhone(e.target.value);
     const handleOnAddressChange = (e) => setAddress(e.target.value);
     const handleOnEditClick = () => setFormState(FormState.EDIT);
-    
-    useEffect(() => {
-        getAccessTokenSilently().then((token) => {
-            setToken(token);
-        });
-    }, []);
-
-    const isViewMode = () => formState === FormState.VIEW;
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -47,7 +45,7 @@ function InformationForm({ setIsLoading }) {
             email,
             user_metadata:
             {
-                isInformationComplete: true, address, phone, provider
+                isInformationComplete: true, address, phone
             }
         };
 
@@ -66,6 +64,8 @@ function InformationForm({ setIsLoading }) {
             setFormState(FormState.VIEW);
         });
     };
+
+    const isViewMode = () => formState === FormState.VIEW;
 
     return (
         <>
@@ -126,7 +126,11 @@ function InformationForm({ setIsLoading }) {
                         onChange={handleOnPhoneChange}
                     />
                 </Form.Group>
-                {isViewMode() ? <Button key={"edit-btn"} className="mt-3" type="button" variant="warning" onClick={handleOnEditClick} >Edit</Button> : <Button key={"submit-btn"} className="mt-3" type="submit" variant="primary">Guardar</Button>}
+                <ProfileButtons
+                    user={user}
+                    formState={{ formState, setFormState }}
+                    formStateEnum={FormState}
+                    isViewMode={isViewMode} />
             </Form>
         </>
     );

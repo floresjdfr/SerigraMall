@@ -7,7 +7,7 @@ function CustomNav() {
     <>
       <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
         <Container fluid>
-          <Navbar.Brand href="/">SerigraMall Provider</Navbar.Brand>
+          <Navbar.Brand href="/">SerigraMall</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-lg`}

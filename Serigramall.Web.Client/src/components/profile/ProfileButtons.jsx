@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import { isDbUser } from "../../helpers/auth0Helpers";
 import { auth0ClientApi } from "../../services/api/auth0ClientApi";
 
-export default function ProfileButtons({ user, formState, formStateEnum, setAllowEditProviderType, isViewMode }) {
+export default function ProfileButtons({ user, formState, formStateEnum, isViewMode }) {
 
     const handleOnPasswordChangeClick = () => {
         const email = user.email;
@@ -11,7 +11,6 @@ export default function ProfileButtons({ user, formState, formStateEnum, setAllo
 
     const handleOnEditClick = () => {
         formState.setFormState(formStateEnum.EDIT);
-        !user.user_metadata.isInformationComplete && setAllowEditProviderType(true);
     }
 
     return (

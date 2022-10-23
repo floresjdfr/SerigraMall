@@ -1,14 +1,14 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import InformationForm from "../components/profile/InformationForm";
+import Loading from "../components/utils/Loading";
 
 function Profile() {
-  const { user } = useAuth0();
-
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <Container>
       <h2 className="mb-3">Profile Information</h2>
-      <InformationForm user={user} />
+      {isLoading ? <Loading /> : <InformationForm setIsLoading={setIsLoading} />}
     </Container>
   );
 }
