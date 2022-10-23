@@ -9,9 +9,10 @@ const apiTasks = new ApiCore({
   getAll: true,
   getSingle: true,
   post: true,
-  put: false,
-  patch: true,
-  delete: true,
+  put: true,
+  patch: false,
+  remove: true,
+  removeA: true,
   url: url,
   plural: plural,
   single: single

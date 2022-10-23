@@ -38,11 +38,21 @@ const patch = (resource, id, model, config) => {
     .patch(`${BASE_URL}/${resource}/${id}/PROVIDER`, model, config);
 };
 
+
 /** @param {string} resource */
 /** @param {string} id */
+
 const remove = (resource, id) => {
   return axios
     .delete(`${BASE_URL}/${resource}`, id);
+};
+
+/** @param {string} resource */
+/** @param {string} id */
+
+const removeA = (resource, id) => {
+  return axios
+    .delete(`${BASE_URL}/${resource}/${id}`);
 };
 
 export const apiProvider = {
@@ -52,5 +62,15 @@ export const apiProvider = {
   put,
   patch,
   remove,
+  removeA,
 };
 export default apiProvider;
+
+/*
+const remove = (resource, id) => { 
+  return axios 
+    .delete(`${BASE_URL}/${resource}`, id) 
+    .then(handleResponse) 
+    .catch(handleError); 
+}; 
+*/

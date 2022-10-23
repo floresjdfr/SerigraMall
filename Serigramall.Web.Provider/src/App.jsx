@@ -9,22 +9,30 @@ import ProtectedRoute from "./components/authentication/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import "./styles/main.css";
 
+import { createContext, useContext, useEffect, useState } from "react";
+import CustomToast from "./components/utils/CustomToast";
+import GlobalProvider from "./contexts/GlobalContext";
+
 function App() {
   return (
     <>
-      <CustomNav />
-      <main className="main">
-        <Routes>
-          <Route path="/" element={<Index />} />
+      <GlobalProvider>
+        <CustomNav />
+        <CustomToast />
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<Index />} />
 
           {/* Protected routes */}
+          {/*<Route path="/product" element={<Product />} />*/}
           <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
           <Route path="/manage-profile" element={<ProtectedRoute component={Profile} />} />
 
-          {/*Error Routes */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+            {/*Error Routes */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </GlobalProvider>
     </>
   );
 }
