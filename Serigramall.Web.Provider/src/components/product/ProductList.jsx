@@ -6,14 +6,14 @@ import Container from 'react-bootstrap/Container';
 
 import { createContext, useContext, useEffect, useState } from "react";
 import ProductItem from './ProductItem';
-import productApi from '../../services/api/productApi';
+import productApi, { getProductsByProvider } from '../../services/api/productApi';
 import { GlobalContext } from "../../contexts/GlobalContext";
 import Loading from "../utils/Loading";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const ProductList = () => {
-    const [productsState, setProductsState] = useState([])
-    const { setShowToast, setToastHeader, setToastBody } =
-        useContext(GlobalContext);
+    const { user } = useAuth0();
+    const { setShowToast, setToastHeader, setToastBody, productsState, setProductsState } = useContext(GlobalContext);
     const [isLoading, setIsLoading] = useState([])
 
     useEffect(() => {
@@ -23,8 +23,8 @@ const ProductList = () => {
     }, []);
 
     async function _getProducts() {
-        await productApi.getAll()
-            .then((response) => {(response === 500) ?  throwError(): setProductsState(response.data)})
+        await getProductsByProvider(user.sub)
+            .then((response) => { (response === 500) ? throwError() : setProductsState(response.data) })
             .catch((_) => {
                 setToastHeader("Error");
                 setToastBody("An error ocurred while trying to retrive the requested Items");
@@ -38,11 +38,9 @@ const ProductList = () => {
     return (
         <Container>
             {isLoading ? <Loading /> :
-                <Row xs='2' md='4' xl='5' className="g-4">
+                <Row xs='2' sm='3' md='4' xl='5' className="g-4">
                     {productsState.map((product) => (
-                        <Col md='4' className='ml-auto'>
-                            <ProductItem product={product} key={product.id} />
-                        </Col>
+                        <ProductItem product={product} key={product.id} />
                     ))}
                 </Row>
             }

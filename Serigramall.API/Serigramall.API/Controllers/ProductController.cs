@@ -25,12 +25,16 @@ namespace Serigramall.API.Controllers
         public ActionResult<ProductDto> Post([FromBody] ProductDto value)
         {
             var newValue = _productRepository.Create(value.toProduct()) as Product;
-            return CreatedAtAction(nameof(Get), new { id = newValue.Id.ToString() }, newValue.toDTO());
+            return CreatedAtAction(nameof(Get), new { providerId = newValue.Id.ToString() }, newValue.toDTO());
         }
 
-        // GET: api/ProductController
-        [HttpGet]
-        public IEnumerable<ProductDto> Get() => _productRepository.Get().Select(item => (item as Product).toDTO());
+        // GET: api/Product
+        [HttpGet("{providerId?}")]
+        public IEnumerable<ProductDto> Get(string providerId)
+        {
+            var products = !string.IsNullOrEmpty(providerId) ? _productRepository.GetByProvider(providerId) : _productRepository.Get();
+            return products.Select(item => (item as Product).toDTO());
+        }
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]

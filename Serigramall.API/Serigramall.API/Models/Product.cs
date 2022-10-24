@@ -24,7 +24,6 @@ namespace Serigramall.API.Models
         public string BaseTax { get; set; }
         public string ProductType { get; set; }
         public byte[] Image { get; set; }
-        public List<string> Costumizations { get; set; }
         public DateTime RegistryDate { get; set; }
         public string ProductState { get; set; }
     }

@@ -29,6 +29,8 @@ namespace Serigramall.API.Repositories
 
         public Product Get(string id) => _items.Find(item => item.Id == id).FirstOrDefault();
 
+        public IEnumerable<Product> GetByProvider(string providerId) => _items.Find(item => item.Provider == providerId).ToList();
+
         public void Remove(string id) => _items.DeleteOne(item => item.Id == id);
 
         public void Remove(Product itemToDelete)

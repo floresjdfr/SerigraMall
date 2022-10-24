@@ -17,7 +17,7 @@ namespace Serigramall.API.DTOs
         public string ProductType { get; set; }
         /*public string Image { get; set; }*/
         public byte[] Image { get; set; }
-        public List<ProductDto> Costumizations { get; set; }
+        
         public DateTime RegistryDate { get; set; }
         public InventaryState ProductState { get; set; }
     }

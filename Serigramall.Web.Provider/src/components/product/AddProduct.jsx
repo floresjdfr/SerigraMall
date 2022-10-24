@@ -1,14 +1,14 @@
 
 import React, { useContext, useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-import productApi from '../../services/api/productApi';
+import productApi, { getProductsByProvider } from '../../services/api/productApi';
 import { ProductContext } from "../../Pages/Product";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const AddProduct = () => {
-  const [producstState, setProductsState] = useState("");
-  const { setShowToast, setToastHeader, setToastBody } =
-    useContext(GlobalContext);
+  const { user } = useAuth0();
+  const { setShowToast, setToastHeader, setToastBody,  setProductsState } = useContext(GlobalContext);
 
   const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState({});
@@ -73,27 +73,26 @@ const AddProduct = () => {
     const newProduct = {
       Id: "",
       Description: inputs.Description,
-      ProviderId: "kjkhjadsfha",
+      ProviderId: user.sub,
       ProductName: inputs.Name,
       RegistryDate: inputs.Date,
       BasePrice: inputs.Price,
       BaseTax: inputs.Tax,
       Image: string64.split(',')[1],
       State: "NEW",
-      ProductType: "DEFAULT",
-      Costumizations: [],
-      ProductState: 1
+      ProductState: 4,
+      ProductType: "DEFAULT"
     };
 
 
     productApi.post(newProduct)
-      .then((_) => productApi.getAll())
-      .then((response) => {(response === 500) ?  throwError(): setProductsState(response)})
+      .then((_) => getProductsByProvider(user.sub))
+      .then((response) => { (response === 500) ? throwError() : setProductsState(response.data) })
       .catch((_) => {
         setToastHeader("Error");
         setToastBody("An error ocurred while trying to retrive the requested Items");
         setShowToast(true);
-        setIsLoading(false);
+        // setIsLoading(false);
       });
     handleClose();
 

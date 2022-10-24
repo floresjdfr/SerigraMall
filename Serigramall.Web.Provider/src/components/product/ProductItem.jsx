@@ -20,23 +20,19 @@ const Product = ({ product }) => {
     };
 
     return (
-        <Card style={{ width: 'auto', height: "auto"}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <Card onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <Card.Header>{product.productName}</Card.Header>
-            <Card.Img style={{ width: 'auto', height: "auto"}} variant="top" src={`data:image/jpeg;base64,${product.image}`} />
-            {isHovering &&
-                <Card.Body>
-                    <Card.Title>Precio: {product.basePrice}</Card.Title>
-                    <Card.Text>
-                        {product.description}
-                    </Card.Text>                                        
-                    <Container>
-                        <Row>
-                            <Col ><UpdateProduct product={product}/></Col>
-                            <Col ><DeleteProduct product={product}/></Col>                           
-                        </Row>
-                    </Container>
-                </Card.Body>
-            }
+            <Card.Img className='text-center' variant="top" src={`data:image/jpeg;base64,${product.image}`} />
+            <Card.Body>
+                <Card.Title>Precio: ₡{product.basePrice}</Card.Title>
+                <Card.Text>
+                    {product.description}
+                </Card.Text>
+                <Row>
+                    <Col ><UpdateProduct product={product} /></Col>
+                    <Col ><DeleteProduct product={product} /></Col>
+                </Row>
+            </Card.Body>
         </Card >
     );
 }

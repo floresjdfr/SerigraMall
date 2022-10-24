@@ -20,8 +20,7 @@ namespace Serigramall.API.Extensions
                 BaseTax = item.BaseTax,
                 ProductName = item.ProductName,
                 ProductType = item.ProductType,
-                ProviderID = item.Provider,
-                Costumizations = null
+                ProviderID = item.Provider
             };
         }
         public static Product toProduct(this ProductDto item)
@@ -38,8 +37,7 @@ namespace Serigramall.API.Extensions
                 BaseTax = item.BaseTax,
                 ProductName = item.ProductName,
                 ProductType = item.ProductType,
-                Provider = item.ProviderID, 
-                Costumizations =null
+                Provider = item.ProviderID
             };
         }
 

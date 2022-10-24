@@ -58,26 +58,27 @@ namespace Serigramall.API.Controllers
                 return BadRequest("An error ocurred while updating the user");
             }
         }
+        
+        //This endpoint is not required
+        //[HttpGet("{id?}")]
+        //public async Task<IActionResult> GetUsers(string id)
+        //{
+        //    try
+        //    {
+        //        var authentication = new ManagementAPI(_configuration);
 
-        [HttpGet("{id?}")]
-        public async Task<IActionResult> GetUsers(string id)
-        {
-            try
-            {
-                var authentication = new ManagementAPI(_configuration);
+        //        var response = await authentication.GetUser(id);
 
-                var response = await authentication.GetUser(id);
-
-                if (response != null)
-                    return Ok(response);
-                return BadRequest();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                return BadRequest();
-            }
-        }
+        //        if (response != null)
+        //            return Ok(response);
+        //        return BadRequest();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.StackTrace);
+        //        return BadRequest();
+        //    }
+        //}
 
         private async Task AssignRoles(string userId, Auth0Provider providerType)
         {
