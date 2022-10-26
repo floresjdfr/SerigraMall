@@ -8,13 +8,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 import ProductItem from './ProductItem';
 import productApi, { getProductsByProvider } from '../../services/api/productApi';
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { ProductsContext } from '../../contexts/ProductsContext';
 import Loading from "../utils/Loading";
 import { useAuth0 } from '@auth0/auth0-react';
 
 const ProductList = () => {
     const { user } = useAuth0();
-    const { setShowToast, setToastHeader, setToastBody, productsState, setProductsState } = useContext(GlobalContext);
-    const [isLoading, setIsLoading] = useState([])
+    const { setShowToast, setToastHeader, setToastBody, isLoading, setIsLoading } = useContext(GlobalContext);
+    const { productsState, setProductsState } = useContext(ProductsContext);
 
     useEffect(() => {
         setShowToast(false);
@@ -29,20 +30,20 @@ const ProductList = () => {
                 setToastHeader("Error");
                 setToastBody("An error ocurred while trying to retrive the requested Items");
                 setShowToast(true);
-                setIsLoading(false);
-            });
-        setIsLoading(false);
+
+            })
+            .finally(() => setIsLoading(false));
     }
 
 
     return (
         <Container>
             {isLoading ? <Loading /> :
-                <Row xs='2' sm='3' md='4' xl='5' className="g-4">
-                    {productsState.map((product) => (
-                        <ProductItem product={product} key={product.id} />
-                    ))}
-                </Row>
+                productsState.length > 0 ?
+                    <Row xs='2' sm='3' md='4' xl='5' className="g-4">
+                        {productsState.map((product) => (<ProductItem product={product} key={product.id} />))}
+                    </Row> :
+                    <h4 className='text-center'>There are no products found.</h4>
             }
         </Container>
     );

@@ -6,6 +6,7 @@ using Serigramall.API.Repositories;
 using Serigramall.API.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Serigramall.API.Controllers
 {
@@ -20,12 +21,15 @@ namespace Serigramall.API.Controllers
             _productRepository = productService;
         }
 
-        //Post : api/ProductController
+        //Post : api/Product
         [HttpPost]
         public ActionResult<ProductDto> Post([FromBody] ProductDto value)
         {
+            value.RegistryDate = DateTime.Now;
             var newValue = _productRepository.Create(value.toProduct()) as Product;
-            return CreatedAtAction(nameof(Get), new { providerId = newValue.Id.ToString() }, newValue.toDTO());
+
+            return CreatedAtAction(nameof(Get), 
+                new { providerId = newValue.Id.ToString() }, newValue.toDTO());
         }
 
         // GET: api/Product

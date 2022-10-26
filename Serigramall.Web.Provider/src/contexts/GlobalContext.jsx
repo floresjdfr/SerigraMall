@@ -4,8 +4,9 @@ function GlobalProvider({ ...props }) {
   const [showToast, setShowToast] = useState(false);
   const [toastHeader, setToastHeader] = useState("");
   const [toastBody, setToastBody] = useState("");
-  const [productsState, setProductsState] = useState([])
+  const [productsState, setProductsState] = useState([]);
   const [error, setError] = useState(Error());
+  const [isLoading, setIsLoading] = useState(false);
 
   const value = {
     //Toast
@@ -17,7 +18,11 @@ function GlobalProvider({ ...props }) {
     setToastBody,
 
     //products
-    productsState, setProductsState
+    productsState, setProductsState,
+
+    //loading
+    isLoading, setIsLoading
+
   };
 
   return <GlobalContext.Provider {...props} value={value} />;

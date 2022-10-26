@@ -12,6 +12,7 @@ import "./styles/main.css";
 import { createContext, useContext, useEffect, useState } from "react";
 import CustomToast from "./components/utils/CustomToast";
 import GlobalProvider from "./contexts/GlobalContext";
+import Loading from "./components/utils/Loading";
 
 function App() {
   return (
@@ -23,10 +24,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
 
-          {/* Protected routes */}
-          {/*<Route path="/product" element={<Product />} />*/}
-          <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
-          <Route path="/manage-profile" element={<ProtectedRoute component={Profile} />} />
+            {/* Protected routes */}
+            {/*<Route path="/product" element={<Product />} />*/}
+            <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services"]} />} />
+            <Route path="/manage-profile" element={<ProtectedRoute component={Profile} />} />
 
             {/*Error Routes */}
             <Route path="*" element={<NotFound />} />

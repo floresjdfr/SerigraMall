@@ -18,7 +18,7 @@ namespace Serigramall.API.DTOs
         /*public string Image { get; set; }*/
         public byte[] Image { get; set; }
         
-        public DateTime RegistryDate { get; set; }
+        public DateTime? RegistryDate { get; set; }
         public InventaryState ProductState { get; set; }
     }
 }

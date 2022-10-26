@@ -5,10 +5,12 @@ import productApi, { getProductsByProvider } from '../../services/api/productApi
 import { GlobalContext } from "../../contexts/GlobalContext";
 import Loading from "../utils/Loading";
 import { useAuth0 } from '@auth0/auth0-react';
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 const DeleteProduct = ({ product }) => {
   const { user } = useAuth0();
-  const { productsState, setProductsState } = useContext(GlobalContext);
+  const { setIsLoading } = useContext(GlobalContext);
+  const { setProductsState } = useContext(ProductsContext);
 
   const [show, setShow] = useState(false);
 
@@ -21,6 +23,7 @@ const DeleteProduct = ({ product }) => {
   const handleOnSubmit = (event) => {
 
     event.preventDefault();
+    setIsLoading(true);
 
     const productId = {
       Id: product.id
@@ -34,7 +37,12 @@ const DeleteProduct = ({ product }) => {
     productApi.removeA(product.id)
       .then((_) => getProductsByProvider(user.sub))
       .then((response) => setProductsState(response.data))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
+    handleClose();
+
     /*
     .then((_)=>productApi.getAll())
     .then((response) => {(response === 500) ?  throwError(): setProductsState(response)})
@@ -44,7 +52,7 @@ const DeleteProduct = ({ product }) => {
             setShowToast(true);
             setIsLoading(false);
     });*/
-    handleClose();
+
   };
   return (
     <div className="row">

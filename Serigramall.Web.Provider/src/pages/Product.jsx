@@ -5,20 +5,22 @@ import '../styles/product.css'
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { GlobalContext } from "../contexts/GlobalContext";
+import ProductsProvider from "../contexts/ProductsContext";
+import Loading from "../components/utils/Loading";
 
 
 function Product() {
     const [productsState, setProductsState] = useState([]);
-    const { setShowToast, setToastHeader, setToastBody } =
+    const { setShowToast, setToastHeader, setToastBody, isLoading } =
         useContext(GlobalContext);
 
     return (
-        <ProductContext.Provider value={[productsState, setProductsState]}>
+        <ProductsProvider>
             <div className="b1">
                 <Header />
                 <ProductList />
             </div>
-        </ProductContext.Provider>
+        </ProductsProvider>
     );
 }
 export const ProductContext = createContext();

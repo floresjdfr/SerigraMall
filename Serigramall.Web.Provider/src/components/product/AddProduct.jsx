@@ -2,13 +2,15 @@
 import React, { useContext, useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import productApi, { getProductsByProvider } from '../../services/api/productApi';
-import { ProductContext } from "../../Pages/Product";
+
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { useAuth0 } from '@auth0/auth0-react';
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 const AddProduct = () => {
   const { user } = useAuth0();
-  const { setShowToast, setToastHeader, setToastBody,  setProductsState } = useContext(GlobalContext);
+  const { setShowToast, setToastHeader, setToastBody, setIsLoading } = useContext(GlobalContext);
+  const { setProductsState } = useContext(ProductsContext);
 
   const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState({});
@@ -57,6 +59,7 @@ const AddProduct = () => {
     //const newProduct = {producstState,done: false}
 
     event.preventDefault();
+    setIsLoading(true);
 
     var promiseB = fileImage.then(function (response) {
       console.log(response);
@@ -75,11 +78,9 @@ const AddProduct = () => {
       Description: inputs.Description,
       ProviderId: user.sub,
       ProductName: inputs.Name,
-      RegistryDate: inputs.Date,
       BasePrice: inputs.Price,
       BaseTax: inputs.Tax,
       Image: string64.split(',')[1],
-      State: "NEW",
       ProductState: 4,
       ProductType: "DEFAULT"
     };
@@ -92,10 +93,11 @@ const AddProduct = () => {
         setToastHeader("Error");
         setToastBody("An error ocurred while trying to retrive the requested Items");
         setShowToast(true);
-        // setIsLoading(false);
+      })
+      .finally(() => {
+        setIsLoading(false)
       });
     handleClose();
-
   };
   return (
     <div className="row">
@@ -126,14 +128,14 @@ const AddProduct = () => {
                   placeholder="Description"
                 />
               </Form.Group>
-              <Form.Group>
+              {/* <Form.Group>
                 <Form.Label>Registry date</Form.Label>
                 <Form.Control
                   type="datetime-local"
                   name="Date"
                   placeholder="Date"
                 />
-              </Form.Group>
+              </Form.Group> */}
               <Form.Group className="mb-3">
                 <Form.Label>Base Price</Form.Label>
                 <Form.Control
