@@ -21,7 +21,7 @@ const ProductList = () => {
         productApi.getAll().then((res) => {
             //let arr = _parseProducts(res.results.data);
             //let arr = _parseProducts(res);
-            setProducts(res);
+            setProducts(res.data);
         });
     }
 
