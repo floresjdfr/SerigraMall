@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>34ea7630-6340-44c6-ba74-95d4c604bb46</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+
+    <UserSecretsId>ee078d6d-934e-4e58-8f69-85fbedbebb2c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
