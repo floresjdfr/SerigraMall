@@ -12,6 +12,10 @@ namespace Serigramall.API.Models
     {
         ACTIVE, SOLDOUT, DESCONTINUED, DEFAULT, NEW
     }
+    public enum ProductType
+    {
+        PRODUCT, SERIGRAPHY
+    }
     public class Product
     {
         [BsonId]

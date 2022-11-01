@@ -4,6 +4,7 @@ using Serigramall.API.Models;
 using Serigramall.API.Settings;
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 
 namespace Serigramall.API.Repositories
 {
@@ -46,7 +47,16 @@ namespace Serigramall.API.Repositories
         public void Update(Product updatedValue)
         {
             var updatedItem = (Product)updatedValue;
-            _items.ReplaceOne(dbItem => dbItem.Id == updatedItem.Id, updatedItem);
+            var filter = Builders<Product>.Filter.Where(product => product.Id == updatedItem.Id);
+            var update = Builders<Product>.Update
+                .Set(product => product.ProductName, updatedItem.ProductName)
+                .Set(product => product.Description, updatedItem.Description)
+                .Set(product => product.BasePrice, updatedItem.BasePrice)
+                .Set(product => product.BaseTax, updatedItem.BaseTax)
+                .Set(product => product.ProductState, updatedItem.ProductState)
+                .Set(product => product.Image, updatedItem.Image);
+            var options = new FindOneAndUpdateOptions<Product>();
+            _items.FindOneAndUpdate(filter, update, options);
         }
     }
 }

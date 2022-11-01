@@ -10,7 +10,7 @@ import productApi from '../../services/api/productApi';
 import { useContext } from 'react';
 
 const ProductList = () => {
-    
+
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -49,16 +49,16 @@ const ProductList = () => {
         });
     }
 
-    return (        
+    return (
         <Container>
             <Row xs='2' md='4' xl='5' className="g-4">
                 {products.map((product) => (
-                    <Col md='4' className='ml-auto'>
-                        <ProductItem product={product} key={product.id}/>                        
-                    </Col>
+
+                    <ProductItem product={product} key={product.id} />
+
                 ))}
             </Row>
-        </Container>       
+        </Container>
     );
 }
 export default ProductList;

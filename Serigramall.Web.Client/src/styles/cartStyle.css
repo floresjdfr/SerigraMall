@@ -89,15 +89,15 @@
 
 /* estilos del carrito carrito */
 
-::-webkit-scrollbar {
+div.productsContainer::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
-::-webkit-scrollbar:vertical {
+div.productsContainer::-webkit-scrollbar:vertical {
   width: 3px;
 }
 
-::-webkit-scrollbar-thumb {
+div.productsContainer::-webkit-scrollbar-thumb {
   background-color: #797979;
   border-radius: 20px;
 }
