@@ -9,7 +9,7 @@ const BASE_URL = import.meta.env.VITE_SERVER_API_URL;
 // plural and single may be used for message logic if needed in the ApiCore class.
 
 export const apiTasks = new ApiCore({
-  getAll: false,
+  getAll: true,
   getSingle: true,
   post: true,
   put: true,

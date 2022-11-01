@@ -123,7 +123,8 @@ const AddProduct = () => {
               <Form.Group className="mb-3">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                  type="text"
+                  as="textarea" rows={3}
+                  name="description"
                   name="Description"
                   placeholder="Description"
                 />
