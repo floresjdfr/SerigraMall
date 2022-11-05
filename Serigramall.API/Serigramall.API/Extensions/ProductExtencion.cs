@@ -36,7 +36,7 @@ namespace Serigramall.API.Extensions
                 BasePrice =item.BasePrice,
                 BaseTax = item.BaseTax,
                 ProductName = item.ProductName,
-                ProductType = item.ProductType,
+                ProductType = castProductType(item.ProductType),
                 Provider = item.ProviderID
             };
         }
@@ -58,8 +58,27 @@ namespace Serigramall.API.Extensions
                     {
                         return InventaryState.DESCONTINUED;
                     }
+                case "NEW":
+                    return InventaryState.NEW;
             }
             return InventaryState.DEFAULT;
+        }
+
+        internal static string castProductType(string providerType)
+        {
+
+            switch (providerType.ToUpper())
+            {
+                case "1":
+                    {
+                        return "SERIGRAPHY";
+                    }
+                case "2":
+                    {
+                        return "PRODUCT";
+                    }
+            }
+            return "DEFAULT";
         }
     }
 }

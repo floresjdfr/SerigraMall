@@ -1,5 +1,4 @@
 import { Form, Button, Modal } from "react-bootstrap";
-import NewProduct from "./AddProduct";
 
 const Header = () => {
     return (
@@ -13,19 +12,3 @@ const Header = () => {
     );
 }
 export default Header;
-
-/*
-
-            <a className='btn btn-primary float-end' href='' role='button'>
-                Add product
-            </a>
-            
-
-
-<Button className="float-end" variant="primary" onClick={handleShow}>
-                New Task
-            </Button>
-    <div class="span4 offset2" style="margin-top:15px;">
-        <button class="btn pull-right" type="button">Sign In</button>
-    </div>
-*/

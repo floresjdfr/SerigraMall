@@ -51,7 +51,8 @@ const UpdateProduct = ({ product }) => {
       BaseTax: tax,
       ProductState: parseInt(selectedState),
       Image: fileImage,
-      ProviderId: null,
+      //This is just passed to avoid any errors from the API, however this never updated
+      ProviderId: null, 
       ProductType: null,
     };
 

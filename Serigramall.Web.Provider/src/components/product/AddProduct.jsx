@@ -82,7 +82,7 @@ const AddProduct = () => {
       BaseTax: inputs.Tax,
       Image: string64.split(',')[1],
       ProductState: 4,
-      ProductType: "DEFAULT"
+      ProductType: user.user_metadata.provider
     };
 
 
@@ -124,7 +124,6 @@ const AddProduct = () => {
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   as="textarea" rows={3}
-                  name="description"
                   name="Description"
                   placeholder="Description"
                 />

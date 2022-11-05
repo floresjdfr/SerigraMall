@@ -14,7 +14,8 @@ const ProtectedRoute = ({ component, scopes, forceCompleteProfile, ...args }) =>
   useEffect(() => {
     const getToken = async () => {
       await getAccessTokenSilently()
-        .then(token => setToken(token));
+        .then(token => setToken(token))
+        .catch(err => console.error(err));
     };
     getToken();
   }, []);

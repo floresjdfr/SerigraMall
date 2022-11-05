@@ -32,11 +32,24 @@ namespace Serigramall.API.Controllers
                 new { providerId = newValue.Id.ToString() }, newValue.toDTO());
         }
 
-        // GET: api/Product
-        [HttpGet("{providerId?}")]
-        public IEnumerable<ProductDto> Get(string providerId)
+        /// <summary>
+        /// Returns a list of products, depending on what parameters are introduced
+        /// </summary>
+        /// <param name="providerId">Used to return a list of products by provider</param>
+        /// <param name="productType">Used to return a list of products by product type</param>
+        /// <returns>List of products</returns>
+        [HttpGet]
+        public IEnumerable<ProductDto> Get([FromQuery]string providerId, [FromQuery] string productType)
         {
-            var products = !string.IsNullOrEmpty(providerId) ? _productRepository.GetByProvider(providerId) : _productRepository.Get();
+            IEnumerable<Product> products = new List<Product>();
+
+            if (!string.IsNullOrEmpty(providerId))
+                products = _productRepository.GetByProvider(providerId);
+            else if (!string.IsNullOrEmpty(productType))
+                products = _productRepository.GetByProductType(productType);
+            else
+                products = _productRepository.Get();
+
             return products.Select(item => (item as Product).toDTO());
         }
 

@@ -2,24 +2,29 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import { ProductsContext } from '../../contexts/ProductsContext';
 import "../../styles/cartStyle.css";
 import CartContext from '../carrito/CartContext';
 
-const Product = ({ product }) => {
+const ProductItem = ({ product, productType, ...args }) => {
     const { addItemToCart } = useContext(CartContext);
+    const { setShowProductsModal, setSelectedSerigraphy, selectedSerigraphy, selectedProduct, setSelectedProduct } = useContext(ProductsContext);
+    const { productScreenTypes } = useContext(GlobalContext);
 
-    const [isHovering, setIsHovering] = useState(false);
+    const handleOnSelectSerigraphy = () => {
+        setSelectedSerigraphy(product);
+        setShowProductsModal(true);
+    }
 
-    const handleMouseOver = () => {
-        setIsHovering(true);
-    };
-
-    const handleMouseOut = () => {
-        setIsHovering(false);
-    };
+    const handleOnSelectProduct = () => {
+        setSelectedProduct(product);
+        console.log("Selected serigraphy: ", selectedSerigraphy);
+        console.log("Selected product: ", product);
+    }
 
     return (
-        <Card onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <Card >
             <Card.Header>{product.productName}</Card.Header>
             <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`} />
 
@@ -28,11 +33,16 @@ const Product = ({ product }) => {
                 <Card.Text>
                     {product.description}
                 </Card.Text>
-                <button className="button" onClick={() => addItemToCart(product)}>Add to cart</button>
+                {
+                    productType === productScreenTypes.Serigraphy ?
+                        <button className="button" onClick={handleOnSelectSerigraphy}>Use this Serigraphy</button>
+                        : productType === productScreenTypes.NormalProduct ?
+                            <button className="button" onClick={() => addItemToCart(product)}>Add to Card</button>
+                            : <button className="button" onClick={handleOnSelectProduct}>Select this Product</button>
+                }
             </Card.Body>
-
         </Card>
     );
 }
 
-export default Product;
+export default ProductItem;

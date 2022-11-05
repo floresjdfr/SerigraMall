@@ -31,6 +31,17 @@ namespace Serigramall.API.Repositories
         public Product Get(string id) => _items.Find(item => item.Id == id).FirstOrDefault();
 
         public IEnumerable<Product> GetByProvider(string providerId) => _items.Find(item => item.Provider == providerId).ToList();
+        public IEnumerable<Product> GetByProductType(string productType)
+        {
+            IEnumerable<Product> productsList = new List<Product>();
+
+            if (productType == "1")
+                productsList = _items.Find(item => item.ProductType == "SERIGRAPHY").ToList();
+            if (productType == "2")
+                productsList = _items.Find(item => item.ProductType == "PRODUCT").ToList();
+            
+            return productsList;
+        }
 
         public void Remove(string id) => _items.DeleteOne(item => item.Id == id);
 
