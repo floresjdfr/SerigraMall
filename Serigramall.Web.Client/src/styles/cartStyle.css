@@ -106,15 +106,14 @@ div.productsContainer::-webkit-scrollbar-thumb {
 
 .cartContainer {
   width: 100vw;
-  height: 50px;
-  display: flex;
-  justify-content: flex-end;
+  display: relative;
 }
 
 .buttonCartContainer {
-  position: absolute;
-  margin-top: 10px;
-  margin-right: 20px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  
   cursor: pointer;
   z-index: 3;
 }
@@ -151,18 +150,20 @@ svg {
 }
 
 .cart { /*color del carrito*/
-  position: absolute;
-  margin-top: 10px;
-  margin-right: 20px;
-  border-radius: 30px;
+  position: fixed;
+  bottom: 10px;
+  right: 80px;
   width: 400px;
+  padding: 8px;
+  border-radius: 30px;
   background-color: #222222;
   color: white;
   z-index: 2;
 }
 
 h2 {
-  text-align: center;
+  text-align: left;
+  padding: 12px;
   font-weight: bold;
   margin-top: 35px;
 }
@@ -174,10 +175,10 @@ h2 {
 }
 
 .total {
-  text-align: center;
+  text-align: left;
   font-weight: bold;
-  margin-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 15px;
+  padding: 12px;
 }
 
 .productsContainer {

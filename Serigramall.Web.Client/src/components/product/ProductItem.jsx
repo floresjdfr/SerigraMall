@@ -25,7 +25,7 @@ const ProductItem = ({ product, productType, ...args }) => {
     }
 
     return (
-        <Card >
+        <Card className='mx-auto' >
             <Card.Header>{product.productName}</Card.Header>
             <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`} />
 

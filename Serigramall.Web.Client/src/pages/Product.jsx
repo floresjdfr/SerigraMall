@@ -16,15 +16,14 @@ function Product({ productType, ...args }) {
     return (
         <>
             <ProductProvider>
-                <div>
-                    <div >
-                        <Header />
-                        <CartProvider style={container}>
-                            <Cart style={container} />
-                            <ProductList productType={productType} />
-                        </CartProvider>
-                    </div>
+                <div >
+                    <Header />
+                    <CartProvider style={container}>
+                        <Cart style={container} />
+                        <ProductList productType={productType} />
+                    </CartProvider>
                 </div>
+
             </ProductProvider>
         </>
     );
