@@ -16,9 +16,7 @@ export const Cart = () => {
     );
   }, [cartItems]);
 
-  const total = cartItems.reduce((previous, current) => previous + current.amount * current.basePrice, 0);
-
-
+ const total = cartItems.reduce((previous, current) => previous + current.amount *(Number(current.basePrice) +Number (current.seri!==undefined?current.seri.basePrice:0)), 0);
 
   return (
     <div className="cartContainer">
@@ -72,7 +70,8 @@ export const Cart = () => {
             <div className="productsContainer">
               {cartItems.map((item, i) => (
                   <ItemCart key={i} item={item} />
-                ))}
+                ))
+                }
               </div>
           )} 
           <h2 className="total">Total: ₡{total}</h2>

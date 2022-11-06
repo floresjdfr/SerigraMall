@@ -8,7 +8,7 @@ import "../../styles/cartStyle.css";
 import CartContext from '../carrito/CartContext';
 
 const ProductItem = ({ product, productType, ...args }) => {
-    const { addItemToCart } = useContext(CartContext);
+    const { addItemToCart,addItemToCartser } = useContext(CartContext);
     const { setShowProductsModal, setSelectedSerigraphy, selectedSerigraphy, selectedProduct, setSelectedProduct } = useContext(ProductsContext);
     const { productScreenTypes } = useContext(GlobalContext);
 
@@ -21,6 +21,7 @@ const ProductItem = ({ product, productType, ...args }) => {
         setSelectedProduct(product);
         console.log("Selected serigraphy: ", selectedSerigraphy);
         console.log("Selected product: ", product);
+        addItemToCartser(product, selectedSerigraphy);
     }
 
     return (
