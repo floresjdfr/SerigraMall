@@ -105,9 +105,9 @@
 
 /* estilos del carrito carrito */
 
-div.productsContainer::-webkit-scrollbar {
+/* div.productsContainer::-webkit-scrollbar {
   -webkit-appearance: none;
-}
+} */
 
 div.productsContainer::-webkit-scrollbar:vertical {
   width: 3px;
