@@ -4,7 +4,7 @@ const url = 'Product';
 const plural = 'Products';
 const single = 'Product';
 // const BASE_URL = "https://localhost:44355/api/Product";
-const BASE_URL = `${import.meta.env.VITE_SERVER_API_URL}/api`;
+const BASE_URL = `${import.meta.env.VITE_SERVER_API_URL}/api/product`;
 
 // plural and single may be used for message logic if needed in the ApiCore class.
 
