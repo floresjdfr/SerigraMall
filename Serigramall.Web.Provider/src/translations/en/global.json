@@ -1,0 +1,13 @@
+{
+    "header": {
+        
+        "hello-world" : "Hello World",
+        "index" : "Index is under development"
+        
+    },
+    "nav": {
+        "provider":"SerigraMall Provider",
+        "search": "Search"
+    }
+
+}

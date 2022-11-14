@@ -59,7 +59,8 @@ namespace Serigramall.API
             services.Configure<SeriMallDBSettings>(Configuration.GetSection(nameof(SeriMallDBSettings)));
             services.AddSingleton<IDatabaseSettings>(item => item.GetRequiredService<IOptions<SeriMallDBSettings>>().Value);
             services.AddSingleton<ProductRepository>();
-            
+            services.AddSingleton<OrderRepository>();
+
             services.AddAuthorization();
 
             services.AddSwaggerGen();
