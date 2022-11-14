@@ -1,19 +1,16 @@
 /* X-Large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) {
+@media (min-width: 576px) {
   .cart {
-    /*color del carrito*/
-    width: 400px;
+    width: 400px !important;
   }
 }
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 575px) {
   .cart {
-    /*color del carrito*/
-    width: 300px;
+    width: 300px !important;
   }
 }
-
 
 .button {
   border: none;
@@ -105,12 +102,12 @@
 
 /* estilos del carrito carrito */
 
-/* div.productsContainer::-webkit-scrollbar {
-  -webkit-appearance: none;
-} */
+div.productsContainer::-webkit-scrollbar {
+    width: 3px;
+}
 
-div.productsContainer::-webkit-scrollbar:vertical {
-  width: 3px;
+div.productsContainer::-webkit-scrollbar-track {
+  background-color: darkgrey;
 }
 
 div.productsContainer::-webkit-scrollbar-thumb {
@@ -170,7 +167,7 @@ svg {
   right: 80px;
   width: 70vw;
   padding: 8px;
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: #222222;
   color: white;
   z-index: 2;

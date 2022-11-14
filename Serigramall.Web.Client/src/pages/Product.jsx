@@ -17,7 +17,7 @@ function Product({ productType, ...args }) {
         <>
             <ProductProvider>
                 <div >
-                    <Header />
+                    <Header productType={productType} />
                     <CartProvider style={container}>
                         <Cart style={container} />
                         <ProductList productType={productType} />
