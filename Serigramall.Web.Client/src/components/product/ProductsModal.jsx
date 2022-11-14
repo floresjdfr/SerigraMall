@@ -38,14 +38,14 @@ export default function ProductsModal({ ...args }) {
 
 
             aria-labelledby="example-custom-modal-styling-title">
-            {/* <Modal.Header closeButton>
-                <Modal.Title id="example-custom-modal-styling-title" >Select a product</Modal.Title>
-            </Modal.Header> */}
+            <Modal.Header closeButton>
+                <Modal.Title id="example-custom-modal-styling-title"></Modal.Title>
+            </Modal.Header>
             <Modal.Body>
                 <Container>
                     <div className="row">
                         <div className="col-4">
-                            {selectedSerigraphy && <Card.Img variant="top" src={`data:image/jpeg;base64,${selectedSerigraphy.image}`} />}
+                            {selectedSerigraphy && <Card.Img className="modal-product-image" variant="top" src={`data:image/jpeg;base64,${selectedSerigraphy.image}`} />}
                         </div>
                         <div className="col-8">
                             {isLoading ? <Loading /> :

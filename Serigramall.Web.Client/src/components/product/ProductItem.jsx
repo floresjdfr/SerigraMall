@@ -19,9 +19,9 @@ const ProductItem = ({ product, productType, ...args }) => {
 
     const handleOnSelectProduct = () => {
         setSelectedProduct(product);
-        console.log("Selected serigraphy: ", selectedSerigraphy);
-        console.log("Selected product: ", product);
         addItemToCartser(product, selectedSerigraphy);
+        console.log(product);
+        console.log(selectedSerigraphy);
     }
 
     return (
