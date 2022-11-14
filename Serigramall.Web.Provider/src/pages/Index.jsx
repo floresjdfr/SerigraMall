@@ -1,5 +1,7 @@
 //import Product from "./Product";
+import { useTranslation } from "react-i18next"
 function Index() {
+  const [t, i18n] = useTranslation("global");
   return (
   /*
     <div>
@@ -9,7 +11,7 @@ function Index() {
     </div>
   */
     <div>
-      <h1>Index is under development</h1>
+      <h1>{t("header.index")}</h1>
     </div>
     
   );

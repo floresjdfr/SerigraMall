@@ -1,14 +1,15 @@
 import { Container, Navbar, Offcanvas, Nav, Form, Button, } from "react-bootstrap";
 import "../../styles/loginButtonStyles.css";
 import ProfileDropdown from "./ProfileDropdown";
-
+import { useTranslation } from "react-i18next"
 
 function CustomNav() {
+  const [t, i18n] = useTranslation("global");
   return (
     <>
       <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
         <Container fluid>
-          <Navbar.Brand href="/">SerigraMall Provider</Navbar.Brand>
+          <Navbar.Brand href="/">{t("nav.provider")}</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-lg`}
@@ -28,10 +29,10 @@ function CustomNav() {
               <Form className="d-flex">
                 <Form.Control
                   type="search"
-                  placeholder="Search"
+                  placeholder={t("nav.search")}
                   className="me-2"
                   aria-label="Search" />
-                <Button variant="outline-success">Search</Button>
+                <Button variant="outline-success">{t("nav.search")}</Button>
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
