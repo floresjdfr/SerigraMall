@@ -50,19 +50,34 @@ export const CartProvider = ({ children }) => {
     };
     const addItemToCartser = (product, serigraphy) => {
         console.log("producto con serigrafia");
+        console.log(product);
+        console.log(serigraphy);
         const inCart = cartItems.find(
-            (productInCart) => productInCart.id == product.id);
+            (productInCart) => productInCart.seri.id === serigraphy.id);
 
-        const productInCart = cartItems.find((productInCart) => {
-            return productInCart.id === product.id;
-        });
+        const productInCart = cartItems.find(
+            (productInCart) => {
+                console.log("car");
+                console.log(inCart);
+                
+                console.log(productInCart.seri.id);
+                productInCart.seri.id == productInCart.seri.id === serigraphy.id
+            });
+        console.log("producto en el carrito");
+        console.log(productInCart);
 
         if (inCart && productInCart.id == product.id && productInCart.seri.id != serigraphy.id) {
             console.log("difernte serigrafias");
+            console.log(productInCart);
+            console.log(productInCart.seri.id);
+            console.log(serigraphy.id);
+            console.log(productInCart.seri.id != serigraphy.id);
+
             setCartItems([...cartItems, { ...productInCart, amount: 1, seri: serigraphy }]);
         } else if (inCart && productInCart.id == product.id && productInCart.seri.id == serigraphy.id) {
             setCartItems(
                 cartItems.map((productInCart) => {
+                    console.log("dento del map")
                     if (productInCart.id == product.id && productInCart.seri.id == serigraphy.id) {
                         console.log("222productInCart" + productInCart);
                         return { ...productInCart, amount: inCart.amount + 1 };
@@ -82,6 +97,7 @@ export const CartProvider = ({ children }) => {
             (productInCart) => productInCart.id === product.id
         );
         if (inCart.amount === 1) {
+            console.log("en el carro solo hay un producto");
             setCartItems(
                 cartItems.filter(productInCart => productInCart.id !== product.id)
             );
@@ -89,12 +105,17 @@ export const CartProvider = ({ children }) => {
             setCartItems(
                 cartItems.map((productInCart) => {
                     if (productInCart.id === product.id) {
+                        console.log("producto esta en carro");
                         return { ...inCart, amount: inCart.amount - 1 };
                     }
-                    else return productInCart;
+                    else {
+                        console.log("no existe producto");
+                        return productInCart;
+                    }
 
                 }));
         }
+        console.log("delete");
         console.log(cartItems);
     };
 
