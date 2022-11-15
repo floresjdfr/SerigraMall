@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
             (productInCart) => {
                 console.log("car");
                 console.log(inCart);
-                
+
                 console.log(productInCart.seri.id);
                 productInCart.seri.id == productInCart.seri.id === serigraphy.id
             });
@@ -119,10 +119,47 @@ export const CartProvider = ({ children }) => {
         console.log(cartItems);
     };
 
+    const updateItemAmout = (product, amount) => {
+        var itemsUpdated = cartItems.map((item) => {
+            if (item.id === product) {
+                return { ...item, amount: amount };
+            }
+            return item;
+        });
+
+        setCartItems(itemsUpdated);
+    }
+
+    //function that calculates the total of each product plus its subproducts
+    const getTotal = () => {
+        return cartItems.reduce((acc, item) => {
+            let tax = parseInt(item.baseTax);
+            let price = parseInt(item.basePrice);
+            let total = 0;
+
+            let seriTax = 0;
+            let seriPrice = 0;
+            let seriTotal = 0;
+
+            total = price * item.amount;
+            total = total + (total * tax / 100);
+
+            if (item.seri !== undefined) {
+                seriTax = parseInt(item.seri.baseTax);
+                seriPrice = parseInt(item.seri.basePrice);
+                seriTotal = seriPrice * item.amount;
+                seriTotal = seriTotal + (seriTotal * seriTax / 100);
+            }
+
+            return acc + total + seriTotal;
+        }, 0);
+    };
+
+
     return (
         /* Envolvemos el children con el provider y le pasamos un objeto con las propiedades que necesitamos por value */
         <CartContext.Provider
-            value={{ cartItems, addItemToCart, addItemToCartser, deleteItemToCart }}
+            value={{ cartItems, addItemToCart, addItemToCartser, deleteItemToCart, updateItemAmout, getTotal }}
         >
             {children}
         </CartContext.Provider>

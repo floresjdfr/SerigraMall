@@ -28,8 +28,13 @@ body {
     color: #375D81 !important;
     border: #375D81;
 }
+
 .titulo {
     background-color: #444547 !important;
     color: #AAC8E2 !important;
     font-size: 200%;
+}
+
+.cursor {
+    cursor: pointer;
 }

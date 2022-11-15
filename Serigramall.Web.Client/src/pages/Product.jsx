@@ -12,18 +12,16 @@ function Product({ productType, ...args }) {
     const container = {
         position: 'relative',
     };
-
     return (
         <>
             <ProductProvider>
                 <div >
                     <Header productType={productType} />
-                    <CartProvider style={container}>
-                        <Cart style={container} />
-                        <ProductList productType={productType} />
-                    </CartProvider>
-                </div>
 
+                    <Cart style={container} />
+                    <ProductList productType={productType} />
+
+                </div>
             </ProductProvider>
         </>
     );

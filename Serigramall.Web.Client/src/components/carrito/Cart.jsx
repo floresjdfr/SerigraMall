@@ -2,13 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import CartContext from "./CartContext";
 import { ItemCart } from "./ItemCart";
 import "../../styles/cartStyle.css";
+import { Button } from "react-bootstrap";
 
 
 export const Cart = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [productsLength, setProductsLength] = useState(0);
 
-  const {cartItems} = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   useEffect(() => {
     setProductsLength(
@@ -16,14 +17,14 @@ export const Cart = () => {
     );
   }, [cartItems]);
 
- const total = cartItems.reduce((previous, current) => previous + current.amount *(Number(current.basePrice) +Number (current.seri!==undefined?current.seri.basePrice:0)), 0);
+  const total = cartItems.reduce((previous, current) => previous + current.amount * (Number(current.basePrice) + Number(current.seri !== undefined ? current.seri.basePrice : 0)), 0);
 
   return (
     <div className="cartContainer">
       <div className="buttonCartContainer"
         onClick={() => setCartOpen(!cartOpen)}      >
         <div className="buttonCart">
-          {!cartOpen? (
+          {!cartOpen ? (
             <svg
               className="open"
               width={"35px"}
@@ -69,13 +70,16 @@ export const Cart = () => {
           ) : (
             <div className="productsContainer">
               {cartItems.map((item, i) => (
-                  <ItemCart key={i} item={item} />
-                ))
-                }
-              </div>
-          )} 
+                <ItemCart key={i} item={item} />
+              ))
+              }
+            </div>
+          )}
           <h2 className="total">Total: ₡{total}</h2>
-          </div> 
+          <div>
+            <Button className="float-end" variant="outline-primary" type="button" href="/checkout">Checkout Order</Button>
+          </div>
+        </div>
       )}
     </div>
   );

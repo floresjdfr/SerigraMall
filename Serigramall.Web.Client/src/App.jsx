@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import GlobalProvider, { GlobalContext } from "./contexts/GlobalContext";
 import { useContext } from "react";
 import ProductList from "./components/product/ProductList";
+import Checkout from "./pages/Checkout";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/product" element={<Product productType={productScreenTypes.NormalProduct} />} />
           <Route path="/serigraphy" element={<Product productType={productScreenTypes.Serigraphy} />} />
 
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/manage-profile" element={<ProtectedRoute component={Profile} />} />
           {/*Error Routes */}
           <Route path="*" element={<NotFound />} />
