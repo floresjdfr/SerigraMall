@@ -19,8 +19,7 @@ const ProductItem = ({ product, productType, ...args }) => {
     const handleOnSelectProduct = () => {
         setSelectedProduct(product);
         addItemToCartser(product, selectedSerigraphy);
-        console.log(product);
-        console.log(selectedSerigraphy);
+        setShowProductsModal(false);
     }
 
     return (
@@ -37,8 +36,8 @@ const ProductItem = ({ product, productType, ...args }) => {
                     productType === productScreenTypes.Serigraphy ?
                         <button onClick={handleOnSelectSerigraphy}>Use this Serigraphy</button>
                         : productType === productScreenTypes.NormalProduct ?
-                            <button onClick={() => addItemToCart(product)}>Add to Card</button>
-                            : <button onClick={handleOnSelectProduct}>Select this Product</button>
+                            <button className="button" onClick={() => addItemToCart(product)}>Add to Cart</button>
+                            : <button className="button" onClick={handleOnSelectProduct}>Add to Cart</button>
                 }
             </Card.Body>
         </Card>

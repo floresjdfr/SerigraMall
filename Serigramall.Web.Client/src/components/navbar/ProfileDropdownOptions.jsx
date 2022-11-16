@@ -12,7 +12,6 @@ export default function ProfileDropDownOptions() {
           <NavDropdown.Item href="/manage-profile">
             Manage Profile
           </NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
           <NavDropdown.Divider />
           <LogoutButton />
         </NavDropdown>

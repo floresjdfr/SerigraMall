@@ -7,8 +7,6 @@ export default function ProductProvider({ ...props }) {
     const [selectedSerigraphy, setSelectedSerigraphy] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    
-
     const productType = {
         Serigraphy: 1,
         NormalProduct: 2
@@ -24,6 +22,5 @@ export default function ProductProvider({ ...props }) {
 
     return <ProductsContext.Provider value={value} {...props} />
 }
-
 
 export const ProductsContext = createContext();

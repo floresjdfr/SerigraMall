@@ -1,4 +1,4 @@
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { BsPlusLg } from "react-icons/bs";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import { useContext, useState } from "react";
@@ -44,40 +44,65 @@ export default function ProductOnlyItem({ item }) {
             <td>
                 <Container>
                     <Row className="mb-2">
-                        <Col xs={2}>
+                        <Col>
                             <img className="checkout-product-image" alt="Image" src={`data:image/jpeg;base64,${item.image}`} />
                         </Col>
-                        <Col >
+                        <Col>
                             <span>{item.productName}</span>
                         </Col>
-                    </Row>
-                    <Row className="my-2">
-                        <Col>
-                            <span>$ {total}</span>
-                        </Col>
-                        <Col>
-                            <span className="float-end">{item.amount}</span>
-                        </Col>
-                        <Col >
-                            <span>
-                                <AiOutlinePlusCircle size={20} className="me-2 cursor" onClick={handleAddItem} />
-                                <AiOutlineMinusCircle size={20} className="cursor" onClick={handleRemoveItem} />
-                            </span>
-                        </Col>
-                    </Row>
-                    {
-                        item.seri !== undefined && 
-                            <Row>
+                        {
+                            //In case the product has serigraphy
+                            item.seri !== undefined &&
+                            <>
+                                <Col>
+                                    +
+                                </Col>
                                 <Col>
                                     <img className="checkout-product-image float-end" alt="Image" src={`data:image/jpeg;base64,${item.seri.image}`} />
                                 </Col>
                                 <Col >
                                     <span>{item.seri.productName}</span>
                                 </Col>
+                            </>
+                        }
+                    </Row>
+                    <Row className="my-2 ">
+
+                        <Col className="align-self-center">
+                            <Row>
+                                <span>Product price: ${item.basePrice}</span>
                             </Row>
-                            
-                        
-                    }
+                            <Row>
+                                <span>Product tax: {item.baseTax}%</span>
+                            </Row>
+                            <Row>
+                                <span className="float-end"><strong>Quantity: </strong>{item.amount}</span>
+                            </Row>
+                            {
+                                item.seri !== undefined &&
+                                <>
+                                    <hr />
+                                    <Row>
+                                        <span>Serigraphy Price: ${item.seri.basePrice}</span>
+                                    </Row>
+                                    <Row>
+                                        <span>Serigraphy tax: {item.seri.baseTax}%</span>
+                                    </Row>
+                                </>
+                            }
+                            <hr />
+                            <Row>
+                                <span>Total: $ {total}</span>
+                            </Row>
+                        </Col>
+                        <Col >
+                            <span>
+                                <Button variant="outline-danger" className="me-2" onClick={handleRemoveItem}><AiOutlineMinusCircle size={20} /></Button>
+                                <Button variant="outline-success" onClick={handleAddItem}><AiOutlinePlusCircle size={20} /></Button>
+                            </span>
+                        </Col>
+                    </Row>
+
 
                 </Container>
             </td>

@@ -23,17 +23,8 @@ function CustomNav() {
                 <Nav.Link className="custom-btn" href="/">Home</Nav.Link>
                 <Nav.Link className="custom-btn" href="/serigraphy">Serigraphy</Nav.Link>
                 <Nav.Link className="custom-btn" href="/product">Only Products</Nav.Link>
-                <Nav.Link href="/checkout">Checkout</Nav.Link>
                 <ProfileDropdown className="custom-btn"/>
               </Nav>
-              <Form className="Navbarbg d-flex">
-                <Form.Control 
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search" />
-                <Button  variant="outline-success"  className="custom-btn">Search</Button>
-              </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
