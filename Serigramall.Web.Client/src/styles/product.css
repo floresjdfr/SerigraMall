@@ -99,9 +99,8 @@ h5 {
   font-family: 'Montserrat', sans-serif;
   transition: all ease-in 100ms;
   background: #375d81;;
-  padding: 1em;
   color: #fff;
-  font-size: 1.5em;
+  font-size: 150%;
 }
 .card button {
   background: #375d81;
@@ -109,7 +108,7 @@ h5 {
   font-family: 'Montserrat', sans-serif;
   transition: all ease-in 100ms;
   color: #fff;
-  font-size: 1.1em;
+  font-size: 100%;
 }
 .card button:hover {
   font-family: 'Montserrat', sans-serif;
