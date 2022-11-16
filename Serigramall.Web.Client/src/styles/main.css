@@ -14,24 +14,33 @@ body {
 }
 
 .Navbarbg {
-    background-color: #444547;
+    background-color: #375d81;
 }
-
-.custom-btn {
-    background-color: #444547 !important;
+.Navbarbg a {
+    background-color: #375d81 !important;
     color: #fff;
     border: #fff !important;
 }
-
-.custom-btn:hover {
+.Navbarbg a:hover {
+    background-color: #AAC8E2 !important;
+    color: #375D81 !important;
+    border: #375D81;
+}
+.Navbarbg button{
+    background-color: #375d81 !important;
+    color: #fff;
+    border: #fff !important;
+}
+.Navbarbg button:hover {
     background-color: #AAC8E2 !important;
     color: #375D81 !important;
     border: #375D81;
 }
 
+
 .titulo {
-    background-color: #444547 !important;
-    color: #AAC8E2 !important;
+    background-color: #183052 !important;
+    color: #fff !important;
     border: #375D81;
     font-size: 200%;
 }
@@ -40,9 +49,8 @@ body {
     cursor: pointer;
 }
 
-
 h1 {
-    color: #375D81 !important;
+    color: #183052 !important;
     font-size: 200%;
 }
 
@@ -54,4 +62,48 @@ h1 {
 .form:hover {
     background-color: #e1e6fa !important;
     color: #183052 !important;
+    border: #183052;
+}
+.Button {
+    background: #C5D7ED;
+    border-block-color: #183052;
+    font-family: 'Montserrat', sans-serif;
+    transition: all ease-in 100ms;
+    color: #183052;
+    font-size: 1.1em;
+  }
+.Button:hover {
+font-family: 'Montserrat', sans-serif;
+transition: all ease-in 100ms;
+background: #AAC8E2;
+color: #183052;
+border-block-color: #fff;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px #375D81;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #375D81;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #C5D7ED;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #375D81;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #375D81;
 }

@@ -14,7 +14,7 @@ export default function Checkout() {
         <>
             <Container>
                 <h1 className="mb-4">Order Checkout</h1>
-                <Table borderless striped>
+                <Table  className="styled-table"borderless striped>
                     <tbody>
                         {
                             cartItems.map((item) => (
@@ -36,7 +36,7 @@ export default function Checkout() {
                 </Row>
                 <Row>
                     <Col>
-                        <Button variant="outline-success" className="my-2 float-end" onClick={handleConfirmOrder} >Confirm Order</Button>
+                        <Button variant="outline-success" className="Button my-2 float-end" onClick={handleConfirmOrder} >Confirm Order</Button>
                     </Col>
                 </Row>
 

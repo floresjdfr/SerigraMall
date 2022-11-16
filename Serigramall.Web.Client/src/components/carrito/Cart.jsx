@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import CartContext from "./CartContext";
 import { ItemCart } from "./ItemCart";
-import "../../styles/cartStyle.css";
 import { Button } from "react-bootstrap";
 
 
@@ -77,7 +76,7 @@ export const Cart = () => {
           )}
           <h2 className="total">Total: ₡{total}</h2>
           <div>
-            <Button className="float-end" variant="outline-primary" type="button" href="/checkout">Checkout Order</Button>
+            <Button className="Button float-end" variant="outline-primary" type="button" href="/checkout">Checkout Order</Button>
           </div>
         </div>
       )}

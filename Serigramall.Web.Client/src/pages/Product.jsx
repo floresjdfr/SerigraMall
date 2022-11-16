@@ -1,6 +1,7 @@
 import ProductList from "../components/product/ProductList";
 import Header from "../components/product/Header";
 import '../styles/product.css'
+import '../styles/cartStyle.css'
 import { CartProvider } from "../components/carrito/CartContext";
 import { Cart } from "../components/carrito/Cart";
 import ProductProvider from "../contexts/ProductsContext";
@@ -17,7 +18,6 @@ function Product({ productType, ...args }) {
             <ProductProvider>
                 <div >
                     <Header productType={productType} />
-
                     <Cart style={container} />
                     <ProductList productType={productType} />
 
