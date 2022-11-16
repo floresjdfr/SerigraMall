@@ -32,9 +32,26 @@ body {
 .titulo {
     background-color: #444547 !important;
     color: #AAC8E2 !important;
+    border: #375D81;
     font-size: 200%;
 }
 
 .cursor {
     cursor: pointer;
+}
+
+
+h1 {
+    color: #375D81 !important;
+    font-size: 200%;
+}
+
+.form {
+    background-color: #fff !important;
+    color: #183052 !important;
+}
+
+.form:hover {
+    background-color: #e1e6fa !important;
+    color: #183052 !important;
 }

@@ -5,6 +5,7 @@ import { Form, Button, Modal, Row, Col, Container } from "react-bootstrap";
 import { RiSearchLine, RiSearchFill } from "react-icons/ri";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { ProductsContext } from "../../contexts/ProductsContext";
+import "../../styles/loginButtonStyles.css";
 
 const Header = ({ productType }) => {
 
@@ -31,21 +32,21 @@ const Header = ({ productType }) => {
     return (
         <div className='header'>
             <span className="header-title">
-                {productType === productScreenTypes.Serigraphy ? <h1 className='text-muted ms-2'>Serigraphy</h1> : <h1 className='text-muted ms-2'>Products</h1>}
+                {productType === productScreenTypes.Serigraphy ? <h1 className='ms-2'>Serigraphy      </h1> : <h1 className='ms-2'>Products  </h1>}
             </span>
             <Form className="header-filter">
                 <div>
-                    <Form.Select>
-                        <option>All providers</option>
+                    <Form.Select className="form">
+                        <option >All providers </option>
                         <option value="1">Provider 1</option>
                     </Form.Select>
                 </div>
                 <Row className="justify-content-center">
                     <Col xs={11}>
-                        <Form.Control type="text" placeholder="Search product"></Form.Control>
+                        <Form.Control className="form" type="text" placeholder="Search product"></Form.Control>
                     </Col>
                     <Col xs={1} className="d-flex justify-content-center align-items-center">
-                        <Button variant="outlined" type="submit">
+                        <Button className="custom-btn" variant="outlined" type="submit">
                             <RiSearchLine />
                         </Button>
                     </Col>
