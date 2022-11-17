@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useEffect } from "react";
-import { Table } from "react-bootstrap"
+import { Container, Table } from "react-bootstrap"
 import OrdersProvider, { OrdersContext } from "../contexts/OrdersContext"
 import apiOrders, { getUserOrders } from "../services/api/orderApi";
 import Loading from "../components/utils/Loading";
@@ -25,10 +25,14 @@ function Orders() {
 
     return (
         <>
-            {
-                isLoading ? <Loading /> :
-                    <OrdersList ordersList={ordersList} />
-            }
+            <Container>
+                
+                        {
+                            isLoading ? <Loading /> :
+                                <OrdersList ordersList={ordersList} />
+                        }
+                    
+            </Container>
         </>
     );
 }

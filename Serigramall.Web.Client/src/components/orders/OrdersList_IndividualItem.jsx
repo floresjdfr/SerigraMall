@@ -1,23 +1,37 @@
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 
-export default function OrderList_IndividualOrder({item}) {
+export default function OrderList_IndividualOrder({ item }) {
     return (
         <>
-            <Card>
-                <Card.Body>
+            <tr>
+                <td>
                     <Container>
                         <Row>
-                            <h5>Order ID: {item.id}</h5>
+                            <Col xs={2}>
+                                Image
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <span><strong>Order ID:</strong> {item.id}</span>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <span>Order Date: {item.orderDate}</span>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <span>Order Total: {item.totalPrice}</span>
+                                    </Col>
+                                </Row>
+                            </Col>
                         </Row>
-                        <Row>
-                            <h5>Order Date: {item.orderDate}</h5>
-                        </Row>
-                        <Row>
-                            <h5>Order Total: {item.totalPrice}</h5>
-                        </Row>
+
                     </Container>
-                </Card.Body>
-            </Card>
+                </td>
+            </tr>
         </>
     );
 }

@@ -34,9 +34,10 @@ function App() {
           <Route path="/product" element={<Product productType={productScreenTypes.NormalProduct} />} />
           <Route path="/serigraphy" element={<Product productType={productScreenTypes.Serigraphy} />} />
 
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/checkout" element={<ProtectedRoute component={Checkout} />} />
+          <Route path="/orders" element={<ProtectedRoute component={Orders} />} />
           <Route path="/manage-profile" element={<ProtectedRoute component={Profile} />} />
+          
           {/*Error Routes */}
           <Route path="*" element={<NotFound />} />
 
