@@ -69,6 +69,11 @@ namespace Serigramall.API.Repositories
             var options = new FindOneAndUpdateOptions<Product>();
             _items.FindOneAndUpdate(filter, update, options);
         }
+
+        public IEnumerable<Product> GetByUserId(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

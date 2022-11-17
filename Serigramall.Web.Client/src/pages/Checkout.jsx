@@ -17,8 +17,8 @@ export default function Checkout() {
                 <Table  className="styled-table"borderless striped>
                     <tbody>
                         {
-                            cartItems.map((item) => (
-                                <ProductOnlyItem key={item.id} item={item} />
+                            cartItems.map((item, index) => (
+                                <ProductOnlyItem key={index} item={item} />
                             ))
                         }
                     </tbody>

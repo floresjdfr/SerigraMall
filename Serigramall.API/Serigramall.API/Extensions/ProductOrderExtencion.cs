@@ -3,6 +3,7 @@ using Serigramall.API.Models;
 using System.IO;
 using System.Security.Policy;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace Serigramall.API.Extensions
 {
@@ -13,13 +14,12 @@ namespace Serigramall.API.Extensions
             return new OrderDto
             {
                 Id = item.Id,
-                RegistryDate = item.RegistryDate == null ? System.DateTime.Now : item.RegistryDate,
-                Provider = item.Provider == null ? "":item.Provider,
                 Client = item.Client == null ? "" : item.Client,
-                TotalPrice = item.TotalPrice == null ? "" : item.TotalPrice,
-                OrderState = item.OrderState,
                 Products = item.Products == null ? new List<ProductBoughtDto>() : castProductBoughtToDto(item.Products),
-
+                TotalPrice = item.TotalPrice == null ? "" : item.TotalPrice,
+                LastCardDigits = item.LastCardDigits == null ? "" : item.LastCardDigits,
+                OrderDate = item.OrderDate == null ? System.DateTime.Now : item.OrderDate,
+                OrderState = item.OrderState
             };
         }
         public static List<ProductBoughtDto> castProductBoughtToDto(List<ProductBought> productBoughts)
@@ -47,12 +47,12 @@ namespace Serigramall.API.Extensions
             return new Order
             {
                 Id = item.Id,
-                RegistryDate = item.RegistryDate == null ? System.DateTime.Now : item.RegistryDate,
-                Provider = item.Provider == null ? "":item.Provider,
                 Client = item.Client == null ? "" : item.Client,
-                TotalPrice = item.TotalPrice == null ? "" : item.TotalPrice,
-                OrderState = item.OrderState,
                 Products = item.Products == null ? new List<ProductBought>() : castToProductBought(item.Products),
+                TotalPrice = item.TotalPrice == null ? "" : item.TotalPrice,
+                LastCardDigits = item.LastCardDigits,
+                OrderDate = item.OrderDate == null ? System.DateTime.Now : item.OrderDate,
+                OrderState = item.OrderState,
             };
         }
         public static ProductBoughtDto toDTO(this ProductBought item)
@@ -60,9 +60,15 @@ namespace Serigramall.API.Extensions
             return new ProductBoughtDto
             {
                 Id = item.Id,
+                ProductName = item.ProductName,
+                Description = item.Description,
+                Image = item.Image,
                 Quantity = item.Quantity,
-                ProductID = item.ProductID,
-                SerigraphyID = item.ProductID
+                BasePrice = item.BasePrice,
+                BaseTax = item.BaseTax,
+                ProductState = item.ProductState,
+                ProviderId = item.ProviderId,
+                Serigraphy = item.Serigraphy != null ? item.Serigraphy.toDTO() : null
             };
         }
         public static ProductBought toProductBought(this ProductBoughtDto item)
@@ -70,9 +76,15 @@ namespace Serigramall.API.Extensions
             return new ProductBought
             {
                 Id = item.Id,
+                ProductName = item.ProductName,
+                Description = item.Description,
+                Image = item.Image,
                 Quantity = item.Quantity,
-                ProductID = item.ProductID,
-                SerigraphyID = item.ProductID
+                BasePrice = item.BasePrice,
+                BaseTax = item.BaseTax,
+                ProductState = item.ProductState,
+                ProviderId= item.ProviderId,
+                Serigraphy = item.Serigraphy != null ? item.Serigraphy.toProductBought() : null
             };
         }
 

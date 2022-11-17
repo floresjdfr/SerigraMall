@@ -25,7 +25,7 @@ namespace Serigramall.API.Controllers
         [HttpPost]
         public ActionResult<OrderDto> Post([FromBody] OrderDto value)
         {
-            value.RegistryDate = DateTime.Now;
+            value.OrderDate = DateTime.Now;
             var newValue = _orderRepository.Create(value.toOrder()) as Order;
 
             return CreatedAtAction(nameof(Get), 
@@ -33,20 +33,20 @@ namespace Serigramall.API.Controllers
         }
 
         /// <summary>
-        /// Returns a list of products, depending on what parameters are introduced
+        /// Returns a list of orders, depending on what parameters are introduced
         /// </summary>
         /// <param name="providerId">Used to return a list of products by provider</param>
         /// <param name="productType">Used to return a list of products by product type</param>
         /// <returns>List of products</returns>
         [HttpGet]
-        public IEnumerable<OrderDto> Get([FromQuery]string providerId, [FromQuery] string productType)
+        public IEnumerable<OrderDto> Get([FromQuery]string providerId, [FromQuery] string userId)
         {
             IEnumerable<Order> orders = new List<Order>();
 
             if (!string.IsNullOrEmpty(providerId))
                 orders = _orderRepository.GetByProvider(providerId);
-            else if (!string.IsNullOrEmpty(productType))
-                orders = _orderRepository.GetByProductType(productType);
+            else if (!string.IsNullOrEmpty(userId))
+                orders = _orderRepository.GetByUserId(userId);
             else
                 orders = _orderRepository.Get();
 

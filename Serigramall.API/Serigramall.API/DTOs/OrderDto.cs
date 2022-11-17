@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Serigramall.API.DTOs
+{
+    public class OrderDto
     {
-        public class OrderDto
-        {
-            [BsonId]
-            [BsonRepresentation(BsonType.ObjectId)]
-            public string Id { get; set; }
-            public string Provider { get; set; }
-            public string Client { get; set; }
-            public List<ProductBoughtDto> Products { get; set; }
-            public string TotalPrice { get; set; }
-            public DateTime? RegistryDate { get; set; }
-            public string OrderState { get; set; }
-        }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+        public string Client { get; set; }
+        public List<ProductBoughtDto> Products { get; set; }
+        public string TotalPrice { get; set; }
+        public string LastCardDigits { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public string OrderState { get; set; }
     }
+}
