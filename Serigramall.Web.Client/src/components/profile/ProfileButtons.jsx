@@ -18,8 +18,8 @@ export default function ProfileButtons({ user, formState, formStateEnum, isViewM
             {isDbUser(user) && <Button className="m-2" variant="warning" onClick={handleOnPasswordChangeClick}>Change password</Button>}
             {
                 isViewMode()
-                    ? <Button className="m-2" key={"btn-edit"} type="button" onClick={handleOnEditClick} >Edit Information</Button>
-                    : <Button className="m-2" key={"btn-save"} type="submit" variant="success">Save Changed</Button>
+                    ? <Button className="Button m-2" key={"btn-edit"} type="button" onClick={handleOnEditClick} >Edit Information</Button>
+                    : <Button className="Button m-2" key={"btn-save"} type="submit" variant="success">Save Changed</Button>
             }
         </div>
     );

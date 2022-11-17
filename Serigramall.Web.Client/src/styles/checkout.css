@@ -1,0 +1,8 @@
+.checkout-product-image {
+    width: 70px;
+}
+
+.payment-button {
+    display: inline-flex;
+    align-items: center;
+}

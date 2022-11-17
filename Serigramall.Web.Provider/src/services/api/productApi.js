@@ -27,7 +27,7 @@ apiTasks.massUpdate = () => {
 }*/
 
 export const getProductsByProvider = (id) => {
-  return axios.get(`${BASE_URL}/${url}/${id}`);
+  return axios.get(`${BASE_URL}/${url}?providerId=${id}`);
 }
 
 export default apiTasks;

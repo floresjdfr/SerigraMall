@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { ProductsContext } from '../../contexts/ProductsContext';
-import "../../styles/cartStyle.css";
 import CartContext from '../carrito/CartContext';
 
 const ProductItem = ({ product, productType, ...args }) => {
@@ -19,13 +18,12 @@ const ProductItem = ({ product, productType, ...args }) => {
 
     const handleOnSelectProduct = () => {
         setSelectedProduct(product);
-        console.log("Selected serigraphy: ", selectedSerigraphy);
-        console.log("Selected product: ", product);
         addItemToCartser(product, selectedSerigraphy);
+        setShowProductsModal(false);
     }
 
     return (
-        <Card className='mx-auto' >
+        <Card className='card mx-auto' >
             <Card.Header>{product.productName}</Card.Header>
             <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`} />
 
@@ -36,10 +34,10 @@ const ProductItem = ({ product, productType, ...args }) => {
                 </Card.Text>
                 {
                     productType === productScreenTypes.Serigraphy ?
-                        <button className="button" onClick={handleOnSelectSerigraphy}>Use this Serigraphy</button>
+                        <button onClick={handleOnSelectSerigraphy}>Use this Serigraphy</button>
                         : productType === productScreenTypes.NormalProduct ?
-                            <button className="button" onClick={() => addItemToCart(product)}>Add to Card</button>
-                            : <button className="button" onClick={handleOnSelectProduct}>Select this Product</button>
+                            <button className="button" onClick={() => addItemToCart(product)}>Add to Cart</button>
+                            : <button className="button" onClick={handleOnSelectProduct}>Add to Cart</button>
                 }
             </Card.Body>
         </Card>

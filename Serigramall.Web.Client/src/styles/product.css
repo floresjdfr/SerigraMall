@@ -1,31 +1,47 @@
 /* X-Large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) {
-  .cart {
-    /*color del carrito*/
-    width: 400px;
+@media (min-width: 576px) {
+  .header {
+    flex-direction: row;
   }
 
-  .header {
-    width: 100%;
+  .header-filter {
+    width: 500px;
   }
 }
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 575px) {
-  .cart {
-    /*color del carrito*/
-    width: 300px;
-  }
-
   .header {
-    width: 100%;
+    flex-direction: row;
   }
+  
+  .header-filter {
+    width: 100%;
+    flex-direction: row;
+  }
+  
+}
 
+.header {
+  width: 90%;
+  margin:auto;
+  margin-bottom: 48px;
+  display: flex;  
+  
+}
+
+.header-title {
+  align-self: flex-start;
+  padding-right: 10px;
+}
+
+.header-filter {
+  align-self: flex-end;
+  display: flex;
+  padding-right: 10px;
 }
 
 .body b1 {
-  background: rgb(230, 76, 20);
-
   padding: 2em 0;
   line-height: 1.6;
   display: flex;
@@ -42,13 +58,6 @@ h5 {
   margin: 0;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
 .cards {
   display: flex;
   align-items: flex-start;
@@ -56,7 +65,7 @@ h5 {
 }
 
 .card {
-  background: rgb(231, 225, 225);
+  background: #aac8e2;
   padding: 0;
   width: 18em;
   border-radius: 0.6em;
@@ -80,29 +89,30 @@ h5 {
   object-fit: contain;
 }
 
-.card h2 {
-  color: #222;
-  margin-top: -0.2em;
-  line-height: 1.4;
-  font-size: 1.3em;
-  font-weight: 500;
+.card-body {
   font-family: 'Montserrat', sans-serif;
   transition: all ease-in 100ms;
-}
-
-.card p {
-  color: #777;
-}
-
-.card h5 {
-  color: #bbb;
-  font-weight: 700;
-  font-size: 0.7em;
-  letter-spacing: 0.04em;
-  margin: 1.4em 0 0 0;
-  text-transform: uppercase;
-}
-
-.card-body {
   padding: 1.2em;
+  color: #fff;
+}
+.card-header {
+  font-family: 'Montserrat', sans-serif;
+  transition: all ease-in 100ms;
+  background: #375d81;;
+  color: #fff;
+  font-size: 150%;
+}
+.card button {
+  background: #375d81;
+  border-block-color: #375d81;
+  font-family: 'Montserrat', sans-serif;
+  transition: all ease-in 100ms;
+  color: #fff;
+  font-size: 100%;
+}
+.card button:hover {
+  font-family: 'Montserrat', sans-serif;
+  transition: all ease-in 100ms;
+  background: #183052;
+  color: #fff;
 }

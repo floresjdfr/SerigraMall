@@ -20,7 +20,7 @@ const Product = ({ product }) => {
     };
 
     return (
-        <Card onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <Card className="card" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <Card.Header>{product.productName}</Card.Header>
             <Card.Img className='text-center' variant="top" src={`data:image/jpeg;base64,${product.image}`} />
             <Card.Body>

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import CartContext from "./CartContext";
-import '../../styles/cartStyle.css';
 import { Container } from "react-bootstrap";
 
 export const ItemCart = ({ item }) => {

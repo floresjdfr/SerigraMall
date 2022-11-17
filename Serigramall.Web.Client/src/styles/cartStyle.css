@@ -1,40 +1,28 @@
 /* X-Large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) {
+@media (min-width: 576px) {
   .cart {
-    /*color del carrito*/
-    width: 400px;
+    width: 400px !important;
   }
 }
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (max-width: 575px) {
   .cart {
-    /*color del carrito*/
-    width: 300px;
+    width: 300px !important;
   }
-}
-
-
-.button {
-  border: none;
-  border-radius: 3px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #51585e;
 }
 
 /* stilos de item carrito */
 .cartItem {
   height: 210px;
-  background-color: #3a3a3a;
+  background-color: #fff;
   margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 15px;
+  border-radius: 5px;
+  
 }
 
 .cartItemimg {
@@ -48,6 +36,7 @@
   width: 100%;
   height: 100%;
   padding: 15px 0;
+  color: #183052;
 }
 
 .left {
@@ -60,7 +49,7 @@
 
 .leftp {
   font-weight: bold;
-  font-size: 13px;
+  font-size: 70%;
 }
 
 .leftbuttons {
@@ -71,7 +60,7 @@
 .leftbutton {
   border: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size:80%;
   padding: 3px 5px;
   border-radius: 5px;
   font-weight: bold;
@@ -87,15 +76,16 @@
 }
 
 .rightdiv {
-  background-color: #FB3939;
+  background-color: #183052;
   width: 20px;
   height: 20px;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 75%; 
   font-weight: bold;
+  color: #fff;
 }
 
 .rightp {
@@ -105,12 +95,12 @@
 
 /* estilos del carrito carrito */
 
-/* div.productsContainer::-webkit-scrollbar {
-  -webkit-appearance: none;
-} */
+div.productsContainer::-webkit-scrollbar {
+    width: 3px;
+}
 
-div.productsContainer::-webkit-scrollbar:vertical {
-  width: 3px;
+div.productsContainer::-webkit-scrollbar-track {
+  background-color: darkgrey;
 }
 
 div.productsContainer::-webkit-scrollbar-thumb {
@@ -121,13 +111,26 @@ div.productsContainer::-webkit-scrollbar-thumb {
 .cartContainer {
   width: 100vw;
   display: relative;
+  
+}
+.dataContainer button {
+  background: #183052;
+  font-family: 'Montserrat', sans-serif;
+  transition: all ease-in 100ms;
+  color: #fff;
+  font-size:80%;
+}
+
+.dataContainer button:hover {
+  transition: all ease-in 100ms;
+  background: #aac8e2;
+  color: #183052;
 }
 
 .buttonCartContainer {
   position: fixed;
   bottom: 10px;
   right: 10px;
-
   cursor: pointer;
   z-index: 3;
 }
@@ -138,7 +141,7 @@ svg {
 }
 
 .buttonCart {
-  background-color: #222222;
+  background-color: #183052;
   width: 60px;
   height: 60px;
   display: flex;
@@ -154,8 +157,8 @@ svg {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #fb3939;
-  font-size: 12px;
+  background-color: #aac8e2;
+  font-size: 75%;
   font-weight: bold;
   color: white;
   display: flex;
@@ -170,29 +173,26 @@ svg {
   right: 80px;
   width: 70vw;
   padding: 8px;
-  border-radius: 30px;
-  background-color: #222222;
+  border-radius: 20px;
+  background-color: #183052;
   color: white;
   z-index: 2;
 }
 
 h2 {
   text-align: left;
-  padding: 12px;
   font-weight: bold;
-  margin-top: 35px;
 }
 
 .cartVacio {
   text-align: center;
   margin-top: 5px;
-  font-size: 14px;
+  font-size: 150%
 }
 
 .total {
   text-align: left;
   font-weight: bold;
-  margin-top: 15px;
   padding: 12px;
 }
 
@@ -206,7 +206,6 @@ h2 {
 .cartItem2 {
   margin-top: 10px;
   height: 80px;
-  background-color: #3a3a3a;
   display: flex;
   align-items: left;
   justify-content: space-between;
@@ -234,7 +233,7 @@ h2 {
 
 .leftp2 {
   font-weight: bold;
-  font-size: 13px;
+  font-size: 65%;
 }
 
 .right2 {
@@ -244,14 +243,13 @@ h2 {
 }
 
 .rightdiv2 {
-  background-color: #FB3939;
   width: 20px;
   height: 20px;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 100%;
   font-weight: bold;
   margin-left: 10px;
 
@@ -260,4 +258,3 @@ h2 {
 .rightp2 {
   font-weight: bold;
 }
-

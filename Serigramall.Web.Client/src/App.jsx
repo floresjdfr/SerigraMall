@@ -7,10 +7,12 @@ import Profile from "./pages/Profile";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/authentication/ProtectedRoute";
 import NotFound from "./pages/NotFound";
-import "./styles/main.css";
+
 import GlobalProvider, { GlobalContext } from "./contexts/GlobalContext";
 import { useContext } from "react";
 import ProductList from "./components/product/ProductList";
+import Checkout from "./pages/Checkout";
+import Orders from "./pages/Orders";
 
 function App() {
 
@@ -28,18 +30,14 @@ function App() {
 
         <Routes>
 
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Product productType={productScreenTypes.Serigraphy} />} />
+          <Route path="/product" element={<Product productType={productScreenTypes.NormalProduct} />} />
+          <Route path="/serigraphy" element={<Product productType={productScreenTypes.Serigraphy} />} />
 
-          {/*Protected routes */}
-          <Route path="/product" element={<ProtectedRoute component={Product}
-            forceCompleteProfile={true}
-            productType={productScreenTypes.NormalProduct} />} />
-
-          <Route path="/serigraphy" element={<ProtectedRoute component={Product}
-            forceCompleteProfile={true}
-            productType={productScreenTypes.Serigraphy} />} />
-
+          <Route path="/checkout" element={<ProtectedRoute component={Checkout} />} />
+          <Route path="/orders" element={<ProtectedRoute component={Orders} />} />
           <Route path="/manage-profile" element={<ProtectedRoute component={Profile} />} />
+          
           {/*Error Routes */}
           <Route path="*" element={<NotFound />} />
 

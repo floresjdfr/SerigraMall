@@ -2,8 +2,8 @@ import NewProduct from "./AddProduct";
 
 const Header = () => {
     return (
-        <div className='p-5 text-center bg-muted text-muted'>
-            <h2 className='mb-3 text-muted'>Products</h2>
+        <div className='p-5 text-center bg-muted'>
+            <h2 className='mb-3'>Products</h2>
             <NewProduct/>
         </div>
     );

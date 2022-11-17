@@ -50,19 +50,34 @@ export const CartProvider = ({ children }) => {
     };
     const addItemToCartser = (product, serigraphy) => {
         console.log("producto con serigrafia");
+        console.log(product);
+        console.log(serigraphy);
         const inCart = cartItems.find(
-            (productInCart) => productInCart.id == product.id);
+            (productInCart) => productInCart.seri.id === serigraphy.id);
 
-        const productInCart = cartItems.find((productInCart) => {
-            return productInCart.id === product.id;
-        });
+        const productInCart = cartItems.find(
+            (productInCart) => {
+                console.log("car");
+                console.log(inCart);
+
+                console.log(productInCart.seri.id);
+                productInCart.seri.id == productInCart.seri.id === serigraphy.id
+            });
+        console.log("producto en el carrito");
+        console.log(productInCart);
 
         if (inCart && productInCart.id == product.id && productInCart.seri.id != serigraphy.id) {
             console.log("difernte serigrafias");
+            console.log(productInCart);
+            console.log(productInCart.seri.id);
+            console.log(serigraphy.id);
+            console.log(productInCart.seri.id != serigraphy.id);
+
             setCartItems([...cartItems, { ...productInCart, amount: 1, seri: serigraphy }]);
         } else if (inCart && productInCart.id == product.id && productInCart.seri.id == serigraphy.id) {
             setCartItems(
                 cartItems.map((productInCart) => {
+                    console.log("dento del map")
                     if (productInCart.id == product.id && productInCart.seri.id == serigraphy.id) {
                         console.log("222productInCart" + productInCart);
                         return { ...productInCart, amount: inCart.amount + 1 };
@@ -82,6 +97,7 @@ export const CartProvider = ({ children }) => {
             (productInCart) => productInCart.id === product.id
         );
         if (inCart.amount === 1) {
+            console.log("en el carro solo hay un producto");
             setCartItems(
                 cartItems.filter(productInCart => productInCart.id !== product.id)
             );
@@ -89,19 +105,63 @@ export const CartProvider = ({ children }) => {
             setCartItems(
                 cartItems.map((productInCart) => {
                     if (productInCart.id === product.id) {
+                        console.log("producto esta en carro");
                         return { ...inCart, amount: inCart.amount - 1 };
                     }
-                    else return productInCart;
+                    else {
+                        console.log("no existe producto");
+                        return productInCart;
+                    }
 
                 }));
         }
+        console.log("delete");
         console.log(cartItems);
     };
+
+    const updateItemAmout = (product, amount) => {
+        var itemsUpdated = cartItems.map((item) => {
+            if (item.id === product) {
+                return { ...item, amount: amount };
+            }
+            return item;
+        });
+
+        setCartItems(itemsUpdated);
+    }
+
+    //function that calculates the total of each product plus its subproducts
+    const getTotal = () => {
+        return cartItems.reduce((acc, item) => {
+            let tax = parseInt(item.baseTax);
+            let price = parseInt(item.basePrice);
+            let total = 0;
+
+            let seriTax = 0;
+            let seriPrice = 0;
+            let seriTotal = 0;
+
+            total = price * item.amount;
+            total = total + (total * tax / 100);
+
+            if (item.seri !== undefined) {
+                seriTax = parseInt(item.seri.baseTax);
+                seriPrice = parseInt(item.seri.basePrice);
+                seriTotal = seriPrice * item.amount;
+                seriTotal = seriTotal + (seriTotal * seriTax / 100);
+            }
+
+            return acc + total + seriTotal;
+        }, 0);
+    };
+    const deleteAllItems = () => {
+        setCartItems([]);
+    }
 
     return (
         /* Envolvemos el children con el provider y le pasamos un objeto con las propiedades que necesitamos por value */
         <CartContext.Provider
-            value={{ cartItems, addItemToCart, addItemToCartser, deleteItemToCart }}
+            value={{ cartItems, addItemToCart, addItemToCartser, deleteItemToCart, updateItemAmout, getTotal, deleteAllItems }}
         >
             {children}
         </CartContext.Provider>

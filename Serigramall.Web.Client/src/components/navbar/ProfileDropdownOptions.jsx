@@ -9,10 +9,8 @@ export default function ProfileDropDownOptions() {
           title="Profile"
           id={`offcanvasNavbarDropdown-expand-lg`}
         >
-          <NavDropdown.Item href="/manage-profile">
-            Manage Profile
-          </NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+          <NavDropdown.Item href="/orders">My Orders</NavDropdown.Item>
+          <NavDropdown.Item href="/manage-profile">Manage Profile</NavDropdown.Item>
           <NavDropdown.Divider />
           <LogoutButton />
         </NavDropdown>

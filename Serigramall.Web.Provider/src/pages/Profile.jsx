@@ -8,7 +8,7 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <Container className="h-100">
+    <Container className="main h-100">
       <h2 className="mb-3">Profile Information</h2>
       {isLoading ? <Loading /> : <InformationForm setIsLoading={setIsLoading} />}
     </Container>
