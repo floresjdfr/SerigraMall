@@ -1,15 +1,16 @@
 import { Container, Navbar, Offcanvas, Nav, Form, Button, } from "react-bootstrap";
 import "../../styles/loginButtonStyles.css";
+import "../../styles/navbarStyles.css";
 import ProfileDropdown from "./ProfileDropdown";
 import logo from "../../assets/logoSeri.png"
 
 function CustomNav() {
   return (
     <>
-      <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
+      <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3 p-0">
         <Container className="Navbarbg " fluid>
           <Navbar.Brand className="titulo" href="/">
-            <img src={logo} width="8%" height="8%" />
+            <img src={logo} width="40px" height="40px" />
             SerigraMall</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas className="Navbarbg"
@@ -22,7 +23,7 @@ function CustomNav() {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="Navbarbg justify-content-end flex-grow-1 pe-3">
+              <Nav className="Navbarbg justify-content-end flex-grow-1" >
                 <Nav.Link className="custom-btn" href="/">Home</Nav.Link>
                 <Nav.Link className="custom-btn" href="/serigraphy">Serigraphy</Nav.Link>
                 <Nav.Link className="custom-btn" href="/product">Only Products</Nav.Link>

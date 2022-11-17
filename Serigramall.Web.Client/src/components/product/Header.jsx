@@ -30,12 +30,12 @@ const Header = ({ productType }) => {
     }
 
     return (
-        <div className='header'>
-            <span className="header-title">
-                {productType === productScreenTypes.Serigraphy ? <h1 className='ms-2'>Serigraphy      </h1> : <h1 className='ms-2'>Products  </h1>}
-            </span>
-            <Form className="header-filter">
-                <div>
+        <Container className="mb-4">
+            <div className="mb-2">
+                {productType === productScreenTypes.Serigraphy ? <h1 className='ms-2'>Serigraphy</h1> : <h1 className='ms-2'>Products</h1>}
+            </div>
+            <Form>
+                <div className="mb-2">
                     <Form.Select className="form">
                         <option >All providers </option>
                         <option value="1">Provider 1</option>
@@ -46,13 +46,13 @@ const Header = ({ productType }) => {
                         <Form.Control className="form" type="text" placeholder="Search product"></Form.Control>
                     </Col>
                     <Col xs={1} className="d-flex justify-content-center align-items-center">
-                        <Button className="custom-btn" variant="outlined" type="submit">
+                        <Button className="custom-btn" variant="outline" type="submit">
                             <RiSearchLine />
                         </Button>
                     </Col>
                 </Row>
             </Form>
-        </div>
+        </Container>
     );
 }
 export default Header;

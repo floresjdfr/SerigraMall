@@ -22,7 +22,6 @@
   justify-content: space-between;
   padding: 0 15px;
   border-radius: 5px;
-  
 }
 
 .cartItemimg {
@@ -172,7 +171,7 @@ svg {
   bottom: 10px;
   right: 80px;
   width: 70vw;
-  padding: 8px;
+  padding: 16px;
   border-radius: 20px;
   background-color: #183052;
   color: white;

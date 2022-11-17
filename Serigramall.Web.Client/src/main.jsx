@@ -5,6 +5,7 @@ import App from "./App";
 import Auth0ProviderWithHistory from "./components/authentication/Auth0ProviderWithHistory";
 import { CartProvider } from "./components/carrito/CartContext";
 import GlobalProvider from "./contexts/GlobalContext";
+import OrdersProvider from "./contexts/OrdersContext";
 import "./styles/main.css"
 
 const container = {

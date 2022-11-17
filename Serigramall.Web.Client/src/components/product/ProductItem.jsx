@@ -28,16 +28,16 @@ const ProductItem = ({ product, productType, ...args }) => {
             <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`} />
 
             <Card.Body>
-                <Card.Title>Precio: {product.basePrice}</Card.Title>
+                <Card.Title>Precio: ₡{product.basePrice}</Card.Title>
                 <Card.Text>
                     {product.description}
                 </Card.Text>
                 {
                     productType === productScreenTypes.Serigraphy ?
-                        <button onClick={handleOnSelectSerigraphy}>Use this Serigraphy</button>
+                        <Button onClick={handleOnSelectSerigraphy}>Use this Serigraphy</Button>
                         : productType === productScreenTypes.NormalProduct ?
-                            <button className="button" onClick={() => addItemToCart(product)}>Add to Cart</button>
-                            : <button className="button" onClick={handleOnSelectProduct}>Add to Cart</button>
+                            <Button className="button" onClick={() => addItemToCart(product)}>Add to Cart</Button>
+                            : <Button className="button" onClick={handleOnSelectProduct}>Add to Cart</Button>
                 }
             </Card.Body>
         </Card>
