@@ -3,6 +3,7 @@ import { Button, Form, Modal, Spinner } from "react-bootstrap";
 import CartContext from "../carrito/CartContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import apiOrders from "../../services/api/orderApi";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ModalPaymentMethod({ show, setShow }) {
@@ -10,6 +11,7 @@ export default function ModalPaymentMethod({ show, setShow }) {
     const [isTransactionLoading, setIsTransactionLoading] = useState(false);
     const { cartItems, getTotal, deleteAllItems } = useContext(CartContext);
     const { user } = useAuth0();
+    const navigate = useNavigate();
 
     const handleGoBack = () => setShow(false);
     const handleConfirmPayment = (e) => {
@@ -19,6 +21,7 @@ export default function ModalPaymentMethod({ show, setShow }) {
         apiOrders.post(getOrder())
             .then((res) => {
                 deleteAllItems();
+                navigate("/orders");
             })
             .catch((err) => alert(err.message))
             .finally(() => {
@@ -39,18 +42,33 @@ export default function ModalPaymentMethod({ show, setShow }) {
     const getOrder = () => {
         return {
             id: null,
-            provider: "0",
             client: user.sub,
             products: cartItems.map((item) => {
                 return {
-                    id: null,
+                    id: item.id,
+                    productName: item.productName,
+                    description: item.description,
+                    image: item.image,
                     quantity: `${item.amount}`,
-                    productID: item.id,
-                    serigraphyID: item.seri ? item.seri.id : null,
-                    totalPrice: "0",
-                    orderState: "active"
+                    basePrice: parseFloat(item.basePrice),
+                    baseTax: parseFloat(item.baseTax),
+                    providerId: item.providerID,
+                    serigraphy: !item.seri ? null :
+                        {
+                            id: item.seri.id,
+                            productName: item.seri.productName,
+                            description: item.seri.description,
+                            image: item.seri.image,
+                            quantity: `${item.seri.amount}`,
+                            basePrice: parseFloat(item.seri.basePrice),
+                            providerId: item.seri.providerID,
+                            baseTax: parseFloat(item.seri.baseTax),
+                        }
                 }
-            })
+            }),
+            totalPrice: `${getTotal()}`,
+            lastCardDigits: document.getElementById("input-card-number").value.slice(-4),
+            orderState: "active"
         }
     }
 

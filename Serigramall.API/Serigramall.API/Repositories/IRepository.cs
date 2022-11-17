@@ -8,6 +8,7 @@ namespace Serigramall.API.Repositories
         public IEnumerable<T> Get();
         public IEnumerable<T> GetByProvider(string providerId);
         public IEnumerable<T> GetByProductType(string productType);
+        public IEnumerable<T> GetByUserId(string userId);
         public T Get(string id);
         public T Create(T newItem);
         public void Update(string id, T updatedValue);

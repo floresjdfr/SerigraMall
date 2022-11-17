@@ -14,11 +14,11 @@ export default function Checkout() {
         <>
             <Container>
                 <h1 className="mb-4">Order Checkout</h1>
-                <Table  className="styled-table"borderless striped>
+                <Table  className="styled-table" borderless striped>
                     <tbody>
                         {
-                            cartItems.map((item) => (
-                                <ProductOnlyItem key={item.id} item={item} />
+                            cartItems.map((item, index) => (
+                                <ProductOnlyItem key={index} item={item} />
                             ))
                         }
                     </tbody>

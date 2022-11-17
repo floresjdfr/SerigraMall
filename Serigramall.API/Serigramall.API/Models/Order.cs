@@ -17,11 +17,11 @@ namespace Serigramall.API.Models
             [BsonId]
             [BsonRepresentation(BsonType.ObjectId)]
             public string Id { get; set; }
-            public string Provider { get; set; }
             public string Client { get; set; }
             public List<ProductBought> Products { get; set; }
             public string TotalPrice { get; set; }
-            public DateTime? RegistryDate { get; set; }
+            public string LastCardDigits { get; set; }
+            public DateTime? OrderDate { get; set; }
             public string OrderState { get; set; }
         }
     }

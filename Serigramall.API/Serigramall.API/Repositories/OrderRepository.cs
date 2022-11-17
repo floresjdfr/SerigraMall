@@ -8,7 +8,7 @@ using System.IO.Packaging;
 
 namespace Serigramall.API.Repositories
 {
-    public class OrderRepository : IRepository<Order>
+    public class OrderRepository : IRepository<Order>   
     {
         private readonly IMongoCollection<Order> _items;
 
@@ -22,19 +22,24 @@ namespace Serigramall.API.Repositories
 
         public Order Create(Order item)
         {
-            var newItem = (Order)item;
-            _items.InsertOne(newItem);
-            return newItem;
+            _items.InsertOne(item);
+            return item;
         }
         public IEnumerable<Order> Get() => _items.Find(item => true).ToList();
 
         public Order Get(string id) => _items.Find(item => item.Id == id).FirstOrDefault();
 
-        public IEnumerable<Order> GetByProvider(string providerId) => _items.Find(item => item.Provider == providerId).ToList();
         public IEnumerable<Order> GetByProductType(string productType)
         {
             throw new System.NotImplementedException();
         }
+
+        public IEnumerable<Order> GetByProvider(string providerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Order> GetByUserId(string userId) => _items.Find(item => item.Client == userId).ToList();
 
         public void Remove(string id) => _items.DeleteOne(item => item.Id == id);
 
@@ -54,7 +59,6 @@ namespace Serigramall.API.Repositories
             var filter = Builders<Order>.Filter.Where(item => item.Id == updatedItem.Id);
             var update = Builders<Order>.Update
                 .Set(item => item.Products, updatedItem.Products)
-                .Set(item => item.Provider, updatedItem.Provider)
                 .Set(item => item.TotalPrice, updatedItem.TotalPrice)
                 .Set(item => item.OrderState, updatedItem.OrderState);
             var options = new FindOneAndUpdateOptions<Order>();

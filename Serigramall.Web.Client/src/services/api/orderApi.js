@@ -1,7 +1,10 @@
 import ApiCore from "./utilities/core";
+import axios from "axios";
+
 const plural = "Orders";
-const singular = "Order";
+const single = "Order";
 const url = "Order";
+const BASE_URL = `${import.meta.env.VITE_SERVER_API_URL}/api`;
 
 const apiOrders = new ApiCore({
     getAll: false,
@@ -12,7 +15,11 @@ const apiOrders = new ApiCore({
     delete: true,
     url: url,
     plural: plural,
-    single: singular
+    single: single
 });
+
+export const getUserOrders = (userId) => {
+    return axios.get(`${BASE_URL}/${url}?userId=${userId}`);
+}
 
 export default apiOrders;
