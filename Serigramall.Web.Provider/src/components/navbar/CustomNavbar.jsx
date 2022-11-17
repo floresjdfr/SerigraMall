@@ -8,15 +8,15 @@ function CustomNav() {
   return (
     <>
       <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
-        <Container fluid>
+        <Container className="Navbarbg " fluid>
           <Navbar.Brand href="/">{t("nav.provider")}</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
-          <Navbar.Offcanvas
+          <Navbar.Offcanvas className="Navbarbg"
             id={`offcanvasNavbar-expand-lg`}
             aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
             placement="end">
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+              <Offcanvas.Title className="titulo" id={`offcanvasNavbarLabel-expand-lg`}>
                 Offcanvas
               </Offcanvas.Title>
             </Offcanvas.Header>
