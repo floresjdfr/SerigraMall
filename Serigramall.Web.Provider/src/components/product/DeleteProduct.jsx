@@ -100,10 +100,10 @@ const DeleteProduct = ({ product }) => {
 
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button className="Button" onClick={handleClose}>
                 Close
               </Button>
-              <Button type="submit" variant="primary">
+              <Button className="Button" type="submit">
                 Delete
               </Button>
             </Modal.Footer>

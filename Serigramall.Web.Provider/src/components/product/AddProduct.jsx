@@ -102,7 +102,7 @@ const AddProduct = () => {
   return (
     <div className="row">
       <div className="col">
-        <Button className="float-end " variant="secondary" onClick={handleShow}>
+        <Button className="Button float-end " variant="secondary" onClick={handleShow}>
           Add new
         </Button>
 

@@ -169,10 +169,10 @@ const UpdateProduct = ({ product }) => {
               </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="float-start" variant="secondary" onClick={handleClose}>
+              <Button className="Button float-start" variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button className="float-end" type="submit" variant="primary">
+              <Button className="Button float-end" type="submit" variant="primary">
                 Save Product
               </Button>
             </Modal.Footer>
