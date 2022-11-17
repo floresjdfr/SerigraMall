@@ -1,0 +1,23 @@
+.custom-button {
+    background: #375d81;
+    border-block-color: #375d81;
+    font-family: 'Montserrat', sans-serif;
+    transition: all ease-in 100ms;
+    color: #fff;
+    font-size: 100%;
+}
+
+.custom-button:hover {
+    font-family: 'Montserrat', sans-serif;
+    transition: all ease-in 100ms;
+    background: #183052;
+    color: #fff;
+}
+
+.custom-button:focus {
+    font-family: 'Montserrat', sans-serif;
+    transition: all ease-in 100ms;
+    background: #183052;
+    color: #fff;
+}
+

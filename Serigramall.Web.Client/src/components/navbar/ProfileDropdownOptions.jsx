@@ -5,13 +5,14 @@ export default function ProfileDropDownOptions() {
     return (
       <>
         <NavDropdown
-          className="dropdown-custom"
+          className="dropdown-custom navbar-custom-button"
           title="Profile"
           id={`offcanvasNavbarDropdown-expand-lg`}
+          
         >
           <NavDropdown.Item href="/orders">My Orders</NavDropdown.Item>
           <NavDropdown.Item href="/manage-profile">Manage Profile</NavDropdown.Item>
-          <NavDropdown.Divider />
+          
           <LogoutButton />
         </NavDropdown>
       </>
