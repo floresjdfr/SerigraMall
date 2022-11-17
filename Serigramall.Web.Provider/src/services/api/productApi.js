@@ -4,7 +4,7 @@ import axios from 'axios';
 const url = 'Product';
 const plural = 'Products';
 const single = 'Product';
-const BASE_URL = import.meta.env.VITE_SERVER_API_URL;
+const BASE_URL = `${import.meta.env.VITE_SERVER_API_URL}/api`;
 
 // plural and single may be used for message logic if needed in the ApiCore class.
 

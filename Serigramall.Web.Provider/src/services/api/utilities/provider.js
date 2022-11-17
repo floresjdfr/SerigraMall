@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_SERVER_API_URL;
+const BASE_URL = `${import.meta.env.VITE_SERVER_API_URL}/api`;
 
 /** @param {string} resource */
 const getAll = (resource) => {
