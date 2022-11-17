@@ -1,6 +1,7 @@
 import { Container, Navbar, Offcanvas, Nav, Form, Button, } from "react-bootstrap";
 import "../../styles/loginButtonStyles.css";
 import ProfileDropdown from "./ProfileDropdown";
+import logo from "../../assets/logoSeri.png"
 
 function CustomNav() {
   return (
@@ -8,7 +9,7 @@ function CustomNav() {
       <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
         <Container className="Navbarbg " fluid>
           <Navbar.Brand className="titulo" href="/">
-            <img src="src/styles/img/logoSeri.png" width="8%" height="8%" />
+            <img src={logo} width="8%" height="8%" />
             SerigraMall</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas className="Navbarbg"
