@@ -9,7 +9,9 @@ function CustomNav() {
     <>
       <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
         <Container className="Navbarbg " fluid>
-          <Navbar.Brand href="/">{t("nav.provider")}</Navbar.Brand>
+          <Navbar.Brand href="/">
+          <img src="src/styles/img/logoSeri.png" width="8%" height="8%"/>   
+            {t("nav.provider")}</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas className="Navbarbg"
             id={`offcanvasNavbar-expand-lg`}

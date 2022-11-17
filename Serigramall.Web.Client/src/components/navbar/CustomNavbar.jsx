@@ -6,8 +6,10 @@ function CustomNav() {
   return (
     <>
       <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
-        <Container className="Navbarbg "fluid>
-          <Navbar.Brand className="titulo" href="/">SerigraMall</Navbar.Brand>
+        <Container className="Navbarbg " fluid>
+          <Navbar.Brand className="titulo" href="/">
+            <img src="src/styles/img/logoSeri.png" width="8%" height="8%" />
+            SerigraMall</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas className="Navbarbg"
             id={`offcanvasNavbar-expand-lg`}
@@ -23,7 +25,7 @@ function CustomNav() {
                 <Nav.Link className="custom-btn" href="/">Home</Nav.Link>
                 <Nav.Link className="custom-btn" href="/serigraphy">Serigraphy</Nav.Link>
                 <Nav.Link className="custom-btn" href="/product">Only Products</Nav.Link>
-                <ProfileDropdown className="custom-btn"/>
+                <ProfileDropdown className="custom-btn" />
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
