@@ -2,15 +2,16 @@ import { Container, Navbar, Offcanvas, Nav, Form, Button, } from "react-bootstra
 import "../../styles/loginButtonStyles.css";
 import ProfileDropdown from "./ProfileDropdown";
 import { useTranslation } from "react-i18next"
+import logo from "../../assets/logoSeri.png";
 
 function CustomNav() {
   const [t, i18n] = useTranslation("global");
   return (
     <>
-      <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3">
+      <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3 p-0">
         <Container className="Navbarbg " fluid>
           <Navbar.Brand href="/">
-          <img src="src/styles/img/logoSeri.png" width="8%" height="8%"/>   
+          <img src={logo} width="40px" height="40px"/>   
             {t("nav.provider")}</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas className="Navbarbg"
