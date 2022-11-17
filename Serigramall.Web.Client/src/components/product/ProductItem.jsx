@@ -28,7 +28,7 @@ const ProductItem = ({ product, productType, ...args }) => {
             <Card.Img variant="top" src={`data:image/jpeg;base64,${product.image}`} />
 
             <Card.Body>
-                <Card.Title>Precio: {product.basePrice}</Card.Title>
+                <Card.Title>Precio: ₡{product.basePrice}</Card.Title>
                 <Card.Text>
                     {product.description}
                 </Card.Text>
