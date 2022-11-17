@@ -4,7 +4,7 @@ import axios from "axios";
 const plural = "Orders";
 const single = "Order";
 const url = "Order";
-const BASE_URL = `${import.meta.env.VITE_SERVER_API_URL}/api`;
+const BASE_URL = import.meta.env.VITE_SERVER_API_URL;
 
 const apiOrders = new ApiCore({
     getAll: false,
