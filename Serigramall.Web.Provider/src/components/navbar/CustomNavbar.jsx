@@ -3,15 +3,19 @@ import "../../styles/loginButtonStyles.css";
 import ProfileDropdown from "./ProfileDropdown";
 import { useTranslation } from "react-i18next"
 import logo from "../../assets/logoSeri.png";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function CustomNav() {
+
+  const { isAuthenticated } = useAuth0();
   const [t, i18n] = useTranslation("global");
+
   return (
     <>
       <Navbar key={"lg"} bg="light" expand={"lg"} className="mb-3 p-0">
         <Container className="Navbarbg " fluid>
           <Navbar.Brand href="/">
-          <img src={logo} width="40px" height="40px"/>   
+            <img src={logo} width="40px" height="40px" />
             {t("nav.provider")}</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
           <Navbar.Offcanvas className="Navbarbg"
@@ -26,17 +30,9 @@ function CustomNav() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/product">Products</Nav.Link>
+                {isAuthenticated && <Nav.Link href="/products">Products</Nav.Link>}
                 <ProfileDropdown />
               </Nav>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder={t("nav.search")}
-                  className="me-2"
-                  aria-label="Search" />
-                <Button variant="outline-success">{t("nav.search")}</Button>
-              </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>

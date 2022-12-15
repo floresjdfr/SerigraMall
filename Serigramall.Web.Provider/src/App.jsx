@@ -23,11 +23,7 @@ function App() {
         <main className="main">
           <Routes>
             <Route path="/" element={<Index />} />
-
-            {/* Protected routes */}
-            {/*<Route path="/product" element={<Product />} />*/}
-            {/*<Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} scopes={["manage:services manage:products"]} />} /> */}
-            <Route path="/product" element={<ProtectedRoute component={Product} forceCompleteProfile={true} />} />
+            <Route path="/products" element={<ProtectedRoute component={Product} forceCompleteProfile={true} />} />
             <Route path="/manage-profile" element={<ProtectedRoute component={Profile} />} />
 
             {/*Error Routes */}
